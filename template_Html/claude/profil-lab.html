@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Laboratorium - TechLab University</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e40af',
+                        secondary: '#3b82f6',
+                        accent: '#f59e0b',
+                        dark: '#1f2937'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .team-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .team-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .research-tag {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .publication-item {
+            border-left: 4px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .publication-item:hover {
+            border-left-color: #3b82f6;
+            background-color: #f8fafc;
+            transform: translateX(8px);
+        }
+
+        .photo-gallery img {
+            transition: all 0.3s ease;
+            filter: brightness(0.9);
+        }
+
+        .photo-gallery img:hover {
+            filter: brightness(1.1);
+            transform: scale(1.05);
+        }
+
+        .tab-active {
+            background: linear-gradient(135deg, #3b82f6, #1e40af);
+            color: white;
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .stats-number {
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white/95 backdrop-blur-md z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-4">
+                    <div
+                        class="w-10 h-10 bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">TL</span>
+                    </div>
+                    <span class="text-xl font-bold text-gray-900">TechLab Profile</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#lab1" class="nav-link text-gray-700 hover:text-primary font-medium transition-colors">Lab
+                        1</a>
+                    <a href="#lab2" class="nav-link text-gray-700 hover:text-primary font-medium transition-colors">Lab
+                        2</a>
+                    <a href="#research"
+                        class="nav-link text-gray-700 hover:text-primary font-medium transition-colors">Riset</a>
+                    <a href="#publications"
+                        class="nav-link text-gray-700 hover:text-primary font-medium transition-colors">Publikasi</a>
+                    <a href="#gallery"
+                        class="nav-link text-gray-700 hover:text-primary font-medium transition-colors">Galeri</a>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen gradient-bg flex items-center justify-center relative overflow-hidden pt-16">
+        <div class="absolute inset-0 opacity-20">
+            <div class="absolute top-20 left-10 w-32 h-32 bg-white rounded-full animate-pulse"></div>
+            <div class="absolute bottom-40 right-20 w-24 h-24 bg-white rounded-full animate-pulse"
+                style="animation-delay: 1s;"></div>
+            <div class="absolute top-1/2 left-1/4 w-16 h-16 bg-white rounded-full animate-pulse"
+                style="animation-delay: 2s;"></div>
+        </div>
+
+        <div class="text-center text-white z-10 px-4 max-w-6xl mx-auto">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6">
+                Profil <span class="text-yellow-300">Laboratorium</span>
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 opacity-90 max-w-4xl mx-auto">
+                Pusat Inovasi dan Penelitian Teknologi Terdepan dengan Fasilitas Modern dan Tim Ahli Berpengalaman
+            </p>
+            <div class="grid md:grid-cols-3 gap-8 mt-12">
+                <div class="glass-effect rounded-xl p-6">
+                    <div class="text-3xl font-bold mb-2">2</div>
+                    <div class="text-lg opacity-90">Laboratorium Aktif</div>
+                </div>
+                <div class="glass-effect rounded-xl p-6">
+                    <div class="text-3xl font-bold mb-2">50+</div>
+                    <div class="text-lg opacity-90">Peneliti & Mahasiswa</div>
+                </div>
+                <div class="glass-effect rounded-xl p-6">
+                    <div class="text-3xl font-bold mb-2">100+</div>
+                    <div class="text-lg opacity-90">Publikasi Ilmiah</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lab Selector Tabs -->
+    <section class="py-8 bg-white shadow-md sticky top-16 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-center space-x-4">
+                <button onclick="switchLab('lab1')" id="tab-lab1"
+                    class="tab-button tab-active px-8 py-3 rounded-full font-semibold transition-all duration-300">
+                    Lab Pemrograman & AI
+                </button>
+                <button onclick="switchLab('lab2')" id="tab-lab2"
+                    class="tab-button bg-gray-200 text-gray-700 px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:bg-gray-300">
+                    Lab IoT & Robotika
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lab 1 Content -->
+    <div id="content-lab1" class="lab-content">
+        <!-- Lab 1 Overview -->
+        <section id="lab1" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4">Laboratorium Pemrograman & Artificial Intelligence
+                    </h2>
+                    <p class="text-xl text-gray-600 max-w-4xl mx-auto">
+                        Laboratorium yang berfokus pada pengembangan software, machine learning, dan teknologi AI
+                        terdepan untuk solusi masa depan
+                    </p>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-12 items-center mb-16">
+                    <div>
+                        <div class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white">
+                            <h3 class="text-2xl font-bold mb-6">Fokus Penelitian</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-center">
+                                    <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <span>Machine Learning & Deep Learning</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <span>Natural Language Processing</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <span>Computer Vision</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <span>Software Engineering</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="bg-gray-100 rounded-2xl p-8 h-80 flex items-center justify-center">
+                            <div class="text-center">
+                                <svg class="w-32 h-32 mx-auto mb-4 text-blue-600" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path
+                                        d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
+                                </svg>
+                                <p class="text-gray-600">Lab Pemrograman & AI Workspace</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lab Head & Team Lab 1 -->
+                <h3 class="text-3xl font-bold text-center text-gray-900 mb-12">Tim Laboratorium</h3>
+
+                <!-- Lab Head -->
+                <div class="mb-12">
+                    <h4 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Kepala Laboratorium</h4>
+                    <div class="flex justify-center">
+                        <div class="team-card bg-white rounded-2xl shadow-lg p-8 max-w-md">
+                            <div
+                                class="w-32 h-32 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mx-auto mb-6 flex items-center justify-center">
+                                <span class="text-white text-3xl font-bold">DR</span>
+                            </div>
+                            <div class="text-center">
+                                <h5 class="text-xl font-bold text-gray-900 mb-2">Dr. Andi Prasetyo, M.Kom</h5>
+                                <p class="text-blue-600 font-semibold mb-3">Kepala Lab Pemrograman & AI</p>
+                                <p class="text-gray-600 text-sm mb-4">
+                                    Spesialis dalam Machine Learning dan Deep Learning dengan pengalaman 15+ tahun dalam
+                                    penelitian AI
+                                </p>
+                                <div class="flex justify-center space-x-3">
+                                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs">PhD Computer
+                                        Science</span>
+                                    <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-xs">AI
+                                        Expert</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Members Lab 1 -->
+                <div class="mb-16">
+                    <h4 class="text-2xl font-semibold text-gray-800 mb-8 text-center">Anggota Laboratorium</h4>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Member 1 -->
+                        <div class="team-card bg-white rounded-xl shadow-lg p-6">
+                            <div
+                                class="w-20 h-20 bg-gradient-to-r from-green-500 to-teal-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                                <span class="text-white text-lg font-bold">BS</span>
+                            </div>
+                            <div class="text-center">
+                                <h5 class="text-lg font-bold text-gray-900 mb-2">Budi Santoso, M.T</h5>
+                                <p class="text-green-600 font-semibold mb-2">Asisten Peneliti Senior</p>
+                                <p class="text-gray-600 text-sm mb-3">Spesialis Computer Vision dan Image Processing</p>
+                                <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">CV
+                                    Expert</span>
+                            </div>
+                        </div>
+
+                        <!-- Member 2 -->
+                        <div class="team-card bg-white rounded-xl shadow-lg p-6">
+                            <div
+                                class="w-20 h-20 bg-gradient-to-r from-pink-500 to-red-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                                <span class="text-white text-lg font-bold">SR</span>
+                            </div>
+                            <div class="text-center">
+                                <h5 class="text-lg font-bold text-gray-900 mb-2">Sari Rahayu, M.Kom</h5>
+                                <p class="text-pink-600 font-semibold mb-2">Peneliti NLP</p>
+                                <p class="text-gray-600 text-sm mb-3">Natural Language Processing dan Text Mining</p>
+                                <span class="bg-pink-100 text-pink-800 px-2 py-1 rounded-full text-xs">NLP
+                                    Specialist</span>
+                            </div>
+                        </div>
+
+                        <!-- Member 3 -->
+                        <div class="team-card bg-white rounded-xl shadow-lg p-6">
+                            <div
+                                class="w-20 h-20 bg-gradient-to-r from-yellow-500 to-orange-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                                <span class="text-white text-lg font-bold">FA</span>
+                            </div>
+                            <div class="text-center">
+                                <h5 class="text-lg font-bold text-gray-900 mb-2">Fajar Ananda, S.Kom</h5>
+                                <p class="text-yellow-600 font-semibold mb-2">Embedded Systems Developer</p>
+                                <p class="text-gray-600 text-sm mb-3">Desain dan pengembangan perangkat IoT berbasis mikrokontroler</p>
+                                <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs">Embedded</span>
+                            </div>
+                        </div>
+
+                        <!-- Member 4 -->
+                        <div class="team-card bg-white rounded-xl shadow-lg p-6">
+                            <div
+                                class="w-20 h-20 bg-gradient-to-r from-teal-500 to-green-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                                <span class="text-white text-lg font-bold">YS</span>
+                            </div>
+                            <div class="text-center">
+                                <h5 class="text-lg font-bold text-gray-900 mb-2">Yuni Setiawan, M.T</h5>
+                                <p class="text-teal-600 font-semibold mb-2">Smart Systems Analyst</p>
+                                <p class="text-gray-600 text-sm mb-3">Analisis sistem cerdas untuk smart city dan industri 4.0</p>
+                                <span class="bg-teal-100 text-teal-800 px-2 py-1 rounded-full text-xs">Smart Systems</span>
+                            </div>
+                        </div>
+
+                        <!-- Member 5 -->
+                        <div class="team-card bg-white rounded-xl shadow-lg p-6">
+                            <div
+                                class="w-20 h-20 bg-gradient-to-r from-red-500 to-pink-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                                <span class="text-white text-lg font-bold">MA</span>
+                            </div>
+                            <div class="text-center">
+                                <h5 class="text-lg font-bold text-gray-900 mb-2">Mira Anggraini, S.Kom</h5>
+                                <p class="text-red-600 font-semibold mb-2">Robotics Programmer</p>
+                                <p class="text-gray-600 text-sm mb-3">Pemrograman robot dan integrasi sensor aktuator</p>
+                                <span class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs">Robotics</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Lab 2 Content -->
+    <div id="content-lab2" class="lab-content hidden">
+        <!-- Lab 2 Overview -->
+        <section id="lab2" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4">Laboratorium IoT & Robotika</h2>
+                    <p class="text-xl text-gray-600 max-w-4xl mx-auto">
+                        Laboratorium yang mengembangkan teknologi Internet of Things dan sistem robotika untuk industri
+                        4.0 dan smart city
+                    </p>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-12 items-center mb-16">
+                    <div>
+                        <div class="bg-gradient-to-r from-green-600 to-teal-600 rounded-2xl p-8 text-white">
+                            <h3 class="text-2xl font-bold mb-6">Fokus Penelitian</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-center">
+                                    <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <span>Internet of Things (IoT)</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <span>Autonomous Robotics</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <span>Embedded Systems</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <span>Smart Systems</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="bg-gray-100 rounded-2xl p-8 h-80 flex items-center justify-center">
+                            <div class="text-center">
+                                <svg class="w-32 h-32 mx-auto mb-4 text-green-600" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path
+                                        d="M12.316 3.051a1 1 0 01.633 1.265L11.88 8h2.12a1 1 0 01.78 1.625l-6 7.5a1 1 0 01-1.76-.938L8.12 12H6a1 1 0 01-.78-1.625l6-7.5a1 1 0 011.096-.824z" />
+                                </svg>
+                                <p class="text-gray-600">Lab IoT & Robotika Workspace</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lab Head & Team Lab 2 -->
+                <h3 class="text-3xl font-bold text-center text-gray-900 mb-12">Tim Laboratorium</h3>
+
+                <!-- Lab Head -->
+                <div class="mb-12">
+                    <h4 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Kepala Laboratorium</h4>
+                    <div class="flex justify-center">
+                        <div class="team-card bg-white rounded-2xl shadow-lg p-8 max-w-md">
+                            <div
+                                class="w-32 h-32 bg-gradient-to-r from-green-500 to-teal-600 rounded-full mx-auto mb-6 flex items-center justify-center">
+                                <span class="text-white text-3xl font-bold">DM</span>
+                            </div>
+                            <div class="text-center">
+                                <h5 class="text-xl font-bold text-gray-900 mb-2">Dr. Maya Sari, M.T</h5>
+                                <p class="text-green-600 font-semibold mb-3">Kepala Lab IoT & Robotika</p>
+                                <p class="text-gray-600 text-sm mb-4">
+                                    Expert dalam IoT dan Robotika dengan fokus pada Smart Systems dan Autonomous
+                                    Technology
+                                </p>
+                                <div class="flex justify-center space-x-3">
+                                    <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs">PhD
+                                        Robotics</span>
+                                    <span class="bg-teal-100 text-teal-800 px-3 py-1 rounded-full text-xs">IoT
+                                        Expert</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Members Lab 2 -->
+                <div class="mb-16">
+                    <h4 class="text-2xl font-semibold text-gray-800 mb-8 text-center">Anggota Laboratorium</h4>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Member 1 -->
+                        <div class="team-card bg-white rounded-xl shadow-lg p-6">
+                            <div
+                                class="w-20 h-20 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                                <span class="text-white text-lg font-bold">RA</span>
+                            </div>
+                            <div class="text-center">
+                                <h5 class="text-lg font-bold text-gray-900 mb-2">Rudi Ardiansyah, M.T</h5>
+                                <p class="text-blue-600 font-semibold mb-2">IoT Systems Engineer</p>
+                                <p class="text-gray-600 text-sm mb-3">Spesialis dalam IoT Architecture dan Smart Sensors
+                                </p>
+                                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">IoT Expert</span>
+                            </div>
+                        </div>
+
+                        <!-- Member 2 -->
+                        <div class="team-card bg-white rounded-xl shadow-lg p-6">
+                            <div
+                                class="w-20 h-20 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                                <span class="text-white text-lg font-bold">DS</span>
+                            </div>
+                            <div class="text-center">
+                                <h5 class="text-lg font-bold text-gray-900 mb-2">Dian Sartika, M.Kom</h5>
+                                <p class="text-purple-600 font-semibold mb-2">Robotics Engineer</p>
+                                <p class="text-gray-600 text-sm mb-3">Autonomous Systems dan Robot Control</p>
+                                <span
+                                    class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs">Robotics</span>
+                            </div>
+                        </div>
+
+                        <!-- Member 3 -->
+                        <div class="team-card bg-white rounded-xl shadow-lg p-6">
+                            <div
+                                class="w-20 h-20 bg-gradient-to-r from-yellow-500 to-orange-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                                <span class="text-white text-lg font-bold">FA</span>
+                            </div>
+                            <div class="text-center">
+                                <h5 class="text-lg font-bold text-gray-900 mb-2">Fajar Ananda, S.Kom</h5>
+                                <p class="text-yellow-600 font-semibold mb-2">Embedded Systems Developer</p>
+                                <p class="text-gray-600 text-sm mb-3">Desain dan pengembangan perangkat IoT berbasis mikrokontroler</p>
+                                <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs">Embedded</span>
+                            </div>
+                        </div>
+
+                        <!-- Member 4 -->
+                        <div class="team-card bg-white rounded-xl shadow-lg p-6">
+                            <div
+                                class="w-20 h-20 bg-gradient-to-r from-teal-500 to-green-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                                <span class="text-white text-lg font-bold">YS</span>
+                            </div>
+                            <div class="text-center">
+                                <h5 class="text-lg font-bold text-gray-900 mb-2">Yuni Setiawan, M.T</h5>
+                                <p class="text-teal-600 font-semibold mb-2">Smart Systems Analyst</p>
+                                <p class="text-gray-600 text-sm mb-3">Analisis sistem cerdas untuk smart city dan industri 4.0</p>
+                                <span class="bg-teal-100 text-teal-800 px-2 py-1 rounded-full text-xs">Smart Systems</span>
+                            </div>
+                        </div>
+
+                        <!-- Member 5 -->
+                        <div class="team-card bg-white rounded-xl shadow-lg p-6">
+                            <div
+                                class="w-20 h-20 bg-gradient-to-r from-red-500 to-pink-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                                <span class="text-white text-lg font-bold">MA</span>
+                            </div>
+                            <div class="text-center">
+                                <h5 class="text-lg font-bold text-gray-900 mb-2">Mira Anggraini, S.Kom</h5>
+                                <p class="text-red-600 font-semibold mb-2">Robotics Programmer</p>
+                                <p class="text-gray-600 text-sm mb-3">Pemrograman robot dan integrasi sensor aktuator</p>
+                                <span class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs">Robotics</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Research Section -->
+    <section id="research" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Riset dan Inovasi</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Kegiatan riset yang dilakukan di laboratorium kami bertujuan untuk menciptakan inovasi dan solusi
+                    teknologi yang bermanfaat bagi masyarakat dan industri.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Research Item 1 -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                    <div class="relative">
+                        <img src="https://via.placeholder.com/600x400" alt="Research Image 1"
+                            class="w-full h-40 object-cover">
+                        <div class="absolute inset-0 bg-black opacity-30"></div>
+                        <div class="p-4 relative z-10">
+                            <h3 class="text-xl font-bold text-white mb-2">Inovasi AI untuk Deteksi Dini Penyakit</h3>
+                            <p class="text-gray-300 text-sm mb-4">
+                                Menggunakan machine learning untuk menganalisis data medis dan mendeteksi penyakit lebih
+                                awal.
+                            </p>
+                            <a href="#"
+                                class="inline-block bg-primary text-white rounded-full px-4 py-2 text-sm font-semibold transition-all duration-300 hover:bg-opacity-90">
+                                Baca Selengkapnya
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Research Item 2 -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                    <div class="relative">
+                        <img src="https://via.placeholder.com/600x400" alt="Research Image 2"
+                            class="w-full h-40 object-cover">
+                        <div class="absolute inset-0 bg-black opacity-30"></div>
+                        <div class="p-4 relative z-10">
+                            <h3 class="text-xl font-bold text-white mb-2">Robotika untuk Otomatisasi Industri</h3>
+                            <p class="text-gray-300 text-sm mb-4">
+                                Pengembangan robot otonom untuk meningkatkan efisiensi dan keamanan dalam proses
+                                industri.
+                            </p>
+                            <a href="#"
+                                class="inline-block bg-primary text-white rounded-full px-4 py-2 text-sm font-semibold transition-all duration-300 hover:bg-opacity-90">
+                                Baca Selengkapnya
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Research Item 3 -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                    <div class="relative">
+                        <img src="https://via.placeholder.com/600x400" alt="Research Image 3"
+                            class="w-full h-40 object-cover">
+                        <div class="absolute inset-0 bg-black opacity-30"></div>
+                        <div class="p-4 relative z-10">
+                            <h3 class="text-xl font-bold text-white mb-2">Sistem Cerdas untuk Smart City</h3>
+                            <p class="text-gray-300 text-sm mb-4">
+                                Riset tentang penerapan IoT dan AI untuk menciptakan sistem kota pintar yang berkelanjutan.
+                            </p>
+                            <a href="#"
+                                class="inline-block bg-primary text-white rounded-full px-4 py-2 text-sm font-semibold transition-all duration-300 hover:bg-opacity-90">
+                                Baca Selengkapnya
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publications" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Publikasi Ilmiah</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Kumpulan publikasi ilmiah yang dihasilkan oleh tim peneliti di laboratorium kami.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Publication Item 1 -->
+                <div class="publication-item bg-white rounded-2xl shadow-lg p-6 transition-all duration-300">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Analisis Sentimen Menggunakan NLP</h3>
+                    <p class="text-gray-700 text-sm mb-4">
+                        Penelitian tentang penerapan Natural Language Processing untuk analisis sentimen di media sosial.
+                    </p>
+                    <a href="#"
+                        class="inline-block text-primary font-semibold transition-all duration-300 hover:underline">
+                        Baca Selengkapnya
+                    </a>
+                </div>
+
+                <!-- Publication Item 2 -->
+                <div class="publication-item bg-white rounded-2xl shadow-lg p-6 transition-all duration-300">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Pengembangan Aplikasi Mobile untuk Edukasi AI</h3>
+                    <p class="text-gray-700 text-sm mb-4">
+                        Aplikasi mobile sebagai media edukasi untuk memahami konsep dasar Artificial Intelligence.
+                    </p>
+                    <a href="#"
+                        class="inline-block text-primary font-semibold transition-all duration-300 hover:underline">
+                        Baca Selengkapnya
+                    </a>
+                </div>
+
+                <!-- Publication Item 3 -->
+                <div class="publication-item bg-white rounded-2xl shadow-lg p-6 transition-all duration-300">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Robotika Kolaboratif untuk Industri 4.0</h3>
+                    <p class="text-gray-700 text-sm mb-4">
+                        Studi tentang penggunaan robotika kolaboratif dalam meningkatkan produktivitas industri.
+                    </p>
+                    <a href="#"
+                        class="inline-block text-primary font-semibold transition-all duration-300 hover:underline">
+                        Baca Selengkapnya
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Galeri Kegiatan</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Dokumentasi foto kegiatan penelitian, pengembangan, dan inovasi di laboratorium kami.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Photo Item 1 -->
+                <div class="photo-item rounded-2xl overflow-hidden shadow-lg transition-all duration-300">
+                    <img src="https://via.placeholder.com/600x400" alt="Gallery Image 1"
+                        class="w-full h-40 object-cover">
+                </div>
+
+                <!-- Photo Item 2 -->
+                <div class="photo-item rounded-2xl overflow-hidden shadow-lg transition-all duration-300">
+                    <img src="https://via.placeholder.com/600x400" alt="Gallery Image 2"
+                        class="w-full h-40 object-cover">
+                </div>
+
+                <!-- Photo Item 3 -->
+                <div class="photo-item rounded-2xl overflow-hidden shadow-lg transition-all duration-300">
+                    <img src="https://via.placeholder.com/600x400" alt="Gallery Image 3"
+                        class="w-full h-40 object-cover">
+                </div>
+
+                <!-- Photo Item 4 -->
+                <div class="photo-item rounded-2xl overflow-hidden shadow-lg transition-all duration-300">
+                    <img src="https://via.placeholder.com/600x400" alt="Gallery Image 4"
+                        class="w-full h-40 object-cover">
+                </div>
+
+                <!-- Photo Item 5 -->
+                <div class="photo-item rounded-2xl overflow-hidden shadow-lg transition-all duration-300">
+                    <img src="https://via.placeholder.com/600x400" alt="Gallery Image 5"
+                        class="w-full h-40 object-cover">
+                </div>
+
+                <!-- Photo Item 6 -->
+                <div class="photo-item rounded-2xl overflow-hidden shadow-lg transition-all duration-300">
+                    <img src="https://via.placeholder.com/600x400" alt="Gallery Image 6"
+                        class="w-full h-40 object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <a href="#" class="text-2xl font-bold text-white">
+                        TechLab University
+                    </a>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#"
+                        class="text-white hover:text-primary transition-colors duration-300">Home</a>
+                    <a href="#lab1"
+                        class="text-white hover:text-primary transition-colors duration-300">Lab 1</a>
+                    <a href="#lab2"
+                        class="text-white hover:text-primary transition-colors duration-300">Lab 2</a>
+                    <a href="#research"
+                        class="text-white hover:text-primary transition-colors duration-300">Riset</a>
+                    <a href="#publications"
+                        class="text-white hover:text-primary transition-colors duration-300">Publikasi</a>
+                    <a href="#gallery"
+                        class="text-white hover:text-primary transition-colors duration-300">Galeri</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Lab switcher
+        function switchLab(lab) {
+            const lab1Content = document.getElementById('content-lab1');
+            const lab2Content = document.getElementById('content-lab2');
+            const tabLab1 = document.getElementById('tab-lab1');
+            const tabLab2 = document.getElementById('tab-lab2');
+
+            if (lab === 'lab1') {
+                lab1Content.classList.remove('hidden');
+                lab2Content.classList.add('hidden');
+                tabLab1.classList.add('tab-active');
+                tabLab2.classList.remove('tab-active');
+            } else {
+                lab1Content.classList.add('hidden');
+                lab2Content.classList.remove('hidden');
+                tabLab1.classList.remove('tab-active');
+                tabLab2.classList.add('tab-active');
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab Teknologi Digital - Universitas Nusantara</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563eb',
+                        secondary: '#1e40af',
+                        accent: '#f59e0b'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        * { font-family: 'Inter', sans-serif; }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white/90 backdrop-blur-md z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <span class="text-2xl font-bold text-primary">TechLab</span>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="nav-link text-gray-700 hover:text-primary transition-colors">Beranda</a>
+                        <a href="#about" class="nav-link text-gray-700 hover:text-primary transition-colors">Tentang Prodi</a>
+                        <a href="#lab" class="nav-link text-gray-700 hover:text-primary transition-colors">Lab Prodi</a>
+                        <a href="#student-movement" class="nav-link text-gray-700 hover:text-primary transition-colors">Gerakan Mahasiswa</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-700 hover:text-primary">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-2 text-gray-700 hover:text-primary">Beranda</a>
+                <a href="#about" class="block px-3 py-2 text-gray-700 hover:text-primary">Tentang Prodi</a>
+                <a href="#lab" class="block px-3 py-2 text-gray-700 hover:text-primary">Lab Prodi</a>
+                <a href="#student-movement" class="block px-3 py-2 text-gray-700 hover:text-primary">Gerakan Mahasiswa</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen gradient-bg flex items-center justify-center relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-10 left-10 w-20 h-20 bg-white rounded-full animate-float"></div>
+            <div class="absolute top-40 right-20 w-16 h-16 bg-white rounded-full animate-float" style="animation-delay: 1s;"></div>
+            <div class="absolute bottom-20 left-1/4 w-12 h-12 bg-white rounded-full animate-float" style="animation-delay: 2s;"></div>
+        </div>
+        
+        <div class="text-center text-white z-10 px-4">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
+                Laboratorium <span class="text-accent">Teknologi Digital</span>
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto opacity-90">
+                Pusat inovasi dan penelitian teknologi terdepan untuk masa depan yang lebih cerah
+            </p>
+            <div class="space-x-4">
+                <button class="bg-accent hover:bg-yellow-500 text-white px-8 py-3 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105">
+                    Jelajahi Lab
+                </button>
+                <button class="border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-3 rounded-full text-lg font-semibold transition-all duration-300">
+                    Bergabung Sekarang
+                </button>
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="stat-item">
+                    <div class="text-4xl font-bold text-primary mb-2">500+</div>
+                    <div class="text-gray-600">Mahasiswa Aktif</div>
+                </div>
+                <div class="stat-item">
+                    <div class="text-4xl font-bold text-primary mb-2">25+</div>
+                    <div class="text-gray-600">Dosen Ahli</div>
+                </div>
+                <div class="stat-item">
+                    <div class="text-4xl font-bold text-primary mb-2">100+</div>
+                    <div class="text-gray-600">Proyek Selesai</div>
+                </div>
+                <div class="stat-item">
+                    <div class="text-4xl font-bold text-primary mb-2">15+</div>
+                    <div class="text-gray-600">Penghargaan</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Tentang Program Studi</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Program Studi Teknologi Digital yang berfokus pada pengembangan teknologi masa depan
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-6">Visi & Misi</h3>
+                    <div class="space-y-6">
+                        <div class="bg-white p-6 rounded-xl shadow-md card-hover">
+                            <h4 class="text-xl font-semibold text-primary mb-3">Visi</h4>
+                            <p class="text-gray-700">
+                                Menjadi program studi unggulan dalam bidang teknologi digital yang menghasilkan 
+                                lulusan berkualitas dan berkarakter untuk kemajuan bangsa.
+                            </p>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-md card-hover">
+                            <h4 class="text-xl font-semibold text-primary mb-3">Misi</h4>
+                            <ul class="text-gray-700 space-y-2">
+                                <li>• Menyelenggarakan pendidikan teknologi digital berkualitas tinggi</li>
+                                <li>• Mengembangkan penelitian inovatif dan berkelanjutan</li>
+                                <li>• Mengabdi kepada masyarakat melalui aplikasi teknologi</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="bg-gradient-to-r from-primary to-purple-600 rounded-2xl p-8 text-white">
+                        <h4 class="text-2xl font-bold mb-6">Keunggulan Program</h4>
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                </div>
+                                <h5 class="font-semibold">Terakreditasi A</h5>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"/>
+                                    </svg>
+                                </div>
+                                <h5 class="font-semibold">Dosen Berpengalaman</h5>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+                                    </svg>
+                                </div>
+                                <h5 class="font-semibold">Fasilitas Modern</h5>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                </div>
+                                <h5 class="font-semibold">Prestasi Tinggi</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lab Section -->
+    <section id="lab" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Laboratorium Program Studi</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Fasilitas laboratorium modern yang mendukung pembelajaran dan penelitian mahasiswa
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Lab 1 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                        <svg class="w-20 h-20 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Lab Pemrograman</h3>
+                        <p class="text-gray-600 mb-4">
+                            Laboratorium dengan 40 unit komputer untuk pembelajaran pemrograman dan pengembangan software.
+                        </p>
+                        <ul class="text-sm text-gray-500 space-y-1">
+                            <li>• 40 Unit PC Workstation</li>
+                            <li>• Software Development Tools</li>
+                            <li>• High-Speed Internet</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Lab 2 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center">
+                        <svg class="w-20 h-20 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M12.316 3.051a1 1 0 01.633 1.265L11.88 8h2.12a1 1 0 01.78 1.625l-6 7.5a1 1 0 01-1.76-.938L8.12 12H6a1 1 0 01-.78-1.625l6-7.5a1 1 0 011.096-.824z"/>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Lab IoT & Embedded</h3>
+                        <p class="text-gray-600 mb-4">
+                            Laboratorium untuk pembelajaran Internet of Things dan sistem embedded modern.
+                        </p>
+                        <ul class="text-sm text-gray-500 space-y-1">
+                            <li>• Arduino & Raspberry Pi</li>
+                            <li>• Sensor & Actuator Kits</li>
+                            <li>• IoT Development Boards</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Lab 3 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
+                        <svg class="w-20 h-20 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
+                            <path fill-rule="evenodd" d="M4 5a2 2 0 012-2v1a1 1 0 001 1h6a1 1 0 001-1V3a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm2.5 7a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm2.45.5a2.5 2.5 0 11-3.4-3.4l1.95 1.95zm4.05.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Lab AI & Machine Learning</h3>
+                        <p class="text-gray-600 mb-4">
+                            Laboratorium khusus untuk penelitian dan pengembangan kecerdasan buatan.
+                        </p>
+                        <ul class="text-sm text-gray-500 space-y-1">
+                            <li>• GPU Computing Cluster</li>
+                            <li>• Deep Learning Framework</li>
+                            <li>• Big Data Processing</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Lab 4 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-br from-yellow-500 to-orange-600 flex items-center justify-center">
+                        <svg class="w-20 h-20 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z"/>
+                            <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z"/>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Lab Multimedia</h3>
+                        <p class="text-gray-600 mb-4">
+                            Laboratorium untuk pengembangan konten digital dan aplikasi multimedia.
+                        </p>
+                        <ul class="text-sm text-gray-500 space-y-1">
+                            <li>• Video Editing Station</li>
+                            <li>• Audio Recording Studio</li>
+                            <li>• VR/AR Development</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Lab 5 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-br from-red-500 to-pink-600 flex items-center justify-center">
+                        <svg class="w-20 h-20 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z"/>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Lab Cyber Security</h3>
+                        <p class="text-gray-600 mb-4">
+                            Laboratorium khusus untuk pembelajaran keamanan siber dan ethical hacking.
+                        </p>
+                        <ul class="text-sm text-gray-500 space-y-1">
+                            <li>• Penetration Testing Tools</li>
+                            <li>• Network Security Lab</li>
+                            <li>• Isolated Testing Environment</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Lab 6 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-br from-indigo-500 to-blue-600 flex items-center justify-center">
+                        <svg class="w-20 h-20 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Lab Mobile Development</h3>
+                        <p class="text-gray-600 mb-4">
+                            Laboratorium untuk pengembangan aplikasi mobile Android dan iOS.
+                        </p>
+                        <ul class="text-sm text-gray-500 space-y-1">
+                            <li>• Android Studio Environment</li>
+                            <li>• iOS Development Tools</li>
+                            <li>• Mobile Testing Devices</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Student Movement Section -->
+    <section id="student-movement" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Gerakan Mahasiswa</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Organisasi dan komunitas mahasiswa yang dinaungi laboratorium untuk mengembangkan potensi dan kreativitas
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 xl:grid-cols-3 gap-8">
+                <!-- Organization 1 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="h-64 bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center text-white">
+                        <div class="text-center">
+                            <svg class="w-16 h-16 mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"/>
+                            </svg>
+                            <h3 class="text-2xl font-bold">TechCommunity</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">
+                            Komunitas mahasiswa yang fokus pada pengembangan teknologi terbaru dan sharing knowledge sesama developer.
+                        </p>
+                        <div class="space-y-3">
+                            <div class="flex items-center">
+                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
+                                <span class="text-sm text-gray-700">Weekly Tech Talk</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
+                                <span class="text-sm text-gray-700">Coding Bootcamp</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
+                                <span class="text-sm text-gray-700">Open Source Projects</span>
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition-colors">
+                                Bergabung Sekarang
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Organization 2 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="h-64 bg-gradient-to-br from-green-600 to-teal-700 flex items-center justify-center text-white">
+                        <div class="text-center">
+                            <svg class="w-16 h-16 mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                            <h3 class="text-2xl font-bold">Innovation Hub</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">
+                            Organisasi mahasiswa yang berfokus pada inovasi dan pengembangan startup teknologi.
+                        </p>
+                        <div class="space-y-3">
+                            <div class="flex items-center">
+                                <span class="w-2 h-2 bg-green-500 rounded-full mr-3"></span>
+                                <span class="text-sm text-gray-700">Startup Incubator</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="w-2 h-2 bg-green-500 rounded-full mr-3"></span>
+                                <span class="text-sm text-gray-700">Pitch Competition</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="w-2 h-2 bg-green-500 rounded-full mr-3"></span>
+                                <span class="text-sm text-gray-700">Mentorship Program</span>
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <button class="w-full bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg transition-colors">
+                                Bergabung Sekarang
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Organization 3 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="h-64 bg-gradient-to-br from-purple-600 to-pink-700 flex items-center justify-center text-white">
+                        <div class="text-center">
+                            <svg class="w-16 h-16 mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M12.316 3.051a1 1 0 01.633 1.265L11.88 8h2.12a1 1 0 01.78 1.625l-6 7.5a1 1 0 01-1.76-.938L8.12 12H6a1 1 0 01-.78-1.625l6-7.5a1 1 0 011.096-.824z"/>
+                            </svg>
+                            <h3 class="text-2xl font-bold">Robotics Club</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">
+                            Klub robotika yang mengembangkan robot dan mengikuti kompetisi robotika nasional dan internasional.
+                        </p>
+                        <div class="space-y-3">
+                            <div class="flex items-center">
+                                <span class="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
+                                <span class="text-sm text-gray-700">Robot Competition</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
+                                <span class="text-sm text-gray-700">Workshop Robotika</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
+                                <span class="text-sm text-gray-700">Research & Development</span>
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <button class="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded-lg transition-colors">
+                                Bergabung Sekarang
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Organization 4 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="h-64 bg-gradient-to-br from-red-600 to-orange-700 flex items-center justify-center text-white">
+                        <div class="text-center">
+                            <svg class="w-16 h-16 mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z"/>
+                            </svg>
+                            <h3 class="text-2xl font-bold">CyberSec Squad</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">
+                            Tim cybersecurity yang aktif dalam CTF (Capture The Flag) dan penelitian keamanan siber.
+                        </p>
+                        <div class="space-y-3">
+                            <div class="flex items-center">
+                                <span class="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
+                                <span class="text-sm text-gray-700">CTF Competition</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
+                                <span class="text-sm text-gray-700">Security Workshop</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
+                                <span class="text-sm text-gray-700">Penetration Testing</span>
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <button class="w-full bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg transition-colors">
+                                Bergabung Sekarang
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Organization 5 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="h-64 bg-gradient-to-br from-yellow-600 to-orange-700 flex items-center justify-center text-white">
+                        <div class="text-center">
+                            <svg class="w-16 h-16 mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z"/>
+                                <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z"/>
+                            </svg>
+                            <h3 class="text-2xl font-bold">Digital Creative</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">
+                            Komunitas kreatif yang fokus pada pengembangan konten digital, desain, dan multimedia.
+                        </p>
+                        <div class="space-y-3">
+                            <div class="flex items-center">
+                                <span class="w-2 h-2 bg-yellow-500 rounded-full mr-3"></span>
+                                <span class="text-sm text-gray-700">Design Challenge</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="w-2 h-2 bg-yellow-500 rounded-full mr-3"></span>
+                                <span class="text-sm text-gray-700">Video Production</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="w-2 h-2 bg-yellow-500 rounded-full mr-3"></span>
+                                <span class="text-sm text-gray-700">UI/UX Workshop</span>
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <button class="w-full bg-yellow-600 hover:bg-yellow-700 text-white py-2 px-4 rounded-lg transition-colors">
+                                Bergabung Sekarang
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Organization 6 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="h-64 bg-gradient-to-br from-indigo-600 to-blue-700 flex items-center justify-center text-white">
+                        <div class="text-center">
+                            <svg class="w-16 h-16 mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+                            </svg>
+                            <h3 class="text-2xl font-bold">AI Research</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">
+                            Kelompok penelitian yang fokus pada pengembangan kecerdasan buatan dan machine learning.
+                        </p>
+                        <div class="space-y-3">
+                            <div class="flex items-center">
+                                <span class="w-2 h-2 bg-indigo-500 rounded-full mr-3"></span>
+                                <span class="text-sm text-gray-700">AI Research Projects</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="w-2 h-2 bg-indigo-500 rounded-full mr-3"></span>
+                                <span class="text-sm text-gray-700">ML Study Group</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="w-2 h-2 bg-indigo-500 rounded-full mr-3"></span>
+                                <span class="text-sm text-gray-700">Conference & Publication</span>
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <button class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded-lg transition-colors">
+                                Bergabung Sekarang
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">TechLab</h3>
+                    <p class="text-gray-400 mb-4">
+                        Laboratorium Teknologi Digital yang mengembangkan inovasi untuk masa depan yang lebih baik.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition-colors">Beranda</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition-colors">Tentang Prodi</a></li>
+                        <li><a href="#lab" class="text-gray-400 hover:text-white transition-colors">Lab Prodi</a></li>
+                        <li><a href="#student-movement" class="text-gray-400 hover:text-white transition-colors">Gerakan Mahasiswa</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Laboratorium</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Lab Pemrograman</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Lab IoT & Embedded</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Lab AI & ML</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Lab Cyber Security</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Kontak</h4>
+                    <div class="space-y-2 text-gray-400">
+                        <p>Jl. Teknologi Digital No. 123</p>
+                        <p>Surabaya, Jawa Timur 60111</p>
+                        <p>Telp: (031) 123-4567</p>
+                        <p>Email: info@techlab.ac.id</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 TechLab - Laboratorium Teknologi Digital. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if it's open
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Navbar background change on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-white/95');
+                navbar.classList.remove('bg-white/90');
+            } else {
+                navbar.classList.add('bg-white/90');
+                navbar.classList.remove('bg-white/95');
+            }
+        });
+
+        // Animate stats on scroll
+        const animateStats = () => {
+            const stats = document.querySelectorAll('.stat-item');
+            stats.forEach(stat => {
+                const rect = stat.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    stat.style.opacity = '1';
+                    stat.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        // Initialize stats animation
+        document.querySelectorAll('.stat-item').forEach(stat => {
+            stat.style.opacity = '0';
+            stat.style.transform = 'translateY(20px)';
+            stat.style.transition = 'all 0.6s ease';
+        });
+
+        window.addEventListener('scroll', animateStats);
+        animateStats(); // Run once on load
+
+        // Add loading animation
+        window.addEventListener('load', () => {
+            document.body.classList.add('loaded');
+        });
+    </script>
+</body>
+</html>
