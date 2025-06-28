@@ -4,7 +4,7 @@ namespace App\Filament\Admin\Resources;
 
 use App\Filament\Admin\Resources\PerwalianPostResource\Pages;
 use App\Filament\Admin\Resources\PerwalianPostResource\RelationManagers;
-use App\Models\PerwalianPost;
+use App\Models\Perwalian;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class PerwalianPostResource extends Resource
 {
-    protected static ?string $model = PerwalianPost::class;
+    protected static ?string $model = Perwalian::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 

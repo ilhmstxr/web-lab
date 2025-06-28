@@ -2,9 +2,9 @@
 
 namespace App\Filament\Admin\Resources;
 
-use App\Filament\Admin\Resources\LabResourceResource\Pages;
-use App\Filament\Admin\Resources\LabResourceResource\RelationManagers;
-use App\Models\Lab;
+use App\Filament\Admin\Resources\TestResource\Pages;
+use App\Filament\Admin\Resources\TestResource\RelationManagers;
+use App\Models\Test;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,9 +13,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class LabResourceResource extends Resource
+class TestResource extends Resource
 {
-    protected static ?string $model = Lab::class;
+    protected static ?string $model = Test::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -56,9 +56,9 @@ class LabResourceResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListLabResources::route('/'),
-            'create' => Pages\CreateLabResource::route('/create'),
-            'edit' => Pages\EditLabResource::route('/{record}/edit'),
+            'index' => Pages\ListTests::route('/'),
+            'create' => Pages\CreateTest::route('/create'),
+            'edit' => Pages\EditTest::route('/{record}/edit'),
         ];
     }
 }
