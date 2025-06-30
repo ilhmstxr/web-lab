@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\AbsensiController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\KompetisiController;
 use App\Http\Controllers\LabBookingController;
 use App\Http\Controllers\LabController;
@@ -29,15 +30,3 @@ Route::resource('LabBooking', LabBookingController::class);
 Route::resource('Lab', LabController::class);
 Route::resource('Perwalian', PerwalianController::class);
 Route::resource('Research', ResearchController::class);
-
-Route::get('/panduan', [PageController::class, 'panduan'])->name('page.panduan');
-Route::get('/kegiatan', [PublicKegiatan::class, 'index'])->name('kegiatan.user.index');
-Route::get('/kegiatan/{kegiatan}', [PublicKegiatan::class, 'show'])->name('kegiatan.user.show');
-
-Route::prefix('admin')->middleware(['auth'])->group(function () {
-    Route::get('/', fn() => view('admin.dashboard'))->name('admin.dashboard'); // buat file: resources/views/admin/dashboard.blade.php
-
-    Route::resource('kegiatan', AdminKegiatan::class);
-});
-
-require __DIR__ . '/auth.php';
