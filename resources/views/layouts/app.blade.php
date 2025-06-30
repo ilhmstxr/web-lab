@@ -26,7 +26,7 @@
                 <a href="/" class="font-bold text-lg text-gray-800 hover:text-blue-600">Web Lab</a>
                 <div class="space-x-4">
                     @auth
-                        <a href="{{ route('admin.dashboard') }}" class="text-sm text-blue-600 font-medium hover:underline">
+                        <a href="{{ url('/admin') }}" class="text-sm text-blue-600 font-medium hover:underline">
                             Dashboard
                         </a>
                         <form method="POST" action="{{ route('logout') }}" class="inline">

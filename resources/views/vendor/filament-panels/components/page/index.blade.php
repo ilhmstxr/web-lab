@@ -150,15 +150,19 @@
 
     @if (! ($this instanceof \Filament\Tables\Contracts\HasTable))
         <x-filament-actions::modals />
-    @elseif ($this->isTableLoaded() && filled($this->defaultTableAction))
-        <div
-            wire:init="mountTableAction(@js($this->defaultTableAction), @if (filled($this->defaultTableActionRecord)) @js($this->defaultTableActionRecord) @else {{ 'null' }} @endif @if (filled($this->defaultTableActionArguments)) , @js($this->defaultTableActionArguments) @endif)"
-        ></div>
+    @elseif ($this->isTableLoaded()) {{-- Hapus && filled($this->defaultTableAction) di sini --}}
+        {{-- Tambahkan pengecekan property_exists() --}}
+        @if (property_exists($this, 'defaultTableAction') && filled($this->defaultTableAction))
+            <div
+                wire:init="mountTableAction(@js($this->defaultTableAction), @if (property_exists($this, 'defaultTableActionRecord') && filled($this->defaultTableActionRecord)) @js($this->defaultTableActionRecord) @else {{ 'null' }} @endif @if (property_exists($this, 'defaultTableActionArguments') && filled($this->defaultTableActionArguments)) , @js($this->defaultTableActionArguments) @endif)"
+            ></div>
+        @endif
     @endif
 
-    @if (filled($this->defaultAction))
+    {{-- Tambahkan pengecekan property_exists() --}}
+    @if (property_exists($this, 'defaultAction') && filled($this->defaultAction))
         <div
-            wire:init="mountAction(@js($this->defaultAction) @if (filled($this->defaultActionArguments)) , @js($this->defaultActionArguments) @endif)"
+            wire:init="mountAction(@js($this->defaultAction) @if (property_exists($this, 'defaultActionArguments') && filled($this->defaultActionArguments)) , @js($this->defaultActionArguments) @endif)"
         ></div>
     @endif
 
