@@ -24,15 +24,3 @@ Route::resource('Lab', LabController::class);
 Route::resource('Perwalian', PerwalianController::class);
 Route::resource('Research', ResearchController::class);
 
-
-Route::get('/login', function () {
-    return view('login');
-});
-
-Route::post('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard')->middleware('auth');
-
-Route::prefix('dashboard')->middleware('auth')->group(function () {
-   
-});
