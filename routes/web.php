@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\KompetisiController;
@@ -12,7 +11,7 @@ use App\Http\Controllers\ResearchController;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('public.index');
 });
 
 Route::resource('Page', PageController::class);
