@@ -127,7 +127,7 @@
                                 </svg>
                                 <h2 class="text-xl font-semibold">Visi Kami</h2>
                             </div>
-                            <p class="text-gray-600 mt-2">
+                            <p class="text-black-600 mt-2">
                                 Menjadi laboratorium riset yang diakui secara global, yang memberikan dampak signifikan
                                 bagi masyarakat dan industri.
                             </p>

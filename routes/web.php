@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\AbsensiController;
-use App\Http\Controllers\AuthController;
 use App\Http\Controllers\KompetisiController;
 use App\Http\Controllers\LabBookingController;
 use App\Http\Controllers\LabController;
