@@ -11,7 +11,7 @@ use App\Http\Controllers\LabController;
 use App\Http\Controllers\PerwalianController;
 use App\Http\Controllers\ResearchController;
 use App\Http\Controllers\KomunitasController;
-
+use Filament\Forms\Get;
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,3 +26,7 @@ Route::resource('Perwalian', PerwalianController::class);
 Route::resource('Research', ResearchController::class);
 Route::get('/komunitas', [KomunitasController::class, 'index'])->name('komunitas.index');
 Route::get('/komunitas/{id}', [KomunitasController::class, 'show'])->name('komunitas.show');
+
+// route::get('/sewa_lab', function () {
+//     return view('public.lab-booking');
+// })->name('home');
