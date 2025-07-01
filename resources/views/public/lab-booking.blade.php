@@ -53,21 +53,7 @@
 @extends('layout.main')
 @section('content')
 
-    <body class="antialiased">
-
-
-        <!-- Header & Navigation -->
-        <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-200">
-            <div class="container mx-auto px-4 md:px-6">
-                <nav class="flex items-center justify-between h-16">
-                    <a href="#" class="text-xl font-bold text-primary">LabConnect</a>
-                    <a href="lab-attendance-page.html"
-                        class="inline-flex items-center justify-center rounded-md bg-accent px-4 py-2 text-sm font-medium text-accent-foreground shadow-sm transition-colors hover:bg-accent/90">
-                        Halaman Absensi
-                    </a>
-                </nav>
-            </div>
-        </header>
+    <body class="antialiased">        
 
         <main class="flex-1 py-12 md:py-24 lg:py-32">
             <div class="container mx-auto px-4 md:px-6">
