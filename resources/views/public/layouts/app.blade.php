@@ -22,11 +22,11 @@
     @stack('styles')
 </head>
 <body class="bg-gray-50">
-    @include('partials.navigation')
+    @include('public.partials.navigation')
 
     @yield('content')
 
-    @include('partials.footer')
+    @include('public.partials.footer')
 
     @stack('scripts')
 </body>
