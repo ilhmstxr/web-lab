@@ -74,9 +74,9 @@
                                       class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">{{ $k->name }}</a>
                               @endforeach --}}
                               <a href="{{ route('komunitas.show', 1) }}"
-                                  class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">Lab SSI</a>
-                              <a href="{{ route('komunitas.show', 1) }}"
-                                  class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">Lab MSI</a>
+                                  class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">Dicretech</a>
+                              <a href="{{ route('komunitas.show', 2) }}"
+                                  class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">ISCOM</a>
                           </div>
                       </div>
                   </div>
