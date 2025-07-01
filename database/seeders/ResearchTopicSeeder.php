@@ -14,15 +14,15 @@ class ResearchTopicSeeder extends Seeder
     public function run(): void
     {
         $researchTopics = [
-            'name' => 'SMART ECONOMY',
-            'name' => 'SMART EDUCATION',
-            'name' => 'SMART ENVIRONMENT',
-            'name' => 'SMART GOVERNMENT',
-            'name' => 'lainnya',
-            'name' => 'SMART TOURISM',
-            'name' => 'SMART HEALTHCARE',
-            'name' => 'SMART ENERGY',
-            'name' => 'SMART AGRICULTURE',
+            ['name' => 'SMART ECONOMY'],
+            ['name' => 'SMART EDUCATION'],
+            ['name' => 'SMART ENVIRONMENT'],
+            ['name' => 'SMART GOVERNMENT'],
+            ['name' => 'SMART TOURISM'],
+            ['name' => 'SMART HEALTHCARE'],
+            ['name' => 'SMART ENERGY'],
+            ['name' => 'SMART AGRICULTURE'],
+            ['name' => 'lainnya'],
         ];
 
         ResearchTopic::insert($researchTopics);

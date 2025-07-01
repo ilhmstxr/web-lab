@@ -17,7 +17,7 @@ class ResearchController extends Controller
         $category = ResearchCategory::all();
         $topic = ResearchTopic::all();
         $research = Research::all();
-        return $topic;
+        // return $topic;
         return view('public.research', compact('category', 'topic', 'research'));
     }
 

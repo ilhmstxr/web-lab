@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\ResearchTopic;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -31,6 +32,7 @@ class DatabaseSeeder extends Seeder
             LabScheduleSeeder::class,
             ResearchCategorySeeder::class,
             ResearchSeeder::class,
+            ResearchTopicSeeder::class,
         ]);
     }
 }
