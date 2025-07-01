@@ -11,10 +11,11 @@ use App\Http\Controllers\ResearchController;
 use App\Http\Controllers\KomunitasController;
 use Filament\Forms\Get;
 
-Route::get('/', function () {
-    return view('public.index');
-});
+// Route::get('/', function () {
+//     return view('public.index');
+// });
 
+route::get('/', [PageController::class, 'index'])->name('home');
 Route::resource('Page', PageController::class);
 Route::resource('Absensi', AbsensiController::class);
 Route::resource('Kompetisi', KompetisiController::class);

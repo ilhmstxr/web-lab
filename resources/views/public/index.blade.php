@@ -65,9 +65,81 @@
             </a>
             <nav class="hidden md:flex items-center gap-6">
                 <a href="#home" class="text-sm font-medium text-gray-600 hover:text-blue-600">Beranda</a>
-                <a href="#about" class="text-sm font-medium text-gray-600 hover:text-blue-600">Tentang Prodi</a>
+                <a href="{{ route('Research.index') }}"
+                    class="text-sm font-medium text-gray-600 hover:text-blue-600">Riset</a>
+                {{-- <a href="{{ route('publications.index') }}" class="text-sm font-medium text-gray-600 hover:text-blue-600">Kegiatan</a> --}}
+                <nav class="flex items-center space-x-8">
+
+                    <div class="relative inline-block text-left">
+                        <button type="button" data-dropdown-toggle="dropdown-profil-lab"
+                            class="inline-flex items-center gap-1 text-sm font-medium text-gray-700 hover:text-gray-900">
+                            Profil Lab
+                            <svg class="dropdown-arrow h-4 w-4 transition-transform duration-200"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div id="dropdown-profil-lab"
+                            class="dropdown-menu absolute left-0 z-10 mt-2 w-48 origin-top-left rounded-md bg-white shadow-lg focus:outline-none hidden">
+                            <div class="py-1">
+                                <a href="#" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">Lab
+                                    SSI</a>
+                                <a href="#" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">Lab
+                                    MSI</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative inline-block text-left">
+                        <button type="button" data-dropdown-toggle="dropdown-layanan"
+                            class="inline-flex items-center gap-1 text-sm font-medium text-gray-700 hover:text-gray-900">
+                            Layanan
+                            <svg class="dropdown-arrow h-4 w-4 transition-transform duration-200"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div id="dropdown-layanan"
+                            class="dropdown-menu absolute left-0 z-10 mt-2 w-48 origin-top-left rounded-md bg-white shadow-lg focus:outline-none hidden">
+                            <div class="py-1">
+                                <a href="#" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">SOP
+                                    Lab</a>
+                                <a href="{{ route('LabBooking.index') }}"
+                                    class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">Peminjaman Lab</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative inline-block text-left">
+                        <button type="button" data-dropdown-toggle="dropdown-komunitas"
+                            class="inline-flex items-center gap-1 text-sm font-medium text-gray-700 hover:text-gray-900">
+                            Komunitas
+                            <svg class="dropdown-arrow h-4 w-4 transition-transform duration-200"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div id="dropdown-komunitas"
+                            class="dropdown-menu absolute left-0 z-10 mt-2 w-48 origin-top-left rounded-md bg-white shadow-lg focus:outline-none hidden">
+                            <div class="py-1">
+                                @foreach ($komunitas as $k)
+                                    <a href="{{ route('komunitas.show', $k->id) }}"
+                                        class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">{{ $k->name }}</a>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+
+                </nav>
+
+
+                {{-- <a href="#home" class="text-sm font-medium text-gray-600 hover:text-blue-600">Panduan</a> --}}
+                {{-- <a href="#about" class="text-sm font-medium text-gray-600 hover:text-blue-600">Tentang Prodi</a>
                 <a href="#lab" class="text-sm font-medium text-gray-600 hover:text-blue-600">Lab Prodi</a>
-                <a href="#students" class="text-sm font-medium text-gray-600 hover:text-blue-600">Gerakan Mahasiswa</a>
+                <a href="#students" class="text-sm font-medium text-gray-600 hover:text-blue-600">Gerakan Mahasiswa</a> --}}
             </nav>
         </div>
     </header>
@@ -98,9 +170,9 @@
                     <div class="grid gap-6">
                         <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow duration-300">
                             <div class="flex flex-row items-center gap-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="w-8 h-8 text-blue-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-blue-600">
                                     <circle cx="12" cy="12" r="10" />
                                     <circle cx="12" cy="12" r="6" />
                                     <circle cx="12" cy="12" r="2" />
@@ -115,9 +187,9 @@
 
                         <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow duration-300">
                             <div class="flex flex-row items-center gap-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="w-8 h-8 text-blue-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-blue-600">
                                     <path
                                         d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.3.09-3.1a2.12 2.12 0 0 0-.09-3.11c.7-1.12.7-2.58 0-3.56S3 4.24 3 4.24s3.74-.5 5-2c.71-.84.7-2.3.09-3.1a2.12 2.12 0 0 0-.09-3.11c.7-1.12.7-2.58 0-3.56s-2.81-1.2-3.41-1.87" />
                                     <path
@@ -153,8 +225,10 @@
                         class="block bg-white rounded-xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-1 p-6 text-center animate-fadeInUp delay-300">
                         <img src="/img/Logo Lab Solusi.png" alt="Logo solusi" class="logo mx-auto w-1/6 h-auto">
                         <h3 class="text-2xl font-semibold mb-2 text-yellow-600">Laboratorium Solusi</h3>
-                        <p class="text-gray-600 mb-4">Laboratorium Solusi yang berfokus riset dan pengembangan mahasiswa dalam salah satu keilmuan
-                            di dalam Program Studi Informasi yaitu pada pengembangan sisem informasi, analisa data, pemodelan machine learning, 
+                        <p class="text-gray-600 mb-4">Laboratorium Solusi yang berfokus riset dan pengembangan
+                            mahasiswa dalam salah satu keilmuan
+                            di dalam Program Studi Informasi yaitu pada pengembangan sisem informasi, analisa data,
+                            pemodelan machine learning,
                             perancangan desain antarmuka sistem informasi dan masih banyak lagi.</p>
                         <span class="inline-block bg-yellow-600 text-white px-4 py-2 rounded-md">Pelajari</span>
                     </a>
@@ -164,8 +238,10 @@
                         class="block bg-white rounded-xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-1 p-6 text-center animate-fadeInUp delay-500">
                         <img src="/img/logo-msi.png" alt="Logo MSI" class="logo mx-auto w-1/5 h-auto">
                         <h3 class="text-2xl font-semibold mb-2 text-orange-800">Laboratorium MSI</h3>
-                        <p class="text-gray-600 mb-4">Laboratorium MSI yang berfokus riset dan pengembangan mahasiswa dalam salah satu keilmuan
-                            di dalam Program Studi Inforasi yaitu pada pengukuran indikator kesuskesan sebuah sistem informasi,
+                        <p class="text-gray-600 mb-4">Laboratorium MSI yang berfokus riset dan pengembangan mahasiswa
+                            dalam salah satu keilmuan
+                            di dalam Program Studi Inforasi yaitu pada pengukuran indikator kesuskesan sebuah sistem
+                            informasi,
                             manajemen sistem informasi serta manajemen proyek sisem informasi.
                         </p>
                         <span class="inline-block bg-orange-800 text-white px-4 py-2 rounded-md">Pelajari</span>
@@ -202,9 +278,9 @@
     <footer class="bg-blue-600 text-white">
         <div class="container mx-auto px-4 py-8 md:px-6 flex flex-col md:flex-row items-center justify-between gap-4">
             <div class="flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="h-6 w-6">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" class="h-6 w-6">
                     <path d="M10 2v7.31" />
                     <path d="M14 9.31V2" />
                     <path
@@ -224,5 +300,46 @@
     </footer>
 
 </body>
+<script>
+    // Ambil semua tombol yang berfungsi sebagai pemicu dropdown
+    const dropdownToggles = document.querySelectorAll('[data-dropdown-toggle]');
+
+    dropdownToggles.forEach(toggle => {
+        toggle.addEventListener('click', function(event) {
+            event.stopPropagation(); // Mencegah klik menyebar ke window
+
+            const targetMenuId = this.getAttribute('data-dropdown-toggle');
+            const targetMenu = document.getElementById(targetMenuId);
+            const targetArrow = this.querySelector('.dropdown-arrow');
+
+            // --- INI LOGIKA KUNCINYA ---
+            // 1. Tutup SEMUA dropdown lain terlebih dahulu
+            document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                // Jika menu ini BUKAN target kita, maka sembunyikan
+                if (menu.id !== targetMenuId) {
+                    menu.classList.add('hidden');
+                    // Dan reset panahnya
+                    const otherToggle = document.querySelector(
+                        `[data-dropdown-toggle="${menu.id}"]`);
+                    otherToggle.querySelector('.dropdown-arrow').classList.remove('rotate-180');
+                }
+            });
+
+            // 2. Buka/tutup dropdown yang kita klik
+            targetMenu.classList.toggle('hidden');
+            targetArrow.classList.toggle('rotate-180');
+        });
+    });
+
+    // Satu listener global untuk menutup semua dropdown jika klik di luar
+    window.addEventListener('click', function() {
+        document.querySelectorAll('.dropdown-menu').forEach(menu => {
+            menu.classList.add('hidden');
+        });
+        document.querySelectorAll('.dropdown-arrow').forEach(arrow => {
+            arrow.classList.remove('rotate-180');
+        });
+    });
+</script>
 
 </html>
