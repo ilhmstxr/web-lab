@@ -18,22 +18,22 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('research_categories')->onUpdate('cascade')->onDelete('cascade');
             $table->string('author');
-            $table->string('year');
-            $table->string('status')->default('draft'); // e.g., draft, published
-            $table->string('collabolator')->nullable(); // riset skripsi gausa
+            $table->string('year')->nullable();
+            $table->string('status')->default('draft')->nullable(); // e.g., draft, published
+            // $table->string('collabolator')->nullable(); // riset skripsi gausa
             $table->string('institution')->nullable(); // upn
             $table->string('funding')->nullable();  // penelitian
-            $table->date('published_at')->nullable(); // (pending)
+            // $table->date('published_at')->nullable(); // (pending)
             // $table->string('file_path')->nullable(); // 
             // $table->string('thumbnail')->nullable(); // Path to the thumbnail image
-            $table->boolean('is_featured')->default(false); // For highlighting important research
+            // $table->boolean('is_featured')->default(false); // For highlighting important research
             // $table->boolean('is_active')->default(true); // For soft deletion or deactivation
-            $table->string('slug')->unique(); // URL-friendly version of the title
-            $table->string('repository'); // URL-friendly version of the title
-            $table->text('keywords')->nullable(); // For SEO
-            $table->text('abstract')->nullable(); // Short summary of the research
-            $table->string('doi')->nullable(); // Digital Object Identifier for the research
-            $table->string('citation')->nullable(); // Citation format for the research         
+            $table->string('urlYt')->unique(); // URL-friendly version of the title
+            $table->string('repository')->unique(); // URL-friendly version of the title -> skripsi
+            // $table->text('keywords')->nullable(); // For SEO
+            // $table->text('abstract')->nullable(); // Short summary of the research
+            // $table->string('doi')->nullable(); // Digital Object Identifier for the research
+            // $table->string('citation')->nullable(); // Citation format for the research         
             $table->timestamps();
 
 
@@ -47,16 +47,13 @@ return new class extends Migration
 
 
             // penelitian
-            // 1. 
-            // 2. 
-            // 3. 
-            // 4. 
-            // 5. 
-            // 6. 
-            // 7. 
-            // 8. 
-            // 9. 
-            // 10.
+            // 1. category
+            // 2. ketua penelitian (nama dosen)
+            // 3. judul
+            // 4. topic penelitian
+            // 5. funding
+            // 6. tahun
+            // 7. dana
 
             // pengabdian masyarakat
             // kompetisi
