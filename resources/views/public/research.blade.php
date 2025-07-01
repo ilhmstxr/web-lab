@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html lang="id">
+@extends('layout.main')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eksplorasi Riset Unggulan</title>
-    <link rel="stylesheet" href="../globals.css">
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
-</head>
+@section('content')
 
 <body class="font-body antialiased bg-background">
     <div class="flex flex-col min-h-screen">
@@ -72,6 +64,5 @@
     <script>
         // Data dan logika JavaScript akan ditempatkan di sini untuk mengelola state dan event.
     </script>
-</body>
-
-</html>
+    
+    @endsection
