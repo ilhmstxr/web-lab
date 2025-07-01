@@ -31,8 +31,8 @@ class DatabaseSeeder extends Seeder
             KomunitasSeeder::class,
             LabScheduleSeeder::class,
             ResearchCategorySeeder::class,
-            ResearchSeeder::class,
             ResearchTopicSeeder::class,
+            ResearchSeeder::class,
         ]);
     }
 }

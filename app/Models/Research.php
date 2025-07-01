@@ -14,8 +14,17 @@ class Research extends Model
         'description',
         'category_id',
         'topic_id',
+        'author',
+        'year',
         'status',
-        'published_at',
+        'institution',
+        'funding',
+        'fund',
+        'youtubeLink',
+        'repositoryLink',
+        'npm',
+        'angkatan',
+        'interest',
     ];
 
     public function category()
