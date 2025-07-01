@@ -6,11 +6,11 @@
               <span class="nav-text-1">Lab Sistem Informasi</span>
           </a>
           <nav class="hidden md:flex items-center gap-6">
-              <a href="#home" class="text-sm font-medium text-gray-600 hover:text-blue-600">Beranda</a>
+              <a href="/" class="text-sm font-medium text-gray-600 hover:text-blue-600">Beranda</a>
               <a href="{{ route('Research.index') }}"
                   class="text-sm font-medium text-gray-600 hover:text-blue-600">Riset</a>
-              {{-- <a href="{{ route('kegiatan.index') }}"
-                  class="text-sm font-medium text-gray-600 hover:text-blue-600">Riset</a> --}}
+              <a href="{{ route('Kegiatan.index') }}"
+                  class="text-sm font-medium text-gray-600 hover:text-blue-600">Kegiatan</a>
               {{-- <a href="{{ route('publications.index') }}" class="text-sm font-medium text-gray-600 hover:text-blue-600">Kegiatan</a> --}}
               <nav class="flex items-center space-x-8">
 
@@ -69,10 +69,14 @@
                       <div id="dropdown-komunitas"
                           class="dropdown-menu absolute left-0 z-10 mt-2 w-48 origin-top-left rounded-md bg-white shadow-lg focus:outline-none hidden">
                           <div class="py-1">
-                              @foreach ($komunitas as $k)
+                              {{-- @foreach ($komunitas as $k)
                                   <a href="{{ route('komunitas.show', $k->id) }}"
                                       class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">{{ $k->name }}</a>
-                              @endforeach
+                              @endforeach --}}
+                              <a href="{{ route('komunitas.show', 1) }}"
+                                  class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">Dicretech</a>
+                              <a href="{{ route('komunitas.show', 2) }}"
+                                  class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">ISCOM</a>
                           </div>
                       </div>
                   </div>
