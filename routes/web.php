@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\AbsensiController;
+use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\KompetisiController;
 use App\Http\Controllers\LabBookingController;
 use App\Http\Controllers\LabController;
@@ -25,6 +26,7 @@ Route::resource('Perwalian', PerwalianController::class);
 Route::resource('Research', ResearchController::class);
 Route::get('/komunitas', [KomunitasController::class, 'index'])->name('komunitas.index');
 Route::get('/komunitas/{id}', [KomunitasController::class, 'show'])->name('komunitas.show');
+Route::resource('/Kegiatan', KegiatanController::class);
 
 // route::get('/sewa_lab', function () {
 //     return view('public.lab-booking');
