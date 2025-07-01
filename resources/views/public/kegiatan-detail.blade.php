@@ -357,7 +357,7 @@
                         alert('Anda harus login untuk menyukai kegiatan ini!');
                         window.location.href = "{{ route('login') }}";
                     @endauth
-                        });
+                                });
             }
             @auth
                 @if (isset($kegiatan->isLikedByUser) && $kegiatan->isLikedByUser)
@@ -365,6 +365,6 @@
                     likeIcon.classList.add('text-red-600');
                 @endif
             @endauth
-                });
+                        });
     </script>
 @endsection
