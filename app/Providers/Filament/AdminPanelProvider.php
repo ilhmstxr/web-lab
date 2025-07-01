@@ -18,7 +18,8 @@ use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
-use App\Filament\Admin\Resources\KegiatanResource; // Pastikan ini diimpor
+use App\Filament\Admin\Resources\KegiatanResource;
+use App\Filament\Admin\Resources\SopResource;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -32,9 +33,9 @@ class AdminPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Amber,
             ])
-            // Resolusi konflik: Mempertahankan explicit resource dan discoverResources
             ->resources([
-                KegiatanResource::class, // Mempertahankan resource ini
+                KegiatanResource::class,
+                SopResource::class,
             ])
             ->discoverResources(in: app_path('Filament/Admin/Resources'), for: 'App\\Filament\\Admin\\Resources')
             ->discoverPages(in: app_path('Filament/Admin/Pages'), for: 'App\\Filament\\Admin\\Pages')

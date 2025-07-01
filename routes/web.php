@@ -8,9 +8,10 @@ use App\Http\Controllers\LabBookingController;
 use App\Http\Controllers\LabController;
 use App\Http\Controllers\PerwalianController;
 use App\Http\Controllers\ResearchController;
-use App\Http\Controllers\KegiatanController; 
-use App\Http\Controllers\CommentController;  
-use App\Http\Controllers\KomunitasController; 
+use App\Http\Controllers\KegiatanController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\KomunitasController;
+
 Route::get('/', [PageController::class, 'index'])->name('home');
 Route::resource('page', PageController::class);
 Route::resource('absensi', AbsensiController::class);
@@ -26,3 +27,4 @@ Route::post('/comments', [CommentController::class, 'store'])->name('comments.st
 Route::get('/panduan', [PageController::class, 'panduan'])->name('page.panduan');
 Route::get('/komunitas', [KomunitasController::class, 'index'])->name('komunitas.index');
 Route::get('/komunitas/{id}', [KomunitasController::class, 'show'])->name('komunitas.show');
+Route::get('/sop', [PageController::class, 'sop'])->name('sop.index');

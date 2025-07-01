@@ -60,9 +60,7 @@ class KegiatanSeeder extends Seeder
                 'kategori' => 'Seminar',
                 'tanggal' => Carbon::parse('2025-08-15'),
                 'tempat' => 'Auditorium Fasilkom, Gedung B',
-                // Gambar: peserta diskusi coding
                 'poster' => 'https://images.stockcake.com/public/0/b/b/0bbfee62-ee0c-461e-9411-a30749a60349_large/focused-coding-workshop-stockcake.jpg',
-                // Video: Learn Data Science Tutorial – Full Course for Beginners
                 'youtube_url' => 'https://www.youtube.com/watch?v=ua-CiDNNj30',
                 'views_count' => rand(200, 700),
             ],
@@ -72,9 +70,7 @@ class KegiatanSeeder extends Seeder
                 'kategori' => 'Kompetisi',
                 'tanggal' => Carbon::parse('2025-09-10'),
                 'tempat' => 'Ruang Inovasi, Pusat IT',
-                // Gambar: suasana ruang coding kolaboratif
                 'poster' => 'https://images.stockcake.com/public/f/5/d/f5dc1cee-7dcb-4698-b219-8e73b6b8050b_large/classroom-coding-session-stockcake.jpg',
-                // Video: dokumentasi hackathon 24 jam (contoh)
                 'youtube_url' => 'https://www.youtube.com/watch?v=wX759jG9G2U',
                 'views_count' => rand(50, 300),
             ],
@@ -84,9 +80,7 @@ class KegiatanSeeder extends Seeder
                 'kategori' => 'Pelatihan',
                 'tanggal' => Carbon::parse('2025-10-01'),
                 'tempat' => 'Ruang Pelatihan 203, Gedung Teknik',
-                // Gambar: peserta keamanan siber sedang belajar
                 'poster' => 'https://images.stockcake.com/public/2/5/a/25ae1118-a9d8-43e1-8819-9e1a951cd76a_large/students-learning-coding-stockcake.jpg',
-                // Video: pengantar cybersecurity (contoh)
                 'youtube_url' => 'https://www.youtube.com/watch?v=o_JgA21C7gQ',
                 'views_count' => rand(150, 600),
             ],
@@ -117,7 +111,6 @@ class KegiatanSeeder extends Seeder
                 $kegiatan->likes()->create(['user_id' => $adminUser->id]);
             }
 
-            // Tambahkan Komentar
             if ($adminUser) {
                 $kegiatan->comments()->create([
                     'user_id' => $adminUser->id,

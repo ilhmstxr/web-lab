@@ -15,7 +15,7 @@ use Filament\Forms\Components\RichEditor;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ImageColumn;
 use App\Filament\Admin\Resources\KegiatanResource\Pages;
-use Filament\Forms\Components\Embed; // Pastikan ini diimport
+use Filament\Forms\Components\Embed; 
 
 class KegiatanResource extends Resource
 {
