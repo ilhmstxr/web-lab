@@ -15,6 +15,10 @@ class LabBooking extends Model
         'name',
         'phoneNumber',
         'status',
+        'purpose',
+        'requiredEquipment',
+        'notes',
+        'LabName',
     ];
     protected $casts = [
         'bookingDate' => 'date',
