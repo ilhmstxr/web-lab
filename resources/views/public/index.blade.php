@@ -123,7 +123,7 @@
                 <!-- Card Lab Solusi -->
                 <a href="/solusi"
                     class="block bg-white rounded-xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-1 p-6 text-center animate-fadeInUp delay-300">
-                    <img src="/img/Logo Lab Solusi.png" alt="Logo solusi" class="logo mx-auto w-1/6 h-auto">
+                    <img src="/img/logo-solusi.png" alt="Logo solusi" class="logo mx-auto w-1/6 h-auto">
                     <h3 class="text-2xl font-semibold mb-2 text-yellow-600">Laboratorium Solusi</h3>
                     <p class="text-gray-600 mb-4">Laboratorium Solusi yang berfokus riset dan pengembangan
                         mahasiswa dalam salah satu keilmuan

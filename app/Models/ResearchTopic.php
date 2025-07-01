@@ -9,4 +9,19 @@ class ResearchTopic extends Model
 {
     /** @use HasFactory<\Database\Factories\ResearchTopicFactory> */
     use HasFactory;
+    protected $fillable = [
+        'name',
+        'description',
+        'category_id',
+    ];
+    public function category()
+    {
+        return $this->belongsTo(ResearchCategory::class);
+    }
+    public function research()
+    {
+        return $this->hasMany(Research::class);
+    }
+
+
 }

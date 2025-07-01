@@ -9,8 +9,8 @@
               <a href="/" class="text-sm font-medium text-gray-600 hover:text-blue-600">Beranda</a>
               <a href="{{ route('Research.index') }}"
                   class="text-sm font-medium text-gray-600 hover:text-blue-600">Riset</a>
-              {{-- <a href="{{ route('kegiatan.index') }}"
-                  class="text-sm font-medium text-gray-600 hover:text-blue-600">Riset</a> --}}
+              <a href="{{ route('Kegiatan.index') }}"
+                  class="text-sm font-medium text-gray-600 hover:text-blue-600">Kegiatan</a>
               {{-- <a href="{{ route('publications.index') }}" class="text-sm font-medium text-gray-600 hover:text-blue-600">Kegiatan</a> --}}
               <nav class="flex items-center space-x-8">
 
@@ -74,9 +74,9 @@
                                       class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">{{ $k->name }}</a>
                               @endforeach --}}
                               <a href="{{ route('komunitas.show', 1) }}"
-                                  class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">Lab SSI</a>
-                              <a href="{{ route('komunitas.show', 1) }}"
-                                  class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">Lab MSI</a>
+                                  class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">Dicretech</a>
+                              <a href="{{ route('komunitas.show', 2) }}"
+                                  class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">ISCOM</a>
                           </div>
                       </div>
                   </div>
