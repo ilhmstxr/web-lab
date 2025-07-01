@@ -25,4 +25,6 @@ class KomunitasController extends Controller
             'komunitas' => $komunitas,
         ]);
     }
+
+    
 }
