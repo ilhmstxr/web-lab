@@ -2,8 +2,8 @@
 
 namespace App\Filament\Admin\Resources;
 
-use App\Filament\Admin\Resources\LabResourceResource\Pages;
-use App\Filament\Admin\Resources\LabResourceResource\RelationManagers;
+use App\Filament\Admin\Resources\LabResource\Pages;
+use App\Filament\Admin\Resources\LabResource\RelationManagers;
 use App\Models\Lab;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -13,7 +13,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class LabResourceResource extends Resource
+class LabResource extends Resource
 {
     protected static ?string $model = Lab::class;
 
@@ -56,9 +56,9 @@ class LabResourceResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListLabResources::route('/'),
-            'create' => Pages\CreateLabResource::route('/create'),
-            'edit' => Pages\EditLabResource::route('/{record}/edit'),
+            'index' => Pages\ListLabs::route('/'),
+            'create' => Pages\CreateLab::route('/create'),
+            'edit' => Pages\EditLab::route('/{record}/edit'),
         ];
     }
 }

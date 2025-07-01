@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\KompetisiController;
@@ -9,12 +8,14 @@ use App\Http\Controllers\LabBookingController;
 use App\Http\Controllers\LabController;
 use App\Http\Controllers\PerwalianController;
 use App\Http\Controllers\ResearchController;
+use App\Http\Controllers\KomunitasController;
+use Filament\Forms\Get;
 
+// Route::get('/', function () {
+//     return view('public.index');
+// });
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+route::get('/', [PageController::class, 'index'])->name('home');
 Route::resource('Page', PageController::class);
 Route::resource('Absensi', AbsensiController::class);
 Route::resource('Kompetisi', KompetisiController::class);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Komunitas;
 use App\Models\Page;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,8 @@ class PageController extends Controller
      */
     public function index()
     {
-        //
+        $komunitas = Komunitas::all();
+        return view('public.index', compact('komunitas'));
     }
 
     /**
