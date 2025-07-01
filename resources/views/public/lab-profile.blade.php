@@ -59,7 +59,7 @@
         </main>
 
         <footer class="bg-primary text-primary-foreground">
-             </footer>
+        </footer>
     </div>
 
     <script>
