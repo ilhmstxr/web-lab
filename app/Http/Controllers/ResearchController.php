@@ -12,7 +12,7 @@ class ResearchController extends Controller
      */
     public function index()
     {
-        //
+        return view('public.research');
     }
 
     /**
