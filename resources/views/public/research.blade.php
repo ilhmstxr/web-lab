@@ -75,126 +75,150 @@
                 </p>
             </div>
 
-          <div class="grid lg:grid-cols-12 gap-8">
-    <div class="lg:col-span-4 xl:col-span-3 space-y-8">
+            <div class="grid lg:grid-cols-12 gap-8">
+                <div class="lg:col-span-4 xl:col-span-3 space-y-8">
 
-        <div class="bg-white border border-gray-200 rounded-lg shadow-sm p-6">
-            <h2 class="text-lg font-bold text-gray-800 mb-4">Kategori</h2>
-            <nav>
-                <ul class="space-y-1">
-                    @foreach ($category as $c)
-                    <li>
-                        <a href="#" class="flex items-center space-x-3 px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100 transition-colors duration-200">
-                            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
-                            </svg>
-                            <span class="font-medium">{{ $c->name }}</span>
-                        </a>
-                    </li>
-                    @endforeach
-                </ul>
-            </nav>
-        </div>
+                    <div class="bg-white border border-gray-200 rounded-lg shadow-sm p-6">
+                        <h2 class="text-lg font-bold text-gray-800 mb-4">Kategori</h2>
+                        <div>
+                            <label for="category-dropdown" class="block text-sm font-medium text-gray-700 mb-2">Pilih
+                                Kategori</label>
+                            <select id="category-dropdown" name="category"
+                                class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                                <option value="" disabled>Semua Kategori</option>
+                                @foreach ($category as $c)
+                                    <option value="{{ $c->id }}">{{ $c->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
 
-        <div class="bg-white border border-gray-200 rounded-lg shadow-sm p-6">
-            <h2 class="text-xl font-bold text-gray-900">Daftar Riset</h2>
-            <p id="research-list-description" class="text-sm text-gray-500 mb-4">Pilih kategori untuk melihat riset</p>
-            <nav>
-                <ul class="space-y-1">
-                    @foreach ($research as $t)
-                    <li>
-                        <a href="#" class="block px-3 py-3 rounded-lg font-medium transition-colors duration-200 text-gray-800 hover:bg-gray-100">
-                            {{ $t->name }}
-                        </a>
-                    </li>
-                    @endforeach
-                </ul>
-            </nav>
-        </div>
-    </div>
-
-    <div id="research-detail-container" class="lg:col-span-8 xl:col-span-9">
-        <div class="bg-white border border-gray-200 rounded-lg shadow-sm p-6 lg:p-8">
-
-            <header class="flex flex-col sm:flex-row justify-between items-start gap-4 mb-6">
-                <div>
-                    <h1 class="text-3xl font-bold text-gray-900 mb-2">
-                        Terapi Gen untuk Penyakit Keturunan
-                    </h1>
-                    <p class="flex items-center text-md text-gray-500">
-                        <svg class="w-5 h-5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                        </svg>
-                        Pimpinan Riset: Prof. Dr. Adisti Wulandari
-                    </p>
+                    <div class="bg-white border border-gray-200 rounded-lg shadow-sm p-6">
+                        <h2 class="text-xl font-bold text-gray-900">Topik Riset</h2>
+                        <p id="research-list-description" class="text-sm text-gray-500 mb-4">Pilih kategori untuk melihat
+                            riset</p>
+                        <form>
+                            <ul class="space-y-1">
+                                @foreach ($topic as $t)
+                                    <li class="flex items-center">
+                                        <input type="checkbox" id="topic-{{ $t->id }}" name="topics[]" value="{{ $t->id }}" class="mr-2 rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500">
+                                        <label for="topic-{{ $t->id }}" class="font-medium text-gray-800 cursor-pointer">
+                                            {{ $t->name }}
+                                        </label>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </form>
+                    </div>
                 </div>
-                <button class="flex-shrink-0 flex items-center space-x-2 bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-semibold">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                    </svg>
-                    <span>Berjalan</span>
-                </button>
-            </header>
 
-            <hr class="border-gray-200">
+                <div id="research-detail-container" class="lg:col-span-8 xl:col-span-9">
+                    <div class="bg-white border border-gray-200 rounded-lg shadow-sm p-6 lg:p-8">
 
-            <section class="my-6">
-                <h3 class="flex items-center text-lg font-bold text-gray-900 mb-3">
-                    <svg class="w-6 h-6 mr-3 text-indigo-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                    </svg>
-                    Ringkasan Proyek
-                </h3>
-                <p class="text-gray-600 leading-relaxed lg:pl-9">
-                    Penelitian ini berfokus pada penggunaan teknologi CRISPR-Cas9 untuk memperbaiki mutasi genetik yang menyebabkan penyakit keturunan seperti talasemia dan fibrosis kistik. Kami mengeksplorasi vektor pengiriman yang efisien dan aman untuk sel target.
-                </p>
-            </section>
-
-            <hr class="border-gray-200">
-
-            <section class="my-6">
-                <h3 class="flex items-center text-lg font-bold text-gray-900 mb-4">
-                    <svg class="w-6 h-6 mr-3 text-indigo-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
-                    Detail Informasi
-                </h3>
-                <div class="lg:pl-9 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
-                    <div class="flex items-start">
-                        <svg class="w-6 h-6 text-gray-400 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                        </svg>
-                        <div>
-                            <p class="text-sm text-gray-500">Tahun</p>
-                            <p class="text-md font-semibold text-gray-800">2023</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start">
-                        <svg class="w-6 h-6 text-gray-400 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v.01M12 6v-1m0-1V4m0 2.01M12 14c-1.657 0-3-.895-3-2s1.343-2 3-2 3-.895 3-2-1.343-2-3-2m0 8c1.11 0 2.08-.402 2.599-1M12 14v1m0 1v1m0-2.01M12 18v-1m0-1v-.01"></path>
-                        </svg>
-                        <div>
-                            <p class="text-sm text-gray-500">Sumber Pendanaan</p>
-                            <p class="text-md font-semibold text-gray-800">Kemenristekdikti</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start md:col-span-2">
-                        <svg class="w-6 h-6 text-gray-400 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-                        </svg>
-                        <div>
-                            <p class="text-sm text-gray-500 mb-2">Kolaborator</p>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium">Universitas Gadjah Mada</span>
-                                <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium">Eijkman Institute</span>
+                        <header class="flex flex-col sm:flex-row justify-between items-start gap-4 mb-6">
+                            <div>
+                                <h1 class="text-3xl font-bold text-gray-900 mb-2">
+                                    Terapi Gen untuk Penyakit Keturunan
+                                </h1>
+                                <p class="flex items-center text-md text-gray-500">
+                                    <svg class="w-5 h-5 mr-2 flex-shrink-0" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                    </svg>
+                                    Pimpinan Riset: Prof. Dr. Adisti Wulandari
+                                </p>
                             </div>
-                        </div>
+                            <button
+                                class="flex-shrink-0 flex items-center space-x-2 bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-semibold">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                </svg>
+                                <span>Berjalan</span>
+                            </button>
+                        </header>
+
+                        <hr class="border-gray-200">
+
+                        <section class="my-6">
+                            <h3 class="flex items-center text-lg font-bold text-gray-900 mb-3">
+                                <svg class="w-6 h-6 mr-3 text-indigo-600 flex-shrink-0" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                    </path>
+                                </svg>
+                                Ringkasan Proyek
+                            </h3>
+                            <p class="text-gray-600 leading-relaxed lg:pl-9">
+                                Penelitian ini berfokus pada penggunaan teknologi CRISPR-Cas9 untuk memperbaiki mutasi
+                                genetik yang menyebabkan penyakit keturunan seperti talasemia dan fibrosis kistik. Kami
+                                mengeksplorasi vektor pengiriman yang efisien dan aman untuk sel target.
+                            </p>
+                        </section>
+
+                        <hr class="border-gray-200">
+
+                        <section class="my-6">
+                            <h3 class="flex items-center text-lg font-bold text-gray-900 mb-4">
+                                <svg class="w-6 h-6 mr-3 text-indigo-600 flex-shrink-0" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                Detail Informasi
+                            </h3>
+                            <div class="lg:pl-9 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+                                <div class="flex items-start">
+                                    <svg class="w-6 h-6 text-gray-400 mr-4 flex-shrink-0" fill="none"
+                                        stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                                        </path>
+                                    </svg>
+                                    <div>
+                                        <p class="text-sm text-gray-500">Tahun</p>
+                                        <p class="text-md font-semibold text-gray-800">2023</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <svg class="w-6 h-6 text-gray-400 mr-4 flex-shrink-0" fill="none"
+                                        stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v.01M12 6v-1m0-1V4m0 2.01M12 14c-1.657 0-3-.895-3-2s1.343-2 3-2 3-.895 3-2-1.343-2-3-2m0 8c1.11 0 2.08-.402 2.599-1M12 14v1m0 1v1m0-2.01M12 18v-1m0-1v-.01">
+                                        </path>
+                                    </svg>
+                                    <div>
+                                        <p class="text-sm text-gray-500">Sumber Pendanaan</p>
+                                        <p class="text-md font-semibold text-gray-800">Kemenristekdikti</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start md:col-span-2">
+                                    <svg class="w-6 h-6 text-gray-400 mr-4 flex-shrink-0" fill="none"
+                                        stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4">
+                                        </path>
+                                    </svg>
+                                    <div>
+                                        <p class="text-sm text-gray-500 mb-2">Kolaborator</p>
+                                        <div class="flex flex-wrap gap-2">
+                                            <span
+                                                class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium">Universitas
+                                                Gadjah Mada</span>
+                                            <span
+                                                class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium">Eijkman
+                                                Institute</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
                     </div>
                 </div>
-            </section>
-        </div>
-    </div>
-</div>
+            </div>
         </div>
     </main>
 

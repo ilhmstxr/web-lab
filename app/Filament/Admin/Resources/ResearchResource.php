@@ -23,19 +23,68 @@ class ResearchResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('title')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\Textarea::make('description')
+                    ->required(),
+                Forms\Components\Select::make('status')
+                    ->options([
+                        'draft' => 'Draft',
+                        'published' => 'Published',
+                    ])
+                    ->default('draft')
+                    ->required(),
+                Forms\Components\DateTimePicker::make('published_at')
+                    ->label('Published At')
+                    ->required()
+                    ->default(now())
+                    ->when(fn($get) => $get('status') === 'published'),
+                Forms\Components\TextInput::make('author')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\FileUpload::make('document')
+                    ->label('Research Document')
+                    ->required()
+                    ->disk('public')
+                    ->directory('research_documents')
+                    ->acceptedFileTypes(['application/pdf'])
+                    ->maxSize(10240) // 10 MB
+                    ->enableDownload()
+                    ->enableOpen()
+                    ->preserveFilenames()
+                    ->columnSpanFull(),
+            ])->columns([
+                'sm' => 1,
+                'md' => 2,
+                'lg' => 3,
+                'xl' => 4,
+                '2xl' => 5,
+            ])->columnSpan([
+                'sm' => 'full',
+                'md' => 'full',
+                'lg' => 'full',
+                'xl' => 'full',
+                '2xl' => 'full',
+            ])->statePath('research')
+            ->inlineLabel(false)
+            ->validationAttributes([
+                'title' => 'Title',
+                'description' => 'Description',
+                'status' => 'Status',
+                'published_at' => 'Published At',
+                'author' => 'Author',
+                'document' => 'Research Document',
+            ])->hidden([
+                'status' => fn($get) => $get('status') === 'draft',
             ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
-            ->columns([
-                //
-            ])
-            ->filters([
-                //
-            ])
+            ->columns([])
+            ->filters([])
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])
