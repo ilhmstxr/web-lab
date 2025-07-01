@@ -129,9 +129,9 @@
                                 </svg>
                                 {{ $kegiatan->likes_count }} Likes
                             </div>
-                            <p class="mt-4 text-gray-700">
-                                {{ \Illuminate\Support\Str::limit($kegiatan->deskripsi, 110) }}
-                            </p>
+                            <div class=" w-full mt-4 text-gray-700 line-clamp-2">
+                                {!! $kegiatan->deskripsi !!}
+                            </div>
                             <a href="{{ route('kegiatan.show', $kegiatan) }}"
                                 class="inline-block mt-4 text-sm font-medium text-amber-600 hover:underline">
                                 Selengkapnya →

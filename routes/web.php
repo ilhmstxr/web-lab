@@ -26,6 +26,5 @@ Route::resource('research', ResearchController::class);
 Route::get('/kegiatan', [KegiatanController::class, 'index'])->name('kegiatan.index');
 Route::get('/kegiatan/{kegiatan}', [KegiatanController::class, 'show'])->name('kegiatan.show');
 Route::get('/panduan', [PageController::class, 'panduan'])->name('page.panduan');
-Route::post('logout', LogoutController::class)->name('logout');
-Route::post('/kegiatans/{kegiatan}/toggle-like', [KegiatanController::class, 'toggleLike'])->name('kegiatan.toggleLike')->middleware('auth');
-Route::post('/comments', [CommentController::class, 'store'])->name('comments.store')->middleware('auth');
+Route::post('/kegiatans/{kegiatan}/toggle-like', [KegiatanController::class, 'toggleLike'])->name('kegiatan.toggleLike');
+Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
