@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Research;
+use App\Models\ResearchCategory;
+use App\Models\ResearchTopic;
 use Illuminate\Http\Request;
 
 class ResearchController extends Controller
@@ -12,7 +14,11 @@ class ResearchController extends Controller
      */
     public function index()
     {
-        return view('public.research');
+        $category = ResearchCategory::all();
+        $topic = ResearchTopic::all();
+        $research = Research::all();
+        return $topic;
+        return view('public.research', compact('category', 'topic', 'research'));
     }
 
     /**

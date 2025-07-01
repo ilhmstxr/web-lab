@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\ResearchTopic;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,6 +13,18 @@ class ResearchTopicSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        $researchTopics = [
+            'name' => 'SMART ECONOMY',
+            'name' => 'SMART EDUCATION',
+            'name' => 'SMART ENVIRONMENT',
+            'name' => 'SMART GOVERNMENT',
+            'name' => 'lainnya',
+            'name' => 'SMART TOURISM',
+            'name' => 'SMART HEALTHCARE',
+            'name' => 'SMART ENERGY',
+            'name' => 'SMART AGRICULTURE',
+        ];
+
+        ResearchTopic::insert($researchTopics);
     }
 }
