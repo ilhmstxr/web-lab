@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Research;
+use App\Models\labSchedule;
 use Illuminate\Http\Request;
 
-class ResearchController extends Controller
+class LabScheduleController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('public.research');
+        //
     }
 
     /**
@@ -34,7 +34,7 @@ class ResearchController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Research $research)
+    public function show(labSchedule $labSchedule)
     {
         //
     }
@@ -42,7 +42,7 @@ class ResearchController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Research $research)
+    public function edit(labSchedule $labSchedule)
     {
         //
     }
@@ -50,7 +50,7 @@ class ResearchController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Research $research)
+    public function update(Request $request, labSchedule $labSchedule)
     {
         //
     }
@@ -58,7 +58,7 @@ class ResearchController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Research $research)
+    public function destroy(labSchedule $labSchedule)
     {
         //
     }
