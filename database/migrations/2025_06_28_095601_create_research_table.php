@@ -18,8 +18,8 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('research_categories')->onUpdate('cascade')->onDelete('cascade');
             $table->string('author');
-            $table->string('topic_id')->nullable(); // NPM for student research
-            $table->foreign('topic_id')->references('id')->on('research_topics')->onUpdate('cascade')->onDelete('set null');
+            $table->unsignedBigInteger('topic_id'); // NPM for student research
+            $table->foreign('topic_id')->references('id')->on('research_topics')->onUpdate('cascade')->onDelete('cascade');
             $table->string('year')->nullable();
             $table->string('status')->default('draft')->nullable(); // e.g., draft, published
             // $table->string('collabolator')->nullable(); // riset skripsi gausa
