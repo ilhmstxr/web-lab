@@ -11,14 +11,6 @@
 </head>
 <body class="bg-white text-gray-800">
     <div class="flex flex-col min-h-screen">
-        <header class="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-sm shadow-md">
-            <div class="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
-                <a href="#" class="flex items-center gap-2 font-bold text-lg text-blue-600">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M10 2v7.31"/><path d="M14 9.31V2"/><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.7-3-5.2-1.4-1-3-2.3-3-3.8V2a2 2 0 0 0-4 0v1.3c0 1.5-1.6 2.8-3 3.8-2 1.5-3 3.3-3 5.2a7 7 0 0 0 7 7Z"/></svg>
-                    <span>LabConnect</span>
-                </a>
-            </div>
-        </header>
 
         <main class="flex-1 py-12 md:py-24 lg:py-32">
             <div class="container mx-auto px-4 md:px-6">

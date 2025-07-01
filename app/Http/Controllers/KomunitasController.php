@@ -11,6 +11,7 @@ class KomunitasController extends Controller
     public function index()
     {
         $komunitas = Komunitas::all();
+        return $komunitas;
         // return $komunitas;
         return view('layout.navbar',compact('komunitas'));
     }
