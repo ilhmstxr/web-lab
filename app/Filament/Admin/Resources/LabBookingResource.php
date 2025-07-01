@@ -4,8 +4,10 @@ namespace App\Filament\Admin\Resources;
 
 use Filament\Forms;
 use Filament\Tables;
+use Filament\Forms\Set; // Import class Set untuk form reaktif
 use Filament\Forms\Form;
 use App\Models\LabBooking;
+use App\Models\LabSchedule;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Select;
@@ -21,18 +23,16 @@ use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteBulkAction;
-use App\Models\LabSchedule; // Import LabSchedule
 use App\Filament\Admin\Resources\LabBookingResource\Pages;
 
 class LabBookingResource extends Resource
 {
     protected static ?string $model = LabBooking::class;
-
     protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-check';
-    
     protected static ?string $navigationLabel = 'Lab Booking';
-
     protected static ?string $modelLabel = 'Pemesanan Laboratorium';
+    protected static ?string $pluralModelLabel = 'Pemesanan Laboratorium';
+
 
     public static function form(Form $form): Form
     {
@@ -40,21 +40,55 @@ class LabBookingResource extends Resource
             ->schema([
                 Section::make('Detail Pemesanan')
                     ->schema([
-                        // Dropdown untuk memilih jadwal yang tersedia
+                        // Perbaikan: Form dibuat reaktif. Memilih jadwal akan mengisi otomatis LabName dan Sesi Waktu
                         Select::make('schedule_id')
                             ->label('Jadwal Sesi')
-                            ->relationship('schedule', 'title') // Menampilkan 'title' dari relasi 'schedule'
-                            ->getOptionLabelFromRecordUsing(fn (LabSchedule $record) => "{$record->title} (Hari: " . match($record->day_of_week){1=>'Senin', 2=>'Selasa', 3=>'Rabu', 4=>'Kamis', 5=>'Jumat', default=>'Lainnya'} . ", Sesi: {$record->session})")
+                            ->relationship('schedule', 'title')
+                            ->getOptionLabelFromRecordUsing(fn(LabSchedule $record) => "{$record->title} | Hari: " . match ($record->day_of_week) {
+                                1 => 'Senin',
+                                2 => 'Selasa',
+                                3 => 'Rabu',
+                                4 => 'Kamis',
+                                5 => 'Jumat',
+                                default => 'Lainnya'
+                            } . " ({$record->start_time} - {$record->end_time})")
                             ->searchable(['title', 'day_of_week'])
+                            ->live() // Penting untuk membuat form reaktif
+                            ->afterStateUpdated(function (Set $set, ?string $state) {
+                                if (blank($state)) return;
+
+                                $schedule = LabSchedule::find($state);
+                                if ($schedule) {
+                                    // Mengisi otomatis LabName dari title schedule
+                                    $set('LabName', $schedule->title);
+                                    // Mengisi otomatis Sesi Waktu dari start_time dan end_time schedule
+                                    $set('sessionTime', date('H:i', strtotime($schedule->start_time)) . ' - ' . date('H:i', strtotime($schedule->end_time)));
+                                }
+                            })
                             ->required(),
+
+                        // Tambahan: Menambahkan field LabName
+                        Select::make('LabName')
+                            ->label('Nama Laboratorium')
+                            ->options([
+                                'Lab MSI' => 'Lab MSI',
+                                'Lab SSI' => 'Lab SSI',
+                            ])
+                            ->required(),
+                            
                         DatePicker::make('bookingDate')
                             ->label('Tanggal Pemesanan')
+                            ->native(false)
+                            ->displayFormat('d/m/Y')
                             ->required(),
+
+                        // Perbaikan: sessionTime dibuat readonly karena sudah diisi otomatis
                         TextInput::make('sessionTime')
-                            ->label('Sesi Waktu (Deskripsi)')
-                            ->placeholder('Contoh: Pagi (08:00 - 12:00)')
-                            ->required(),
-                    ])->columns(3),
+                            ->label('Sesi Waktu')
+                            ->placeholder('Akan terisi otomatis setelah memilih jadwal')
+                            ->required()
+                            ->readonly(), // Dibuat readonly untuk mencegah kesalahan input
+                    ])->columns(2),
 
                 Section::make('Informasi Pemesan')
                     ->schema([
@@ -90,7 +124,7 @@ class LabBookingResource extends Resource
                         Textarea::make('notes')
                             ->label('Catatan Tambahan')
                             ->columnSpanFull(),
-                    ])->columns(2),
+                    ]),
             ]);
     }
 
@@ -98,25 +132,35 @@ class LabBookingResource extends Resource
     {
         return $table
             ->columns([
-                // Menampilkan data dari tabel relasi
-                TextColumn::make('schedule.title')
-                    ->label('Jadwal Dipesan')
+                // Perbaikan: Urutan kolom diubah agar lebih logis
+                TextColumn::make('LabName')
+                    ->label('Laboratorium')
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('name')
                     ->label('Nama Pemesan')
-                    ->searchable(),
+                    ->searchable()
+                    ->description(fn(LabBooking $record): string => $record->phoneNumber), // Menampilkan nomor telepon di bawah nama
                 TextColumn::make('bookingDate')
-                    ->label('Tanggal')
+                    ->label('Tanggal Booking')
                     ->date('d M Y')
                     ->sortable(),
+                TextColumn::make('sessionTime')
+                    ->label('Sesi')
+                    ->searchable(),
                 BadgeColumn::make('status')
                     ->label('Status')
                     ->colors([
                         'warning' => 'pending',
                         'success' => 'confirmed',
                         'danger' => 'cancelled',
-                    ]),
+                    ])
+                    ->formatStateUsing(fn(string $state): string => match ($state) {
+                        'pending' => 'Menunggu Konfirmasi',
+                        'confirmed' => 'Dikonfirmasi',
+                        'cancelled' => 'Dibatalkan',
+                        default => $state,
+                    }),
             ])
             ->filters([
                 SelectFilter::make('status')
@@ -125,6 +169,10 @@ class LabBookingResource extends Resource
                         'confirmed' => 'Dikonfirmasi',
                         'cancelled' => 'Dibatalkan',
                     ]),
+                SelectFilter::make('LabName')
+                    ->options(
+                        LabBooking::query()->distinct()->pluck('LabName', 'LabName')->all()
+                    )
             ])
             ->actions([
                 EditAction::make(),
@@ -134,16 +182,15 @@ class LabBookingResource extends Resource
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->defaultSort('bookingDate', 'desc');
     }
-    
+
     public static function getRelations(): array
     {
-        return [
-            //
-        ];
+        return [];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -151,5 +198,5 @@ class LabBookingResource extends Resource
             'create' => Pages\CreateLabBooking::route('/create'),
             'edit' => Pages\EditLabBooking::route('/{record}/edit'),
         ];
-    }    
+    }
 }
