@@ -9,6 +9,8 @@
               <a href="#home" class="text-sm font-medium text-gray-600 hover:text-blue-600">Beranda</a>
               <a href="{{ route('Research.index') }}"
                   class="text-sm font-medium text-gray-600 hover:text-blue-600">Riset</a>
+              {{-- <a href="{{ route('kegiatan.index') }}"
+                  class="text-sm font-medium text-gray-600 hover:text-blue-600">Riset</a> --}}
               {{-- <a href="{{ route('publications.index') }}" class="text-sm font-medium text-gray-600 hover:text-blue-600">Kegiatan</a> --}}
               <nav class="flex items-center space-x-8">
 

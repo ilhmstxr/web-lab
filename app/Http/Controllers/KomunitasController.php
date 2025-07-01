@@ -7,14 +7,22 @@ use App\Models\Komunitas;
 
 class KomunitasController extends Controller
 {
-    public function show(string $name) 
-        {
-            $komunitas = Komunitas::where('name', $name)
-                ->with(['komunitasAnggotas', 'komunitasAgendas'])
-                ->firstOrFail(); 
-                
-            return view('public.komunitas-detail', [
-                'komunitas' => $komunitas,
-            ]);
-        }
+
+    public function index()
+    {
+        $komunitas = Komunitas::all();
+        // return $komunitas;
+        return view('layout.navbar',compact('komunitas'));
+    }
+
+    public function show(string $name)
+    {
+        $komunitas = Komunitas::where('name', $name)
+            ->with(['komunitasAnggotas', 'komunitasAgendas'])
+            ->firstOrFail();
+
+        return view('public.komunitas-detail', [
+            'komunitas' => $komunitas,
+        ]);
+    }
 }

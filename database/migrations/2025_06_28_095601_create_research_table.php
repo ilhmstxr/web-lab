@@ -18,6 +18,8 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('research_categories')->onUpdate('cascade')->onDelete('cascade');
             $table->string('author');
+            $table->string('topic_id')->nullable(); // NPM for student research
+            $table->foreign('topic_id')->references('id')->on('research_topics')->onUpdate('cascade')->onDelete('set null');
             $table->string('year')->nullable();
             $table->string('status')->default('draft')->nullable(); // e.g., draft, published
             // $table->string('collabolator')->nullable(); // riset skripsi gausa
@@ -43,8 +45,7 @@ return new class extends Migration
             // 3. url
             // 4. repository
             // 5. category
-
-
+            // 6. jenis lab(msi solusi)
 
             // penelitian
             // 1. category
@@ -55,7 +56,15 @@ return new class extends Migration
             // 6. tahun
             // 7. dana
 
+
             // pengabdian masyarakat
+            // 1. nama dosen
+            // 2. judul
+            // 3. topic
+            // 4. institusi 
+            // 5. tahun
+            // 6. dana
+
             // kompetisi
         });
     }
