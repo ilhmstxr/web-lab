@@ -366,7 +366,7 @@
         const allSchedules = @json($schedules);
         const bookedSlotsLookup = new Set(@json($bookedSlots));
 
-        const dateInput = document.getElementById('bookingDate');
+        // const dateInput= document.getElementById('bookingDate');
         const labSelect = document.getElementById('lab');
         const sessionSelectStart = document.getElementById('session_start');
         const sessionSelectEnd = document.getElementById('session_end');
@@ -441,8 +441,18 @@
             timeEndInput.value = '';
         }
 
+        document.getElementById(document.getElementById('dateInput')) {
+            const dateInput = document.getElementById('bookingDate');
 
-        dateInput.addEventListener('change', populateSessionDropdowns);
+            if (dateInput) {
+                dateInput.addEventListener('change', populateSessionDropdowns);
+            } else {
+                console.log("error");
+
+            }
+            // dateInput.addEventListener('change', populateSessionDropdowns);
+        }
+
         labSelect.addEventListener('change', populateSessionDropdowns);
         sessionSelectStart.addEventListener('change', function() {
             const selectedId = this.value;

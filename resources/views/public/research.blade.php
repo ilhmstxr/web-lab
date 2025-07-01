@@ -1,53 +1,179 @@
 @extends('layout.main')
 
 @section('content')
+    <style>
+        /* Custom styles to match the theme */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb;
+            /* Lighter Gray Background */
+            color: #1a202c;
+        }
 
-<body class="font-body antialiased bg-background">
-    <div class="flex flex-col min-h-screen">
+        .font-headline {
+            font-weight: 800;
+            letter-spacing: -0.025em;
+        }
 
-        <main class="flex-1 py-12 md:py-24">
-            <div class="container mx-auto px-4 md:px-6">
-                <div class="text-center mb-16">
-                    <h1 class="text-4xl font-bold tracking-tighter sm:text-5xl text-primary font-headline">
-                        Eksplorasi Riset Unggulan
-                    </h1>
-                    <p class="max-w-[800px] mx-auto text-foreground/80 md:text-xl mt-4">
-                        Selami lebih dalam inovasi dan penemuan yang membentuk masa depan melalui proyek penelitian
-                        kami.
-                    </p>
-                </div>
+        .text-primary {
+            color: #4f46e5;
+        }
 
-                <div class="grid lg:grid-cols-12 gap-8 lg:gap-12">
-                    <div class="lg:col-span-4 xl:col-span-3 space-y-8">
+        .bg-primary {
+            background-color: #4f46e5;
+        }
+
+        .bg-primary-10 {
+            background-color: #e0e7ff;
+        }
+
+        .text-primary-foreground {
+            color: #ffffff;
+        }
+
+        .bg-secondary {
+            background-color: #f3f4f6;
+        }
+
+        .text-secondary-foreground {
+            color: #374151;
+        }
+
+        .text-foreground-80 {
+            color: #4a5568;
+        }
+
+        .text-muted-foreground {
+            color: #6b7280;
+        }
+
+        .bg-accent {
+            background-color: #34d399;
+        }
+
+        .text-accent-foreground {
+            color: #ffffff;
+        }
+
+        .sticky-card {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 6rem;
+            /* Adjust this value based on header height */
+        }
+    </style>
+
+    <style>
+        /* Menambahkan font custom agar lebih sesuai dengan gambar */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+
+    <div class="container mx-auto px-4 py-8">
+        <div class="flex flex-col lg:flex-row gap-8">
+            {{-- Sidebar Filter --}}
+            <aside class="w-full lg:w-1/4">
+                {{-- Filter Kategori --}}
+                <div class="mb-8">
+                    <h2 class="text-lg font-semibold text-gray-700 mb-4">Categories</h2>
+                    <div class="space-y-3">
+                        @foreach ($category as $c)
+                            <div>
+                                {{-- UBAH: Tambahkan class `filter-checkbox` dan `data-type` --}}
+                                <input type="checkbox" id="cat-{{ $c->id }}" value="{{ $c->id }}"
+                                    class="form-checkbox rounded text-blue-600 filter-checkbox" data-type="categories">
+                                <label for="cat-{{ $c->id }}" class="ml-2 text-gray-600">{{ $c->name }}</label>
+                            </div>
+                        @endforeach
                     </div>
-                    <div class="lg:col-span-8 xl:col-span-9">
+                </div>
+
+                {{-- Filter Topik --}}
+                <div class="mb-8">
+                    <h2 class="text-lg font-semibold text-gray-700 mb-4">Topics</h2>
+                    <div class="space-y-3">
+                        @foreach ($topic as $t)
+                            <div>
+                                {{-- UBAH: Tambahkan class `filter-checkbox` dan `data-type` --}}
+                                <input type="checkbox" id="topic-{{ $t->id }}" value="{{ $t->id }}"
+                                    class="form-checkbox rounded text-blue-600 filter-checkbox" data-type="topics">
+                                <label for="topic-{{ $t->id }}"
+                                    class="ml-2 text-gray-600">{{ $t->name }}</label>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
-            </div>
-        </main>
+            </aside>
 
-        <footer class="bg-primary text-primary-foreground">
-            <div
-                class="container mx-auto px-4 py-8 md:px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-                <div class="flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="h-6 w-6">
-                        <path d="M10 2v7.31" />
-                        <path d="M14 9.31V2" />
-                        <path
-                            d="M12 22a7 7 0 0 0 7-7c0-2-1-3.7-3-5.2-1.4-1-3-2.3-3-3.8V2a2 2 0 0 0-4 0v1.3c0 1.5-1.6 2.8-3 3.8-2 1.5-3 3.3-3 5.2a7 7 0 0 0 7 7Z" />
-                    </svg>
-                    <span class="font-bold text-lg">LabConnect</span>
+            {{-- Konten Utama (Daftar Riset) --}}
+            <main class="w-full lg:w-3/4">
+                {{-- UBAH: Bungkus daftar riset dengan div#research-list --}}
+                <div id="research-list">
+                    {{-- Muat daftar riset awal dari partial view --}}
+                    @include('public.partials._research_list', ['research' => $research])
                 </div>
-                <p class="text-sm text-primary-foreground/80 text-center">
-                    © 2024 LabConnect. All rights reserved.
-                </p>
-            </div>
-        </footer>
+            </main>
+        </div>
     </div>
+
+    {{-- TAMBAHKAN KODE JAVASCRIPT DI SINI --}}
     <script>
-        // Data dan logika JavaScript akan ditempatkan di sini untuk mengelola state dan event.
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkboxes = document.querySelectorAll('.filter-checkbox');
+            const researchListContainer = document.getElementById('research-list');
+
+            async function fetchFilteredResearch() {
+                // Tampilkan loading state (opsional)
+                researchListContainer.style.opacity = '0.5';
+
+                const selectedCategories = Array.from(document.querySelectorAll(
+                    '.filter-checkbox[data-type="categories"]:checked')).map(cb => cb.value);
+                const selectedTopics = Array.from(document.querySelectorAll(
+                    '.filter-checkbox[data-type="topics"]:checked')).map(cb => cb.value);
+
+                // Buat URL dengan query parameters
+                const url = new URL('{{ route('research.filter') }}');
+                selectedCategories.forEach(id => url.searchParams.append('categories[]', id));
+                selectedTopics.forEach(id => url.searchParams.append('topics[]', id));
+
+                try {
+                    const response = await fetch(url);
+                    const html = await response.text();
+                    researchListContainer.innerHTML = html;
+                } catch (error) {
+                    console.error('Error fetching research data:', error);
+                    researchListContainer.innerHTML =
+                        '<p class="text-red-500">Failed to load research data.</p>';
+                } finally {
+                    // Hapus loading state
+                    researchListContainer.style.opacity = '1';
+                }
+            }
+
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', fetchFilteredResearch);
+            });
+
+            // Penting: karena konten paginasi dimuat ulang oleh AJAX,
+            // kita perlu mendelegasikan event click pada link paginasi.
+            document.body.addEventListener('click', function(event) {
+                // Cek jika yang diklik adalah link paginasi di dalam #research-list
+                if (event.target.matches('#research-list .pagination a')) {
+                    event.preventDefault(); // Mencegah link me-refresh halaman
+                    const url = event.target.href;
+
+                    // Ambil konten dari halaman paginasi berikutnya
+                    fetch(url)
+                        .then(response => response.text())
+                        .then(html => {
+                            researchListContainer.innerHTML = html;
+                        })
+                        .catch(error => console.error('Error fetching pagination data:', error));
+                }
+            });
+        });
     </script>
-    
-    @endsection
+@endsection
