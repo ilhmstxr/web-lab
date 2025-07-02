@@ -16,7 +16,7 @@
                 © 2025 LabConnect. All rights reserved.
             </p>
             <div class="flex items-center gap-4">
-                <a href="#" class="text-blue-100 hover:text-white">Twitter</a>
+                <a href="#" class="text-blue-100 hover:text-white">Youtube</a>
                 <a href="#" class="text-blue-100 hover:text-white">LinkedIn</a>
                 <a href="#" class="text-blue-100 hover:text-white">Facebook</a>
             </div>

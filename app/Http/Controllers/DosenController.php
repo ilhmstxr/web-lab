@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Absensi;
+use App\Models\Dosen;
 use Illuminate\Http\Request;
 
-class AbsensiController extends Controller
+class DosenController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $absensis = Absensi::all();
-        return view('public.absen-lab', compact('absensis'));
+        //
     }
 
     /**
@@ -21,7 +20,7 @@ class AbsensiController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -29,13 +28,13 @@ class AbsensiController extends Controller
      */
     public function store(Request $request)
     {
-        
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Absensi $absensi)
+    public function show(Dosen $dosen)
     {
         //
     }
@@ -43,7 +42,7 @@ class AbsensiController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Absensi $absensi)
+    public function edit(Dosen $dosen)
     {
         //
     }
@@ -51,7 +50,7 @@ class AbsensiController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Absensi $absensi)
+    public function update(Request $request, Dosen $dosen)
     {
         //
     }
@@ -59,7 +58,7 @@ class AbsensiController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Absensi $absensi)
+    public function destroy(Dosen $dosen)
     {
         //
     }

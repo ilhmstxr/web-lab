@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FormAbsensiController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\AbsensiController;
@@ -25,10 +26,14 @@ Route::resource('LabBooking', LabBookingController::class);
 Route::resource('Lab', LabController::class);
 Route::resource('Perwalian', PerwalianController::class);
 Route::resource('Research', ResearchController::class);
+Route::resource('FormAbsensi', FormAbsensiController::class);
 Route::resource('Profile', ProfileController::class);
 Route::get('/komunitas', [KomunitasController::class, 'index'])->name('komunitas.index');
 Route::get('/komunitas/{id}', [KomunitasController::class, 'show'])->name('komunitas.show');
 Route::resource('/Kegiatan', KegiatanController::class);
+
+Route::get('/filter-research', [ResearchController::class, 'filter'])->name('research.filter');
+
 
 // route::get('/sewa_lab', function () {
 //     return view('public.lab-booking');

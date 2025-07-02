@@ -1,104 +1,95 @@
-
 @extends('layout.main')
 
 @section('content')
-{{-- <body class="bg-background text-foreground"> --}}
-    <div class="flex flex-col min-h-screen">
+    {{--
 
-        <main class="flex-1 py-12 md:py-24 lg:py-32">
-            <div class="container mx-auto px-4 md:px-6">
-                <div class="text-center mb-12">
-                    <h1 class="text-4xl font-bold tracking-tighter sm:text-5xl text-primary font-headline">
-                        Absensi Kehadiran Laboratorium
-                    </h1>
-                    <p class="max-w-[800px] mx-auto text-foreground/80 md:text-xl mt-4">
-                        Sistem pencatatan kehadiran digital untuk keamanan dan administrasi.
-                    </p>
-                </div>
+    <body class="bg-background text-foreground"> --}}
 
-                <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8 items-center">
-                    <div class="card flex flex-col items-center justify-center text-center p-8">
-                        <div class="card-header">
-                            <div class="p-4 bg-primary/10 rounded-full mx-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round" class="w-16 h-16 text-primary">
-                                    <rect width="5" height="5" x="3" y="3" rx="1" />
-                                    <rect width="5" height="5" x="16" y="3" rx="1" />
-                                    <rect width="5" height="5" x="3" y="16" rx="1" />
-                                    <path d="M21 16h-3a2 2 0 0 0-2 2v3" />
-                                    <path d="M21 21v.01" />
-                                    <path d="M12 7v3a2 2 0 0 1-2 2H7" />
-                                    <path d="M3 12h.01" />
-                                    <path d="M12 3h.01" />
-                                    <path d="M12 16v.01" />
-                                    <path d="M16 12h.01" />
-                                    <path d="M21 12h.01" />
-                                    <path d="M12 21h.01" />
-                                </svg>
-                            </div>
-                            <h2 class="card-title mt-4 text-2xl">Pindai Kode QR</h2>
-                        </div>
-                        <div class="card-content">
-                            <p class="text-foreground/80">
-                                Gunakan kamera ponsel Anda untuk memindai kode QR yang tersedia di pintu masuk dan
-                                keluar laboratorium untuk mencatat kehadiran Anda.
-                            </p>
-                        </div>
-                        <div class="card-footer">
-                            <button class="btn bg-primary text-primary-foreground">Buka Pemindai (Contoh)</button>
-                        </div>
+        <style>
+            .table-absen {
+                border: 1px solid white;
+            }
+
+            table th,
+            table td {
+                border: 1px solid white;
+                padding: 10px;
+                font-size: 11pt;
+            }
+
+            th {
+                color: white;
+                padding: 12px;
+            }
+
+            thead {
+                font-size: 12pt;
+                background: #35A9DB;
+            }
+
+            p.text-header-table {
+                font-size: 20pt;
+                color: darkblue;
+                font-weight: bold;
+                text-align: center;
+                margin-bottom: 10px;
+            }
+
+            tbody {
+                font-size: 12pt;
+                width: auto;
+            }
+        </style>
+        <div class="flex flex-col min-h-screen">
+
+            <main class="flex-1 py-12 md:py-24 lg:py-10">
+                <div class="container mx-auto px-4 md:px-6">
+                    <div class="text-center mb-12">
+                        <h1
+                            class="text-4xl font-bold tracking-tighter sm:text-5xl text-primary font-headline text-blue-600">
+                            Absensi Kehadiran Laboratorium
+                        </h1>
+                        <p class="max-w-[800px] mx-auto text-foreground/80 md:text-xl mt-4">
+                            Sistem pencatatan kehadiran digital untuk keamanan dan administrasi.
+                        </p>
                     </div>
 
-                    <div class="space-y-6">
-                        <div class="card">
-                            <div class="card-header flex-row gap-4 items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round"
-                                    class="w-8 h-8 text-accent flex-shrink-0">
-                                    <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
-                                    <polyline points="10 17 15 12 10 7" />
-                                    <line x1="15" x2="3" y1="12" y2="12" />
-                                </svg>
-                                <div>
-                                    <h3 class="card-title">Prosedur Masuk</h3>
-                                    <p class="card-description">Langkah-langkah saat memasuki lab.</p>
-                                </div>
-                            </div>
-                            <div class="card-content">
-                                <p class="text-foreground/80">
-                                    Sebelum memulai aktivitas, pastikan Anda memindai kode QR 'MASUK' untuk mencatat
-                                    waktu kedatangan Anda.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header flex-row gap-4 items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round"
-                                    class="w-8 h-8 text-destructive flex-shrink-0">
-                                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
-                                    <polyline points="16 17 21 12 16 7" />
-                                    <line x1="21" x2="9" y1="12" y2="12" />
-                                </svg>
-                                <div>
-                                    <h3 class="card-title">Prosedur Keluar</h3>
-                                    <p class="card-description">Langkah-langkah saat meninggalkan lab.</p>
-                                </div>
-                            </div>
-                            <div class="card-content">
-                                <p class="text-foreground/80">
-                                    Setelah selesai, jangan lupa untuk memindai kode QR 'KELUAR' untuk mencatat waktu
-                                    kepulangan Anda.
-                                </p>
-                            </div>
-                        </div>
+                    <div class="container mx-auto">
+                        <p class="text-header-table">
+                            Daftar Kehadiran
+                        </p>
+                        <table class="w-full table-bordered table-striped table-hover" style="border-collapse: collapse;">
+                            <thead>
+                                <tr>
+                                    <th class="table-absen">No</th>
+                                    <th class="table-absen">NIP/NPT/NPM/No.KTP</th>
+                                    <th class="table-absen">Nama</th>
+                                    <th class="table-absen">Status</th>
+                                    <th class="table-absen">Lab. Entry Date</th>
+                                    <th class="table-absen">Laboratorium</th>
+                                    <th class="table-absen">Tujuan</th>
+                                    <th class="table-absen">Waktu/Tanggal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($absensis as $index => $absen)
+                                    <tr class="bg-gray-100">
+                                        <td class="border px-4 py-2">{{ $index + 1 }}</td>
+                                        <td class="border px-4 py-2">{{ $absen->nip }}</td>
+                                        <td class="border px-4 py-2">{{ $absen->nama }}</td>
+                                        <td class="border px-4 py-2">{{ $absen->status }}</td>
+                                        <td class="border px-4 py-2">{{ $absen->entry_date }}</td>
+                                        <td class="border px-4 py-2">{{ $absen->laboratorium }}</td>
+                                        <td class="border px-4 py-2">{{ $absen->tujuan }}</td>
+                                        <td class="border px-4 py-2">{{ $absen->created_at }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-            </div>
-        </main>
+            </main>
 
-    {{-- </div> --}}
+            {{--
+        </div> --}}
 @endsection

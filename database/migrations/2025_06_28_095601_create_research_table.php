@@ -21,17 +21,22 @@ return new class extends Migration
             $table->unsignedBigInteger('topic_id'); // NPM for student research
             $table->foreign('topic_id')->references('id')->on('research_topics')->onUpdate('cascade')->onDelete('cascade');
             $table->string('year')->nullable();
-            $table->string('status')->default('draft')->nullable(); // e.g., draft, published
+            $table->string('status')->default('completed')->nullable(); // e.g., draft, published
             // $table->string('collabolator')->nullable(); // riset skripsi gausa
             $table->string('institution')->nullable(); // upn
             $table->string('funding')->nullable();  // penelitian
+            $table->integer('fund')->nullable();  // penelitian
+
             // $table->date('published_at')->nullable(); // (pending)
             // $table->string('file_path')->nullable(); // 
             // $table->string('thumbnail')->nullable(); // Path to the thumbnail image
             // $table->boolean('is_featured')->default(false); // For highlighting important research
             // $table->boolean('is_active')->default(true); // For soft deletion or deactivation
-            $table->string('urlYt')->unique(); // URL-friendly version of the title
-            $table->string('repository')->unique(); // URL-friendly version of the title -> skripsi
+            $table->string('youtubeLink')->nullable(); // URL-friendly version of the title
+            $table->string('repositoryLink')->nullable(); // URL-friendly version of the title -> skripsi
+            $table->string('npm')->nullable();
+            $table->string('angkatan')->nullable();
+            $table->string('interest')->nullable();
             // $table->text('keywords')->nullable(); // For SEO
             // $table->text('abstract')->nullable(); // Short summary of the research
             // $table->string('doi')->nullable(); // Digital Object Identifier for the research

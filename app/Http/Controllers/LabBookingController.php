@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\LabBooking;
-use App\Models\labSchedule;
+use App\Models\LabSchedule;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -176,7 +176,7 @@ class LabBookingController extends Controller
                     'institution'       => $validated['institution'],
                     'purpose'           => $validated['purpose'],
                     'bookingDate'       => $validated['bookingDate'],
-                    'LabName'           => $labName, 
+                    'LabName'           => $labName,
                     'schedule_id'       => $current_schedule_id,
                     'sessionTime'       => $sessionTimeDescription,
                     'status'            => 'pending',
