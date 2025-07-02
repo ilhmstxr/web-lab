@@ -9,6 +9,8 @@
             <a href="/" class="text-sm font-medium text-gray-600 hover:text-blue-600">Beranda</a>
             <a href="{{ route('Research.index') }}"
                 class="text-sm font-medium text-gray-600 hover:text-blue-600">Riset</a>
+            <a href="{{ route('Portofolio.index') }}"
+                class="text-sm font-medium text-gray-600 hover:text-blue-600">Portofolio</a>
 
             <div class="relative inline-block text-left">
                 <button type="button" data-dropdown-toggle="dropdown-absensi"

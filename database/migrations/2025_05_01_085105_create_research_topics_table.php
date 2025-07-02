@@ -15,11 +15,11 @@
                 $table->id();
                 $table->string('name')->unique(); // Unique name for the research topic
                 $table->text('description')->nullable(); // Optional description of the research topic
-                $table->foreignId('research_category_id')
-                    ->nullable()
-                    ->after('id') // Optional, for neatness
-                    ->constrained('research_categories')
-                    ->onDelete('cascade'); // or 'set null'
+                // $table->foreignId('research_category_id')
+                //     ->nullable()
+                //     ->after('id') // Optional, for neatness
+                //     ->constrained('research_categories')
+                //     ->onDelete('cascade'); // or 'set null'
                 $table->timestamps();
             });
         }
