@@ -33,6 +33,11 @@ Route::get('/komunitas', [KomunitasController::class, 'index'])->name('komunitas
 Route::get('/komunitas/{id}', [KomunitasController::class, 'show'])->name('komunitas.show');
 Route::resource('/Kegiatan', KegiatanController::class);
 
+Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
+Route::get('/panduan', [PageController::class, 'panduan'])->name('page.panduan');
+Route::get('/sop', [PageController::class, 'sop'])->name('sop.index');
+
+
 route::get('/profile-test', function(){
     return view('public.lab-profile');
 });
@@ -42,3 +47,6 @@ Route::get('/filter-research', [ResearchController::class, 'filter'])->name('res
 // route::get('/sewa_lab', function () {
 //     return view('public.lab-booking');
 // })->name('home');
+
+
+
