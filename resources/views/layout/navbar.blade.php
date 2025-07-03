@@ -11,27 +11,10 @@
                 class="text-sm font-medium text-gray-600 hover:text-blue-600">Riset</a>
             <a href="{{ route('Portofolio.index') }}"
                 class="text-sm font-medium text-gray-600 hover:text-blue-600">Portofolio</a>
+            <a href="{{ route('Kegiatan.index') }}"
+                class="text-sm font-medium text-gray-600 hover:text-blue-600">Kegiatan</a>
 
-            <div class="relative inline-block text-left">
-                <button type="button" data-dropdown-toggle="dropdown-absensi"
-                    class="inline-flex items-center gap-1 text-sm font-medium text-gray-700 hover:text-gray-900">
-                    Absensi
-                    <svg class="dropdown-arrow h-4 w-4 transition-transform duration-200"
-                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                        stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                    </svg>
-                </button>
-                <div id="dropdown-absensi"
-                    class="dropdown-menu absolute left-0 z-10 mt-2 w-48 origin-top-left rounded-md bg-white shadow-lg focus:outline-none hidden">
-                    <div class="py-1">
-                        <a href="{{ route('FormAbsensi.index') }}"
-                            class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">Form Absensi</a>
-                        <a href="{{ route('Absensi.index') }}"
-                            class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">Daftar Presensi</a>
-                    </div>
-                </div>
-            </div>
+
             {{-- <a href="{{ route('publications.index') }}"
                 class="text-sm font-medium text-gray-600 hover:text-blue-600">Kegiatan</a> --}}
             <nav class="flex items-center space-x-8">
@@ -72,10 +55,15 @@
                     <div id="dropdown-layanan"
                         class="dropdown-menu absolute left-0 z-10 mt-2 w-48 origin-top-left rounded-md bg-white shadow-lg focus:outline-none hidden">
                         <div class="py-1">
-                            <a href="{{ route('Sop.index') }}" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">SOP
+                            <a href="{{ route('Sop.index') }}"
+                                class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">SOP
                                 Lab</a>
                             <a href="{{ route('LabBooking.index') }}"
                                 class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">Peminjaman Lab</a>
+                            <a href="{{ route('FormAbsensi.index') }}"
+                                class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">Form Absensi</a>
+                            <a href="{{ route('Absensi.index') }}"
+                                class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">Daftar Presensi</a>
                         </div>
                     </div>
                 </div>
