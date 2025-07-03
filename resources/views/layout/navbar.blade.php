@@ -143,18 +143,6 @@
         });
     });
 
-<<<<<<< HEAD
-      // Satu listener global untuk menutup semua dropdown jika klik di luar
-      window.addEventListener('click', function() {
-          document.querySelectorAll('.dropdown-menu').forEach(menu => {
-              menu.classList.add('hidden');
-          });
-          document.querySelectorAll('.dropdown-arrow').forEach(arrow => {
-              arrow.classList.remove('rotate-180');
-          });
-      });
-  </script>
-=======
     // Satu listener global untuk menutup semua dropdown jika klik di luar
     window.addEventListener('click', function () {
         document.querySelectorAll('.dropdown-menu').forEach(menu => {
@@ -165,4 +153,3 @@
         });
     });
 </script>
->>>>>>> ilham
