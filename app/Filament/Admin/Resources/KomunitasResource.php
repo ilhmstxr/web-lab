@@ -23,7 +23,12 @@ class KomunitasResource extends Resource
     {
         return $form
             ->schema([
-                // Field untuk Nama Komunitas
+                    // Field untuk Upload Header Foto
+                    Forms\Components\FileUpload::make('header_foto')
+                        ->image()
+                        ->directory('komunitas-headers'),
+                
+                    // Field untuk Nama Komunitas
                     Forms\Components\TextInput::make('name')
                         ->label('Nama Komunitas')
                         ->required()
@@ -50,6 +55,10 @@ class KomunitasResource extends Resource
     {
         return $table
             ->columns([
+                // Kolom untuk menampilkan logo
+                Tables\Columns\ImageColumn::make('header_foto')
+                    ->label('Header Foto'),
+
                 // Kolom untuk menampilkan logo
                 Tables\Columns\ImageColumn::make('logo')
                     ->label('Logo'),

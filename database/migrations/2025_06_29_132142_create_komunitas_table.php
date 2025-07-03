@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('komunitas', function (Blueprint $table) {
             $table->id();
+            $table->string('header_foto')->nullable();
             $table->string('name'); // Nama komunitas 
             //$table->string('slug')->unique();
             $table->string('tagline')->nullable(); // Tagline

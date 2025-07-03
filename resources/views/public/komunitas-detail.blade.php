@@ -33,7 +33,10 @@
 
      <body class="bg-gray-100">
          <div class="w-full">
-
+            @if($komunitas->header_foto)
+                    <div class="w-full h-64 bg-cover bg-center" style="background-image: url('{{ asset('storage/' . $komunitas->header_foto) }}');">
+                    </div>
+            @endif
              <main class="flex-1 py-8 md:py-12">
                  <div class="container mx-auto px-4 md:px-6">
                      <div class="text-center mb-12">

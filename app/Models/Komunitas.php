@@ -13,6 +13,7 @@ class Komunitas extends Model
     protected $table = 'komunitas';
 
     protected $fillable = [
+        'header_foto',
         'name',
         'tagline',
         'logo',
