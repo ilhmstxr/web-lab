@@ -63,6 +63,8 @@
             </nav>
         </div>
     </header>
+<body class="bg-white text-gray-800">
+    <div class="flex flex-col min-h-screen">
 
     <main class="flex-1 py-12 md:py-24">
         <div class="container mx-auto px-4 md:px-6">
