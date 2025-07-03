@@ -4,6 +4,7 @@ use App\Http\Controllers\FormAbsensiController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\AbsensiController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\KompetisiController;
 use App\Http\Controllers\LabBookingController;
@@ -13,7 +14,7 @@ use App\Http\Controllers\ResearchController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\KomunitasController;
 use App\Http\Controllers\PortofolioController;
-use Filament\Forms\Get;
+use App\Http\Controllers\SopController;
 
 // Route::get('/', function () {
 //     return view('public.index');
@@ -34,6 +35,11 @@ Route::get('/komunitas', [KomunitasController::class, 'index'])->name('komunitas
 Route::get('/komunitas/{id}', [KomunitasController::class, 'show'])->name('komunitas.show');
 Route::resource('/Kegiatan', KegiatanController::class);
 
+Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
+Route::get('/panduan', [PageController::class, 'panduan'])->name('page.panduan');
+// Route::get('/sop', [PageController::lass, 'sop'])->name('sop.index');
+Route::resource('/Sop', SopController::class);
+
 route::get('/profile-test', function(){
     return view('public.lab-profile');
 });
@@ -43,3 +49,6 @@ Route::get('/filter-research', [ResearchController::class, 'filter'])->name('res
 // route::get('/sewa_lab', function () {
 //     return view('public.lab-booking');
 // })->name('home');
+
+
+

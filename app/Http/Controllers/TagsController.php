@@ -2,24 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Portofolio;
+use App\Models\tags;
 use Illuminate\Http\Request;
 
-class PortofolioController extends Controller
+class TagsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        // $projects = Portofolio::where('Visibility', 'public')
-        //     ->where('Status', 'active')
-        //     ->get();
-
-        $projects =  Portofolio::get();
-        // return $projects;
-
-        return view('public.portofolio', compact('projects'));
+        //
     }
 
     /**
@@ -41,7 +34,7 @@ class PortofolioController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Portofolio $portofolio)
+    public function show(tags $tags)
     {
         //
     }
@@ -49,7 +42,7 @@ class PortofolioController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Portofolio $portofolio)
+    public function edit(tags $tags)
     {
         //
     }
@@ -57,7 +50,7 @@ class PortofolioController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Portofolio $portofolio)
+    public function update(Request $request, tags $tags)
     {
         //
     }
@@ -65,7 +58,7 @@ class PortofolioController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Portofolio $portofolio)
+    public function destroy(tags $tags)
     {
         //
     }

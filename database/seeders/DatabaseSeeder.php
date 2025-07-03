@@ -33,6 +33,8 @@ class DatabaseSeeder extends Seeder
             ResearchCategorySeeder::class,
             ResearchTopicSeeder::class,
             ResearchSeeder::class,
+            TagsSeeder::class,
+            PortofolioSeeder::class,
         ]);
     }
 }

@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('labs', function (Blueprint $table) {
+        Schema::create('dosens', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('headLab');
-            $table->foreign('headLab')->references('id')->on('dosens')->onDelete('cascade');
-            $table->string('description')->nullable();
-            $table->string('image')->nullable();
-            $table->string('fileSop')->nullable();
+            $table->string('nip')->unique();
+            $table->string('email')->unique();
+            $table->string('phone')->nullable();
+            $table->string('address')->nullable();
+            $table->string('photo')->nullable();
+            $table->string('institution')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('labs');
+        Schema::dropIfExists('dosens');
     }
 };

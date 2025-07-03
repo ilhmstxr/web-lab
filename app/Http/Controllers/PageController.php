@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Komunitas;
 use App\Models\Page;
+use App\Models\Sop;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -63,5 +64,32 @@ class PageController extends Controller
     public function destroy(Page $page)
     {
         //
+    }
+
+
+    public function panduan()
+    {
+        return view('public.panduan');
+    }
+
+    /**
+     * Menampilkan halaman Standar Operasional Prosedur (SOP) Laboratorium.
+     */
+    public function sop(Request $request)
+    {
+        $query = Sop::query();
+
+        // Ambil parameter 'lab' dari URL
+        $labType = $request->query('lab');
+
+        // Jika parameter 'lab' ada, filter SOP berdasarkan jenis lab
+        if ($labType) {
+            $query->where('lab_type', $labType);
+        }
+
+        $sops = $query->get();
+
+        // Teruskan data SOP dan jenis lab yang aktif ke view
+        return view('public.sop-lab', compact('sops'));
     }
 }
