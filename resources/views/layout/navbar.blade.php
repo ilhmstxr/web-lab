@@ -72,7 +72,7 @@
                     <div id="dropdown-layanan"
                         class="dropdown-menu absolute left-0 z-10 mt-2 w-48 origin-top-left rounded-md bg-white shadow-lg focus:outline-none hidden">
                         <div class="py-1">
-                            <a href="#" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">SOP
+                            <a href="{{ route('Sop.index') }}" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">SOP
                                 Lab</a>
                             <a href="{{ route('LabBooking.index') }}"
                                 class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">Peminjaman Lab</a>

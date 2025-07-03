@@ -7,13 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sop extends Model
 {
+    /** @use HasFactory<\Database\Factories\SopFactory> */
     use HasFactory;
-
     protected $fillable = [
-        'title',
+        'name',
+        'category_id', // Foreign key to sop_categories table
         'description',
-        'lab_type', // Tambahkan kolom lab_type di sini
-        'file_path',
     ];
 
     /**
@@ -24,4 +23,15 @@ class Sop extends Model
     {
         return $this->file_path ? asset('storage/' . $this->file_path) : null;
     }
+
+    public function category()
+    {
+        return $this->belongsTo(SopCategory::class, 'category_id');
+    }
+
+    public function lab()
+    {
+        return $this->belongsTo(Lab::class, 'lab_id');
+    }
+
 }
