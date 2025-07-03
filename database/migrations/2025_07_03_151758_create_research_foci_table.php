@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('labs', function (Blueprint $table) {
+        Schema::create('research_foci', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('headLab');
-            $table->foreign('headLab')->references('id')->on('dosens')->onDelete('cascade');
-            $table->string('description')->nullable();
-            $table->string('image')->nullable();
-            $table->string('fileSop')->nullable();
+            $table->text('description')->nullable();
+            $table->unsignedBigInteger('lab_id');
+            $table->foreign('lab_id')->references('id')->on('labs')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('labs');
+        Schema::dropIfExists('research_foci');
     }
 };

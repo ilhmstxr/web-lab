@@ -4,6 +4,7 @@ use App\Http\Controllers\FormAbsensiController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\AbsensiController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\KompetisiController;
 use App\Http\Controllers\LabBookingController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\ResearchController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\KomunitasController;
 use App\Http\Controllers\PortofolioController;
+use App\Http\Controllers\SopController;
 
 // Route::get('/', function () {
 //     return view('public.index');
@@ -35,8 +37,8 @@ Route::resource('/Kegiatan', KegiatanController::class);
 
 Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
 Route::get('/panduan', [PageController::class, 'panduan'])->name('page.panduan');
-Route::get('/sop', [PageController::class, 'sop'])->name('sop.index');
-
+// Route::get('/sop', [PageController::lass, 'sop'])->name('sop.index');
+Route::resource('/Sop', SopController::class);
 
 route::get('/profile-test', function(){
     return view('public.lab-profile');

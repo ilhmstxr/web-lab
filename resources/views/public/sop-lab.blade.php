@@ -1,18 +1,4 @@
-<!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOP Laboratorium - LabConnect</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- jsPDF Library for PDF Generation -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <!-- Google Fonts: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* Custom styles to match the theme */
         body {
@@ -57,24 +43,14 @@
             transition: transform 0.3s ease-in-out;
         }
     </style>
-</head>
 
+
+@extends('layout.main')
+
+@section('content')
+    
 <body class="antialiased flex flex-col min-h-screen">
 
-    <!-- Header & Navigation -->
-    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-40 border-b border-gray-200">
-        <div class="container mx-auto px-4 md:px-6">
-            <nav class="flex items-center justify-between h-16">
-                <a href="#" class="text-xl font-bold text-primary">LabConnect</a>
-                <div>
-                    <a href="research-exploration-page.html"
-                        class="inline-flex items-center justify-center rounded-md bg-transparent text-primary px-4 py-2 text-sm font-medium border border-primary transition-colors hover:bg-primary/10">
-                        Eksplorasi Riset
-                    </a>
-                </div>
-            </nav>
-        </div>
-    </header>
 
     <body class="bg-white text-gray-800">
         <div class="flex flex-col min-h-screen">
@@ -659,4 +635,4 @@
             </script>
     </body>
 
-</html>
+@endsection
