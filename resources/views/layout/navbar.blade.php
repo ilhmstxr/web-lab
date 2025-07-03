@@ -25,8 +25,10 @@
                 <div id="dropdown-absensi"
                     class="dropdown-menu absolute left-0 z-10 mt-2 w-48 origin-top-left rounded-md bg-white shadow-lg focus:outline-none hidden">
                     <div class="py-1">
-                        <a href="{{ route('FormAbsensi.index') }}" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">Form Absensi</a>
-                        <a href="{{ route('Absensi.index') }}" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">Daftar Presensi</a>
+                        <a href="{{ route('FormAbsensi.index') }}"
+                            class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">Form Absensi</a>
+                        <a href="{{ route('Absensi.index') }}"
+                            class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">Daftar Presensi</a>
                     </div>
                 </div>
             </div>
@@ -47,9 +49,11 @@
                     <div id="dropdown-profil-lab"
                         class="dropdown-menu absolute left-0 z-10 mt-2 w-48 origin-top-left rounded-md bg-white shadow-lg focus:outline-none hidden">
                         <div class="py-1">
-                            <a href="#" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">Lab
+                            <a href="{{ route('Profile.index') }}"
+                                class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">Lab
                                 SSI</a>
-                            <a href="#" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">Lab
+                            <a href="{{ route('Profile.index') }}"
+                                class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">Lab
                                 MSI</a>
                         </div>
                     </div>
@@ -76,30 +80,30 @@
                     </div>
                 </div>
 
-                  <div class="relative inline-block text-left">
-                      <button type="button" data-dropdown-toggle="dropdown-komunitas"
-                          class="inline-flex items-center gap-1 text-sm font-medium text-gray-700 hover:text-gray-900">
-                          Komunitas
-                          <svg class="dropdown-arrow h-4 w-4 transition-transform duration-200"
-                              xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                              stroke="currentColor" stroke-width="2">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                          </svg>
-                      </button>
-                      <div id="dropdown-komunitas"
-                          class="dropdown-menu absolute left-0 z-10 mt-2 w-48 origin-top-left rounded-md bg-white shadow-lg focus:outline-none hidden">
-                          <div class="py-1">
-                              {{-- @foreach ($komunitas as $k)
+                <div class="relative inline-block text-left">
+                    <button type="button" data-dropdown-toggle="dropdown-komunitas"
+                        class="inline-flex items-center gap-1 text-sm font-medium text-gray-700 hover:text-gray-900">
+                        Komunitas
+                        <svg class="dropdown-arrow h-4 w-4 transition-transform duration-200"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                            stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div id="dropdown-komunitas"
+                        class="dropdown-menu absolute left-0 z-10 mt-2 w-48 origin-top-left rounded-md bg-white shadow-lg focus:outline-none hidden">
+                        <div class="py-1">
+                            {{-- @foreach ($komunitas as $k)
                                   <a href="{{ route('komunitas.show', $k->id) }}"
                               class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">{{ $k->name }}</a>
                               @endforeach --}}
-                              <a href="{{ route('komunitas.show', 1) }}"
-                                  class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">Dicretech</a>
-                              <a href="{{ route('komunitas.show', 2) }}"
-                                  class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">ISCOM</a>
-                          </div>
-                      </div>
-                  </div>
+                            <a href="{{ route('komunitas.show', 1) }}"
+                                class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">Dicretech</a>
+                            <a href="{{ route('komunitas.show', 2) }}"
+                                class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">ISCOM</a>
+                        </div>
+                    </div>
+                </div>
 
             </nav>
 
@@ -119,7 +123,7 @@
     const dropdownToggles = document.querySelectorAll('[data-dropdown-toggle]');
 
     dropdownToggles.forEach(toggle => {
-        toggle.addEventListener('click', function (event) {
+        toggle.addEventListener('click', function(event) {
             event.stopPropagation(); // Mencegah klik menyebar ke window
 
             const targetMenuId = this.getAttribute('data-dropdown-toggle');
@@ -146,7 +150,7 @@
     });
 
     // Satu listener global untuk menutup semua dropdown jika klik di luar
-    window.addEventListener('click', function () {
+    window.addEventListener('click', function() {
         document.querySelectorAll('.dropdown-menu').forEach(menu => {
             menu.classList.add('hidden');
         });
