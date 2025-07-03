@@ -185,7 +185,7 @@
                 <!-- Gallery Card 5 -->
                 <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col items-start min-h-[150px]" data-aos="zoom-in-up" data-aos-delay="700">
                     <img src="{{ asset('img/gallery5.jpg') }}" alt="Gallery Image 5" class="w-full h-32 object-cover rounded-lg mb-3">
-                    <span class="text-sm font-semibold text-gray-700">Activity 5</span>
+                    <span class="text-sm font-semibold text-gray-700">Activity 5</span>web
                 </div>
                 <!-- Gallery Card 6 -->
                 <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col items-start min-h-[150px]" data-aos="zoom-in-up" data-aos-delay="800">
