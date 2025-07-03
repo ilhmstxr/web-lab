@@ -4,6 +4,7 @@ use App\Http\Controllers\FormAbsensiController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\AbsensiController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\KompetisiController;
 use App\Http\Controllers\LabBookingController;
