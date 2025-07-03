@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->date('tanggal');
             $table->string('tempat')->nullable();
             $table->string('poster')->nullable();
+            $table->unsignedInteger('views_count')->default(0);
             $table->timestamps();
         });
     }
