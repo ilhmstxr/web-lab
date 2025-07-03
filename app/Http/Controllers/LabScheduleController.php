@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\labSchedule;
+use App\Models\LabSchedule;
 use Illuminate\Http\Request;
 
 class LabScheduleController extends Controller
@@ -34,7 +34,7 @@ class LabScheduleController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(labSchedule $labSchedule)
+    public function show(LabSchedule $LabSchedule)
     {
         //
     }
@@ -42,7 +42,7 @@ class LabScheduleController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(labSchedule $labSchedule)
+    public function edit(LabSchedule $LabSchedule)
     {
         //
     }
@@ -50,7 +50,7 @@ class LabScheduleController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, labSchedule $labSchedule)
+    public function update(Request $request, LabSchedule $LabSchedule)
     {
         //
     }
@@ -58,7 +58,7 @@ class LabScheduleController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(labSchedule $labSchedule)
+    public function destroy(LabSchedule $LabSchedule)
     {
         //
     }

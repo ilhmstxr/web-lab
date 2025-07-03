@@ -12,7 +12,8 @@ class AbsensiController extends Controller
      */
     public function index()
     {
-        //
+        $absensis = Absensi::all();
+        return view('public.absen-lab', compact('absensis'));
     }
 
     /**
@@ -20,7 +21,7 @@ class AbsensiController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -28,7 +29,7 @@ class AbsensiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

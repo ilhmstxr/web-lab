@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\labSchedule;
+use App\Models\LabSchedule;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,7 +13,7 @@ class LabScheduleSeeder extends Seeder
      */
     public function run(): void
     {
-         // Definisikan waktu untuk setiap sesi
+        // Definisikan waktu untuk setiap sesi
         $sessionsData = [
             1 => ['start' => '07:00:00', 'end' => '07:50:00'],
             2 => ['start' => '07:51:00', 'end' => '08:40:00'],
@@ -36,7 +36,7 @@ class LabScheduleSeeder extends Seeder
                 $isBooked = isset($bookedSlots[$day]) && in_array($sessionNum, $bookedSlots[$day]);
 
                 // Buat record baru di database
-                labSchedule::create([
+                LabSchedule::create([
                     'day_of_week' => $day,
                     'session' => $sessionNum,
                     'start_time' => $sessionsData[$sessionNum]['start'],
@@ -47,6 +47,6 @@ class LabScheduleSeeder extends Seeder
                     'remarks' => $isBooked ? 'Slot ini telah dipesan sesuai jadwal.' : null,
                 ]);
             }
-    }
+        }
     }
 }

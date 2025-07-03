@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\ResearchTopic;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -32,6 +33,20 @@ class DatabaseSeeder extends Seeder
             LabScheduleSeeder::class, 
             ResearchCategorySeeder::class, 
             ResearchSeeder::class, 
+        ]);
+
+        User::create([
+            'name' => 'Admin',
+            'email' => 'admin@admin.com',
+            'password' => bcrypt('admin'), // Use a secure password
+        ]);
+        
+        $this->call([
+            KomunitasSeeder::class,
+            LabScheduleSeeder::class,
+            ResearchCategorySeeder::class,
+            ResearchTopicSeeder::class,
+            ResearchSeeder::class,
         ]);
     }
 }

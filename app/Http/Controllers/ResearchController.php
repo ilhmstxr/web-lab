@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Research;
+use App\Models\ResearchCategory;
+use App\Models\ResearchTopic;
 use Illuminate\Http\Request;
 
 class ResearchController extends Controller
@@ -12,9 +14,37 @@ class ResearchController extends Controller
      */
     public function index()
     {
-        return view('public.research');
+        $category = ResearchCategory::all();
+        $topic = ResearchTopic::all();
+        // $research = Research::all();
+        $research = Research::latest()->paginate(9);
+        // return $topic;
+        return view('public.research', compact('category', 'topic', 'research'));
     }
 
+
+    public function filter(Request $request)
+    {
+        // Mulai query dasar
+        $query = Research::query();
+
+        // Filter berdasarkan kategori jika ada yang dipilih
+        if ($request->has('categories') && !empty($request->categories)) {
+            $query->whereIn('category_id', $request->categories);
+        }
+
+        // Filter berdasarkan topik jika ada yang dipilih
+        if ($request->has('topics') && !empty($request->topics)) {
+            $query->whereIn('topic_id', $request->topics);
+        }
+
+        // Ambil hasil yang sudah difilter dengan paginasi
+        $research = $query->latest()->paginate(9);
+
+        // Kembalikan view partial yang hanya berisi daftar riset
+        // Ini penting agar kita tidak me-render ulang seluruh halaman
+        return view('public.partials._research_list', compact('research'))->render();
+    }
     /**
      * Show the form for creating a new resource.
      */

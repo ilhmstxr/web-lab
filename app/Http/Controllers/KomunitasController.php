@@ -13,17 +13,22 @@ class KomunitasController extends Controller
         $komunitas = Komunitas::all();
         return $komunitas;
         // return $komunitas;
-        return view('layout.navbar',compact('komunitas'));
+        return view('layout.navbar', compact('komunitas'));
     }
 
-    public function show(string $name)
+    public function show(Request $request, $id)
     {
-        $komunitas = Komunitas::where('name', $name)
-            ->with(['komunitasAnggotas', 'komunitasAgendas'])
-            ->firstOrFail();
+        // $komunitas = Komunitas::where('name', $name)
+        //     ->with(['komunitasAnggotas', 'komunitasAgendas'])
+        //     ->firstOrFail();
+
+        // return $id;
+        $komunitas = Komunitas::where('id', $id)->with(['komunitasAnggotas', 'komunitasAgendas'])->firstOrFail();
 
         return view('public.komunitas-detail', [
             'komunitas' => $komunitas,
         ]);
     }
+
+    
 }

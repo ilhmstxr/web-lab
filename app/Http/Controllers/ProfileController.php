@@ -2,59 +2,64 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\Request;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
     /**
-     * Tampilkan form edit profil pengguna.
+     * Display a listing of the resource.
      */
-    public function edit(Request $request): View
+    public function index()
     {
-        return view('profile.edit', [
-            'user' => $request->user(),
-        ]);
+        return view('public.pages.home');
     }
 
     /**
-     * Perbarui informasi profil pengguna.
+     * Show the form for creating a new resource.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function create()
     {
-        $user = $request->user();
-        $user->fill($request->validated());
-
-        // Tidak perlu reset email_verified_at
-        $user->save();
-
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        //
     }
 
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
+    }
 
     /**
-     * Hapus akun pengguna.
+     * Display the specified resource.
      */
-    public function destroy(Request $request): RedirectResponse
+    public function show(string $id)
     {
-        $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current_password'],
-        ]);
+        
+        return view('public.lab-profile');
+    }
 
-        $user = $request->user();
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
 
-        Auth::logout();
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
 
-        $user->delete();
-
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return Redirect::to('/');
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
     }
 }
