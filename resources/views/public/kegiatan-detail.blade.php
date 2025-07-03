@@ -117,8 +117,8 @@
                         <h2 class="text-xl font-bold text-blue-700 mb-2">Lokasi Kegiatan</h2>
                         <p class="text-gray-700 text-lg font-semibold">{{ $kegiatan->tempat }}</p>
                         <p class="text-gray-600 text-sm mt-2">
-                            (<a href="https://www.google.com/maps/search/?api=1&query={{ urlencode($kegiatan->tempat) }}"
-                                target="_blank" class="text-blue-600 hover:underline">Lihat di Google Maps</a>)
+                            (<a href="https://maps.google.com/?q={{ urlencode($kegiatan->tempat) }}" target="_blank"
+                                class="text-blue-600 hover:underline">Lihat di Google Maps</a>)
                         </p>
                     </div>
                 @endif
@@ -139,34 +139,36 @@
                         <span id="like-count">{{ $kegiatan->likes_count ?? 0 }}</span> Suka
                     </button>
                 </div>
+
                 <section class="max-w-3xl mx-auto mt-12 bg-white p-8 rounded-xl shadow-lg border border-gray-100">
                     <h2 class="text-2xl font-bold text-blue-800 mb-6 text-center">Komentar</h2>
 
-                    @auth
-                        <form id="comment-form" action="{{ route('comments.store') }}" method="POST" class="mb-8">
-                            @csrf
-                            <input type="hidden" name="kegiatan_id" value="{{ $kegiatan->id }}">
-                            <textarea name="content" id="comment-content" rows="4"
+                    <form id="comment-form" action="{{ route('comments.store') }}" method="POST" class="mb-8">
+                        @csrf
+                        <input type="hidden" name="kegiatan_id" value="{{ $kegiatan->id }}">
+                        <div class="mb-4">
+                            <label for="comment-name" class="block text-sm font-medium text-gray-700 mb-1">Nama Anda
+                                (Opsional):</label>
+                            <input type="text" name="name" id="comment-name"
                                 class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400"
-                                placeholder="Tulis komentar Anda di sini..." required></textarea>
-                            <div class="mt-4 text-right">
-                                <button type="submit"
-                                    class="inline-flex items-center px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition-colors">
-                                    Kirim Komentar
-                                </button>
-                            </div>
-                        </form>
-                    @else
-                        <p class="text-center text-gray-600 mb-8">
-                            Silakan <a href="{{ route('login') }}" class="text-blue-600 hover:underline">login</a> untuk
-                            memberikan komentar.
-                        </p>
-                    @endauth
+                                placeholder="Nama Anda (mis: Anonim)">
+                        </div>
+                        <textarea name="content" id="comment-content" rows="4"
+                            class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400"
+                            placeholder="Tulis komentar Anda di sini..." required></textarea>
+                        <div class="mt-4 text-right">
+                            <button type="submit"
+                                class="inline-flex items-center px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition-colors">
+                                Kirim Komentar
+                            </button>
+                        </div>
+                    </form>
+
                     <div id="comments-list">
                         @forelse ($kegiatan->comments as $comment)
                             <div class="bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200 shadow-sm">
                                 <div class="flex items-center justify-between mb-2">
-                                    <p class="font-semibold text-gray-800">{{ $comment->user->name ?? 'Pengguna Anonim' }}</p>
+                                    <p class="font-semibold text-gray-800">{{ $comment->name ?? 'Pengguna Anonim' }}</p>
                                     <span class="text-xs text-gray-500">{{ $comment->created_at->diffForHumans() }}</span>
                                 </div>
                                 <p class="text-gray-700 leading-relaxed">{{ $comment->content }}</p>
@@ -176,6 +178,7 @@
                         @endforelse
                     </div>
                 </section>
+
                 <div class="flex flex-wrap justify-center gap-4 mt-16 mb-16">
                     <span class="text-gray-700 font-semibold text-lg me-4 hidden sm:block">Bagikan:</span>
                     <a href="https://api.whatsapp.com/send?text={{ urlencode($kegiatan->judul . ' - ' . url()->current()) }}"
@@ -183,7 +186,7 @@
                         class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-green-500 text-white hover:bg-green-600 transition-colors shadow-md">
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                             <path
-                                d="M12.04 2c-5.45 0-9.91 4.46-9.91 9.91 0 1.75.5 3.42 1.45 4.9L2.05 22l5.05-1.32c1.47.8 3.14 1.23 4.9 1.23 5.45 0 9.91-4.46 9.91-9.91s-4.46-9.91-9.91-9.91zm0 2c4.35 0 7.91 3.56 7.91 7.91s-3.56 7.91-7.91 7.91c-1.42 0-2.8-.37-4.01-1.03l-.3-.18-3.12.82.84-3.04-.2-.31c-.75-1.16-1.15-2.5-1.15-3.87 0-4.35 3.56-7.91 7.91-7.91zm-3.08 5.67c-.2-.09-.44-.15-.65.1-.2.24-.76.99-.83 1.06-.07.07-.13.1-.25.03-.12-.06-.27-.1-.58-.36-.4-.32-.95-.89-1.3-1.63-.35-.74-.06-1.15.2-1.42.17-.14.36-.2.48-.2.12 0 .23-.02.32-.02.1-.01.2-.01.29.1.09.11.36.4.39.87.03.47.03.87-.01 1.06-.04.19-.1.21-.19.31-.08.1-.17.18-.26.25-.09.07-.18.13-.27.2zm4.33 3.25c.09.2.18.18.32.1.14-.09.65-.24 1.2-.49.55-.25.9-.45 1.15-.49.25-.04.4-.04.56.09.16.14.21.32.25.4.04.09.04.17.06.27s.02.19-.06.29c-.08.1-.17.18-.27.25-.09.07-.18.13-.27.2-.09.07-.18.1-.25.13-.07.03-.1-.01-.2-.04-.09-.03-.18-.06-.27-.1zm-.88.66c-.63 0-1.2-.2-1.74-.59l-.14-.08-.34.1-.37.1-.38.07c-.4.07-.8.07-1.19.01l-.22-.05-.22-.05c-.32-.09-.64-.2-.95-.35l-.2-.1-.2-.09c-1.3-.6-2.31-1.72-2.83-2.9l-.14-.3-.12-.32c-.06-.17-.11-.34-.14-.52-.03-.18-.04-.37-.02-.55.02-.18.06-.36.1-.53s.09-.34.15-.5c.06-.16.12-.31.18-.46s.12-.29.17-.43l.1-.2.1-.2c.06-.11.13-.2.2-.29s.14-.18.2-.24l.09-.09c.4-.3.84-.52 1.29-.65.45-.13.92-.16 1.38-.1l.24.03.24.04.24.06c.32.09.64.2.95.34l.2.1.2.09c1.3.6 2.31 1.72 2.83 2.9l.14.3.12.32c.06.17.11.34.14.52.03.18.04.37.02.55-.02.18-.06.36-.1-.53s-.09.34-.15.5c-.06.16-.12.31-.18.46s-.12.29-.17.43l-.1.2-.1.2c-.06.11-.13.2-.2.29s-.14.18-.2.24l-.09.09c-.4.3-.84.52-1.29.65-.45.13-.92.16-1.38.1z" />
+                                d="M12.04 2c-5.45 0-9.91 4.46-9.91 9.91 0 1.75.5 3.42 1.45 4.9L2.05 22l5.05-1.32c1.47.8 3.14 1.23 4.9 1.23 5.45 0 9.91-4.46 9.91-9.91s-4.46-9.91-9.91-9.91zm0 2c4.35 0 7.91 3.56 7.91 7.91s-3.56 7.91-7.91 7.91c-1.42 0-2.8-.37-4.01-1.03l-.3-.18-3.12.82.84-3.04-.2-.31c-.75-1.16-1.15-2.5-1.15-3.87 0-4.35 3.56-7.91 7.91-7.91zm-3.08 5.67c-.2-.09-.44-.15-.65.1-.2.24-.76.99-.83 1.06-.07.07-.13.1-.25.03-.12-.06-.27-.1-.58-.36-.4-.32-.95-.89-1.3-1.63-.35-.74-.06-1.15.2-1.42.17-.14.36-.2.48-.2.12 0 .23-.02.32-.02.1-.01.2-.01.29.1.09.11.36.4.39.87.03.47.03.87-.01 1.06-.04.19-.1.21-.19.31-.08.1-.17.18-.26.25-.09.07-.18.13-.27.2zm4.33 3.25c.09.2.18.18.32.1.14-.09.65-.24 1.2-.49.55-.25.9-.45 1.15-.49.25-.04.4-.04.56.09.16.14.21.32.25.4.04.09.04.17.06.27s.02.19-.06.29c-.08.1-.17.18-.27.25-.09.07-.18.13-.27.2-.09.07-.18.1-.25.13-.07.03-.1-.01-.2-.04-.09-.03-.18-.06-.27-.1zm-.88.66c-.63 0-1.2-.2-1.74-.59l-.14-.08-.34.1-.37.1-.38.07c-.4.07-.8.07-1.19.01l-.22-.05-.22-.05c-.32-.09-.64-.2-.95-.35l-.2-.1-.2-.09c-1.3-.6-2.31-1.72-2.83-2.9l-.14-.3-.12-.32c-.06-.17-.11-.34-.14-.52-.03-.18-.04-.37-.02-.55.02-.18.06-.36.1-.53s.09-.34.15-.5c.06-.16.12-.31.18-.46s-.12-.29.17-.43l.1-.2.1-.2c.06-.11.13-.2.2-.29s.14-.18.2-.24l.09-.09c.4-.3.84-.52 1.29-.65.45-.13.92-.16 1.38-.1l.24.03.24.04.24.06c.32.09.64.2.95.34l.2.1.2.09c1.3.6 2.31 1.72 2.83 2.9l.14.3.12.32c.06.17.11.34.14.52.03.18.04.37.02.55-.02.18-.06.36-.1-.53s-.09.34-.15.5c-.06.16-.12.31-.18.46s-.12.29-.17.43l-.1.2-.1.2c-.06.11-.13.2-.2.29s-.14.18-.2.24l-.09.09c-.4.3-.84.52-1.29.65-.45.13-.92.16-1.38.1z" />
                         </svg>
                         WhatsApp
                     </a>
@@ -326,45 +329,46 @@
             const likeCountSpan = document.getElementById('like-count');
 
             if (likeButton) {
+                // Inisialisasi ikon like berdasarkan status dari sesi
+                // $isLikedByUser sudah dikirim dari controller berdasarkan Session::get('liked_kegiatan', [])
+                if ({{ $isLikedByUser ? 'true' : 'false' }}) {
+                    likeIcon.innerHTML = '<path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />'; // Ikon hati penuh
+                    likeIcon.classList.add('text-red-600');
+                } else {
+                    likeIcon.innerHTML = '<path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5A4.5 4.5 0 017.5 4C9.24 4 10.91 4.81 12 6.09c1.09-1.28 2.76-2.09 4.5-2.09C19.58 4 22 6.42 22 9.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35zM7.5 6C5.57 6 4 7.57 4 9.5c0 2.22 2.65 4.98 7.35 9.45L12 19.34l.65-.59C17.35 14.48 20 11.72 20 9.5 20 7.57 18.43 6 16.5 6c-1.74 0-3.41.81-4.5 2.09C10.91 6.81 9.24 6 7.5 6z" />'; // Ikon hati kosong
+                    likeIcon.classList.remove('text-red-600');
+                }
+
+
                 likeButton.addEventListener('click', function () {
-                    @auth
-                        fetch("{{ route('kegiatan.toggleLike', $kegiatan->id) }}", {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    fetch("{{ route('kegiatan.toggleLike', $kegiatan->id) }}", {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        }
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.status === 'success') {
+                                likeCountSpan.textContent = data.likes_count;
+                                if (data.liked) {
+                                    likeIcon.innerHTML = '<path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />'; // Ikon hati penuh
+                                    likeIcon.classList.add('text-red-600');
+                                } else {
+                                    likeIcon.innerHTML = '<path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5A4.5 4.5 0 017.5 4C9.24 4 10.91 4.81 12 6.09c1.09-1.28 2.76-2.09 4.5-2.09C19.58 4 22 6.42 22 9.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35zM7.5 6C5.57 6 4 7.57 4 9.5c0 2.22 2.65 4.98 7.35 9.45L12 19.34l.65-.59C17.35 14.48 20 11.72 20 9.5 20 7.57 18.43 6 16.5 6c-1.74 0-3.41.81-4.5 2.09C10.91 6.81 9.24 6 7.5 6z" />'; // Ikon hati kosong
+                                    likeIcon.classList.remove('text-red-600');
+                                }
+                            } else {
+                                alert('Terjadi kesalahan: ' + data.message);
                             }
                         })
-                            .then(response => response.json())
-                            .then(data => {
-                                if (data.status === 'success') {
-                                    likeCountSpan.textContent = data.likes_count;
-                                    if (data.liked) {
-                                        likeIcon.innerHTML = '<path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />';
-                                        likeIcon.classList.add('text-red-600');
-                                    } else {
-                                        likeIcon.innerHTML = '<path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />';
-                                        likeIcon.classList.remove('text-red-600');
-                                    } else {
-                                        alert('Terjadi kesalahan: ' + data.message);
-                                    }
-                                })
-                            .catch(error => {
-                                console.error('Error:', error);
-                                alert('Terjadi kesalahan saat memproses like.');
-                            });
-                    @else
-                        alert('Anda harus login untuk menyukai kegiatan ini!');
-                        window.location.href = "{{ route('login') }}";
-                    @endauth
-                                });
-            }
-            @auth
-                @if (isset($kegiatan->isLikedByUser) && $kegiatan->isLikedByUser)
-                    likeIcon.innerHTML = '<path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />';
-                    likeIcon.classList.add('text-red-600');
-                @endif
-            @endauth
+                        .catch(error => {
+                            console.error('Error:', error);
+                            alert('Terjadi kesalahan saat memproses like.');
                         });
+                });
+            }
+        });
     </script>
 @endsection

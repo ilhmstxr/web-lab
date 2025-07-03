@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Kegiatan extends Model
 {
     use HasFactory;
+
+    /**
+     * @var array<int, string>
+     */
     protected $fillable = [
         'judul',
         'deskripsi',
@@ -17,24 +21,15 @@ class Kegiatan extends Model
         'poster',
         'youtube_url',
         'views_count',
+        'likes_count',
     ];
 
+    /**
+     * @var array<string, string>
+     */
     protected $casts = [
         'tanggal' => 'date',
     ];
-
-    public function likes()
-    {
-        return $this->hasMany(Like::class);
-    }
-
-    public function getIsLikedByUserAttribute()
-    {
-        return auth()->check() ? $this->likes()->where('user_id', auth()->id())->exists() : false;
-    }
-
-    protected $withCount = ['likes'];
-
     public function comments()
     {
         return $this->hasMany(Comment::class);
