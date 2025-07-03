@@ -112,7 +112,7 @@
     <section id="about" class="w-full py-20 lg:py-32 bg-gray-50">
         <div class="container mx-auto px-4 md:px-6 space-y-12">
             <div class="text-center space-y-4">
-                <h2 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl animate-fadeInUp">Tentang
+                <h2 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl animate-fadeInUp" style="color: royalblue;">Tentang
                     Laboratorium</h2>
                 <p class="mx-auto max-w-[700px] text-gray-600 md:text-xl animate-fadeInUp delay-200">
                     Pelajari lebih lanjut tentang sejarah, profil dan riset lab yang kami tawarkan.
@@ -131,7 +131,7 @@
                         di dalam Program Studi Informasi yaitu pada pengembangan sisem informasi, analisa data,
                         pemodelan machine learning,
                         perancangan desain antarmuka sistem informasi dan masih banyak lagi.</p>
-                    <span class="inline-block bg-yellow-600 text-white px-4 py-2 rounded-md">Pelajari</span>
+                    <span class="inline-block bg-yellow-600 text-white px-4 py-2 rounded-md" href="{{ route('Research.index') }}">Jelajahi</span>
                 </a>
 
                 <!-- Card Lab MSI -->
@@ -146,7 +146,7 @@
                         informasi,
                         manajemen sistem informasi serta manajemen proyek sisem informasi.
                     </p>
-                    <span class="inline-block bg-orange-800 text-white px-4 py-2 rounded-md">Pelajari</span>
+                    <span class="inline-block bg-orange-800 text-white px-4 py-2 rounded-md">Jelajahi</span>
                 </a>
             </div>
         </div>
