@@ -12,6 +12,8 @@ return new class extends Migration {
     {
         Schema::table('sops', function (Blueprint $table) {
             // Tambahkan kolom 'lab_type' setelah 'description'
+            // $table->id();
+            // $table->text('description')->change(); // Pastikan 'description' adalah longText
             $table->string('lab_type')->after('description')->nullable();
         });
     }
