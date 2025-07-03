@@ -121,7 +121,8 @@
 
             <div class="grid gap-8 md:grid-cols-2">
                 <!-- Card Lab Solusi -->
-                <a href="/solusi"
+                <!-- <a href="/solusi" -->
+                <a href="{{ route('Profile.index') }}"
                     class="block bg-white rounded-xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-1 p-6 text-center animate-fadeInUp delay-300">
                     <img src="/img/logo-solusi.png" alt="Logo solusi" class="logo mx-auto w-1/6 h-auto">
                     <h3 class="text-2xl font-semibold mb-2 text-yellow-600">Laboratorium Solusi</h3>
@@ -134,7 +135,8 @@
                 </a>
 
                 <!-- Card Lab MSI -->
-                <a href="/msi"
+                <!-- <a href="/msi" -->
+                <a href="{{ route('Profile.index') }}"      
                     class="block bg-white rounded-xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-1 p-6 text-center animate-fadeInUp delay-500">
                     <img src="/img/logo-msi.png" alt="Logo MSI" class="logo mx-auto w-1/5 h-auto">
                     <h3 class="text-2xl font-semibold mb-2 text-orange-800">Laboratorium MSI</h3>
