@@ -34,7 +34,7 @@
     @stack('styles')
 </head>
 <body class="bg-gray-50">
-    @include('public.partials.navigation')
+    @include('layout.navbar')
 
     @yield('content')
 
