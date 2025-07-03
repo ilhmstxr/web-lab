@@ -35,7 +35,8 @@ class ProfileController extends Controller
      */
     public function show(string $id)
     {
-        //
+        
+        return view('public.lab-profile');
     }
 
     /**

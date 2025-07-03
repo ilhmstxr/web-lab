@@ -34,6 +34,9 @@ Route::get('/komunitas', [KomunitasController::class, 'index'])->name('komunitas
 Route::get('/komunitas/{id}', [KomunitasController::class, 'show'])->name('komunitas.show');
 Route::resource('/Kegiatan', KegiatanController::class);
 
+route::get('/profile-test', function(){
+    return view('public.lab-profile');
+});
 Route::get('/filter-research', [ResearchController::class, 'filter'])->name('research.filter');
 
 

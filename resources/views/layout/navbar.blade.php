@@ -91,7 +91,7 @@
                           <div class="py-1">
                               {{-- @foreach ($komunitas as $k)
                                   <a href="{{ route('komunitas.show', $k->id) }}"
-                                      class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">{{ $k->name }}</a>
+                              class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">{{ $k->name }}</a>
                               @endforeach --}}
                               <a href="{{ route('komunitas.show', 1) }}"
                                   class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">Dicretech</a>
