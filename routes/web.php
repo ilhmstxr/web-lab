@@ -12,6 +12,7 @@ use App\Http\Controllers\PerwalianController;
 use App\Http\Controllers\ResearchController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\KomunitasController;
+use App\Http\Controllers\PortofolioController;
 use Filament\Forms\Get;
 
 // Route::get('/', function () {
@@ -28,10 +29,14 @@ Route::resource('Perwalian', PerwalianController::class);
 Route::resource('Research', ResearchController::class);
 Route::resource('FormAbsensi', FormAbsensiController::class);
 Route::resource('Profile', ProfileController::class);
+route::resource('Portofolio', PortofolioController::class);
 Route::get('/komunitas', [KomunitasController::class, 'index'])->name('komunitas.index');
 Route::get('/komunitas/{id}', [KomunitasController::class, 'show'])->name('komunitas.show');
 Route::resource('/Kegiatan', KegiatanController::class);
 
+route::get('/profile-test', function(){
+    return view('public.lab-profile');
+});
 Route::get('/filter-research', [ResearchController::class, 'filter'])->name('research.filter');
 
 

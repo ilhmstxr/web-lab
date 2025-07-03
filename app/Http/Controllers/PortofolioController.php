@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Portofolio;
 use Illuminate\Http\Request;
 
-class ProfileController extends Controller
+class PortofolioController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('public.pages.home');
+        return view('public.portofolio');
     }
 
     /**
@@ -33,16 +34,15 @@ class ProfileController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Portofolio $portofolio)
     {
-        
-        return view('public.lab-profile');
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Portofolio $portofolio)
     {
         //
     }
@@ -50,7 +50,7 @@ class ProfileController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Portofolio $portofolio)
     {
         //
     }
@@ -58,7 +58,7 @@ class ProfileController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Portofolio $portofolio)
     {
         //
     }

@@ -16,7 +16,7 @@
     <main class="flex-1">
         @yield('content')
     </main>
-    @include('layout.footer')
+    @include('public.partials.footer')
 
     <div class="gtranslate_wrapper"></div>
 
