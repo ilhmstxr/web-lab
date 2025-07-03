@@ -50,6 +50,7 @@
     letter-spacing: 2px;
     text-shadow: 0 4px 16px rgba(0,0,0,0.4);
     animation: fadeInDown 1s;
+    line-height: 1.1;
 }
 
 .carousel-subtitle {
@@ -58,6 +59,7 @@
     margin-bottom: 1rem;
     text-shadow: 0 2px 8px rgba(0,0,0,0.3);
     animation: fadeInUp 1.2s;
+    line-height: 1.2;
 }
 
 .carousel-desc {
@@ -66,6 +68,7 @@
     margin: 0 auto;
     text-shadow: 0 1px 4px rgba(0,0,0,0.2);
     animation: fadeIn 1.5s;
+    line-height: 1.4;
 }
 
 @keyframes fadeInDown {
@@ -89,6 +92,9 @@
     position: absolute;
     inset: 0;
     transform: translateX(0);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 .carousel-img.active {
     opacity: 1;
@@ -178,18 +184,83 @@
     opacity: 1;
     box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
+
+/* --- Tambahan Responsif --- */
+@media (max-width: 900px) {
+    .carousel-title {
+        font-size: 2.0rem;
+    }
+    .carousel-subtitle {
+        font-size: 1.3rem;
+    }
+    .carousel-desc {
+        font-size: 1rem;
+    }
+    .carousel-overlay {
+        padding: 0 1rem;
+    }
+    #carousel-images {
+        height: 100% !important;
+        min-height: 0;
+    }
+}
+@media (max-width: 600px) {
+    .carousel-title {
+        font-size: 1.5rem;
+        margin-bottom: 0.3rem;
+    }
+    .carousel-subtitle {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+    .carousel-desc {
+        font-size: 0.95rem;
+        max-width: 95vw;
+    }
+    .carousel-overlay {
+        padding: 0 0.5rem;
+        background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.85) 100%);
+    }
+    #carousel-images {
+        height: 100% !important;
+        min-height: 0;
+    }
+    .carousel-arrow {
+        width: 28px;
+        height: 28px;
+        padding: 0.25rem;
+    }
+    .carousel-arrow svg {
+        width: 18px;
+        height: 18px;
+    }
+    .carousel-dot {
+        width: 18px;
+        height: 5px;
+    }
+}
+
+/* Highlight kata kunci di deskripsi carousel */
+.carousel-desc .highlight {
+    color: #fff;
+    font-weight: normal;
+    background: none;
+    border-radius: 0;
+    padding: 0;
+    transition: none;
+}
 </style>
 @endpush
 
 @section('content')
     <!-- Hero Section -->
-    <section class="min-h-screen gradient-bg flex items-center justify-center relative overflow-hidden p-0 m-0">
-        <div class="relative w-full">
+    <section class="h-screen gradient-bg flex items-center justify-center relative overflow-hidden p-0 m-0">
+        <div class="relative w-full h-full">
             <!-- Caroussel Images -->
-            <div id="carousel-images" class="w-full h-[500px] md:h-[900px] lg:h-[900px] relative">
+            <div id="carousel-images" class="w-full h-full relative">
                 <img src="{{ asset('img/lab-Solusi-1.jpeg') }}" alt="lab-solusi" class="carousel-img w-full h-full object-cover object-center">
-                <img src="{{ asset('img/Lab-MSI-1.jpeg') }}" alt="lab-msi" class="carousel-img absolute inset-0 w-full object-cover object-center">
-                <img src="{{ asset('img/lab-statistika.jpeg') }}" alt="lab-msi" class="carousel-img absolute inset-0 w-full object-cover object-center">
+                <img src="{{ asset('img/Lab-MSI-1.jpeg') }}" alt="lab-msi" class="carousel-img absolute inset-0 w-full h-full object-cover object-center">
+                <img src="{{ asset('img/lab-statistika.jpeg') }}" alt="lab-msi" class="carousel-img absolute inset-0 w-full h-full object-cover object-center">
             </div>
             <div class="carousel-overlay">
                 <h1 class="carousel-title">Profile Lab Sistem Informasi</h1>
@@ -249,39 +320,83 @@
     const carouselData = [
         {
             title: "Profile Lab Sistem Informasi",
-            subtitle: "Menciptakan Inovasi, Menginspirasi Generasi"
+            subtitle: "Menciptakan Inovasi, Menginspirasi Generasi",
+            desc: "Tempat di mana kreativitas bertemu teknologi dan masa depan dibangun bersama."
         },
         {
             title: "Profile Lab MSI",
-            subtitle: "Kolaborasi dan Riset Terkini"
+            subtitle: "Kolaborasi dan Riset Terkini",
+            desc: "Kolaborasi, riset, dan pengembangan teknologi informasi terkini."
         },
         {
             title: "Profile Lab Statistika",
-            subtitle: "Analisis Data untuk Masa Depan"
+            subtitle: "Analisis Data untuk Masa Depan",
+            desc: "Statistika dan analisis data untuk solusi masa depan."
         }
     ];
 
-    // Fungsi untuk update judul dan subjudul dengan animasi
+    // Fungsi untuk highlight kata kunci pada deskripsi
+    function highlightKeywords(text) {
+        const keywords = [
+            'kreativitas', 'teknologi', 'masa depan', 'kolaborasi', 'riset', 'pengembangan', 'statistika', 'analisis data', 'solusi'
+        ];
+        let result = text;
+        keywords.forEach(word => {
+            // Case-insensitive, whole word only
+            const regex = new RegExp(`(\\b${word.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&')}\\b)`, 'gi');
+            result = result.replace(regex, '<span class="highlight">$1</span>');
+        });
+        return result;
+    }
+
+    // Efek typewriter untuk deskripsi (plain text, lalu highlight setelah selesai)
+    function typewriterEffect(element, text, onComplete, speed = 18) {
+        element.textContent = '';
+        let i = 0;
+        function type() {
+            if (i < text.length) {
+                element.textContent += text[i];
+                i++;
+                setTimeout(type, speed);
+            } else if (onComplete) {
+                onComplete();
+            }
+        }
+        type();
+    }
+
+    // Fungsi untuk update judul, subjudul, dan deskripsi dengan animasi interaktif
     function animateCarouselText(index) {
         const titleEl = document.querySelector('.carousel-title');
         const subtitleEl = document.querySelector('.carousel-subtitle');
+        const descEl = document.querySelector('.carousel-desc');
 
         // Animasi keluar
         titleEl.classList.remove('carousel-text-animate-in');
         subtitleEl.classList.remove('carousel-text-animate-in');
+        if (descEl) descEl.classList.remove('carousel-text-animate-in');
         titleEl.classList.add('carousel-text-animate-out');
         subtitleEl.classList.add('carousel-text-animate-out');
+        if (descEl) descEl.classList.add('carousel-text-animate-out');
 
         setTimeout(() => {
             // Ganti teks
             titleEl.textContent = carouselData[index].title;
             subtitleEl.textContent = carouselData[index].subtitle;
+            if (descEl) {
+                const plain = carouselData[index].desc;
+                typewriterEffect(descEl, plain, function() {
+                    descEl.innerHTML = highlightKeywords(plain);
+                }, 18);
+            }
 
             // Animasi masuk
             titleEl.classList.remove('carousel-text-animate-out');
             subtitleEl.classList.remove('carousel-text-animate-out');
+            if (descEl) descEl.classList.remove('carousel-text-animate-out');
             titleEl.classList.add('carousel-text-animate-in');
             subtitleEl.classList.add('carousel-text-animate-in');
+            if (descEl) descEl.classList.add('carousel-text-animate-in');
         }, 500);
     }
 
@@ -416,5 +531,8 @@
             }
         });
     }
+
+    // Tambahkan auto-slide setiap 5 detik
+    let carouselInterval = setInterval(nextSlide, 5000);
     </script>
 @endpush

@@ -109,7 +109,7 @@
                     </div>
                     <!-- Anggota 6 -->
                     <div class="bg-white rounded-xl shadow p-6 flex flex-col items-center duration-300 hover:scale-105 hover:shadow-2xl group">
-                        <div class="bg-red-400 w-14 h-14 rounded-full flex items-center justify-center text-white text-xl font-bold mb-3 transition-all duration-300">RP</div>
+                        <div class="bg-red-400 w-14 h-14 rounded-full flex items-center justify-center text-white text-xl font-bold mb-3 transition-all duration-300">SFA</div>
                         <h4 class="font-bold">Seftin Fitri Ana Wati, S.Kom., M.Kom.</h4>
                     </div>
                 </div>

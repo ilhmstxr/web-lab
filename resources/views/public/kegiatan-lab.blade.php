@@ -143,7 +143,7 @@
 
                     <div class="mt-20 text-center fade-in-item">
                         <blockquote class="italic text-lg text-gray-600 max-w-xl mx-auto">
-                            “Ilmu bukan sekadar untuk dipelajari, tapi untuk dibagikan, diuji, dan dikembangkan bersama.”
+                            "Ilmu bukan sekadar untuk dipelajari, tapi untuk dibagikan, diuji, dan dikembangkan bersama."
                         </blockquote>
                         <p class="mt-4 text-blue-600 font-semibold">
                             Yuk, ambil bagian dalam kegiatan kami berikutnya!
