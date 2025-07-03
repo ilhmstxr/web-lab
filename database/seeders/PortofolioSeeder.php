@@ -103,5 +103,34 @@ class PortofolioSeeder extends Seeder
         $p3->tags()->attach($tags['Kategori']->id, ['value' => 'UI/UX']);
         $p3->tags()->attach($tags['Software']->id, ['value' => 'Figma']);
         $p3->tags()->attach($tags['Tahun']->id, ['value' => '2024']);
+        $p4 = Portofolio::create([
+            'Name' => 'Desain UI/UX E-Learning',
+            'Title' => 'Rancangan Antarmuka Platform Belajar Online',
+            'Description' => 'Merancang user interface dan user experience untuk platform e-learning yang intuitif.',
+            'Category' => 'UI/UX Design',
+        ]);
+        $p4->tags()->attach($tags['Kategori']->id, ['value' => 'UI/UX']);
+        $p4->tags()->attach($tags['Software']->id, ['value' => 'Figma']);
+        $p4->tags()->attach($tags['Tahun']->id, ['value' => '2024']);
+        $p5 = Portofolio::create([
+            'Name' => 'Desain UI/UX E-Learning',
+            'Title' => 'Rancangan Antarmuka Platform Belajar Online',
+            'Description' => 'Merancang user interface dan user experience untuk platform e-learning yang intuitif.',
+            'Category' => 'UI/UX Design',
+        ]);
+        $p5->tags()->attach($tags['Kategori']->id, ['value' => 'UI/UX']);
+        $p5->tags()->attach($tags['Software']->id, ['value' => 'Figma']);
+        $p5->tags()->attach($tags['Tahun']->id, ['value' => '2024']);
+
+//         https://sikesma.isslab.web.id/
+// https://batikku.isslab.web.id/
+// https://peminjaman.isslab.web.id/
+// https://bluehorizon.isslab.web.id/
+// https://midikring.isslab.web.id/
+// https://tagadventure.isslab.web.id/login.php
+// https://web.isslab.web.id/19013/public/
+// https://bimapraya.com/
+// https://sparksupnjatim.com/
+
     }
 }

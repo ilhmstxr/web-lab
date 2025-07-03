@@ -12,10 +12,11 @@ class PortofolioController extends Controller
      */
     public function index()
     {
-        $projects = Portofolio::where('Visibility', 'public')
-            ->where('Status', 'active')
-            ->get();
+        // $projects = Portofolio::where('Visibility', 'public')
+        //     ->where('Status', 'active')
+        //     ->get();
 
+        $projects =  Portofolio::get();
         // return $projects;
 
         return view('public.portofolio', compact('projects'));

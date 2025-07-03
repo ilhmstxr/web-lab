@@ -24,6 +24,7 @@
             transform: translateY(0);
         }
     }
+    
 
     .animate-fadeInUp {
         animation: fadeInUp 1s ease forwards;
