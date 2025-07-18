@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\JasaHostingController;
 use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\KompetisiController;
 use App\Http\Controllers\LabBookingController;
@@ -45,7 +46,7 @@ route::get('/profile-test', function(){
 });
 Route::get('/filter-research', [ResearchController::class, 'filter'])->name('research.filter');
 
-
+Route::resource('JasaHosting', JasaHostingController::class);
 
 
 // route::get('/sewa_lab', function () {
