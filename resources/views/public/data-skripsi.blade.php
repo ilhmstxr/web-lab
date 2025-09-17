@@ -5,7 +5,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        /* Custom styles to match the theme */
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f7fafc;
@@ -57,11 +56,11 @@
 
         th:nth-child(1), td:nth-child(1) { width: 5%; }
         th:nth-child(2), td:nth-child(2) { width: 16%; }
-        th:nth-child(3), td:nth-child(3) { width: 10%; }
+        th:nth-child(3), td:nth-child(3) { width: 11%; }
         th:nth-child(4), td:nth-child(4) { width: 35%; }
-        th:nth-child(5), td:nth-child(5) { width: 12%; }
-        th:nth-child(6), td:nth-child(6) { width: 12%; }
-        th:nth-child(7), td:nth-child(7) { width: 10%; }
+        th:nth-child(5), td:nth-child(5) { width: 10%; }
+        th:nth-child(6), td:nth-child(6) { width: 15%; }
+        th:nth-child(7), td:nth-child(7) { width: 5%; }
 
         th, td {
             border: 1px solid #ddd;
@@ -74,11 +73,18 @@
         }
 
         th {
+            text-align: center;
             background-color: #f8f9fa;
             font-weight: 600;
             position: sticky;
             top: 0;
             z-index: 10;
+        }
+
+        /* Khusus untuk kolom No - center alignment */
+        th:nth-child(1), td:nth-child(1) {
+            width: 5%;
+            text-align: center;
         }
 
         tr:nth-child(even) {
@@ -552,20 +558,21 @@
                 currentFilteredData = data;
                 tableBody.innerHTML = '';
                 
+                skripsiTable.classList.remove('hidden');
+                
                 if (data.length === 0) {
                     noData.classList.remove('hidden');
-                    skripsiTable.classList.add('hidden');
+                    const emptyRow = document.createElement('tr');
                     return;
                 }
 
                 noData.classList.add('hidden');
-                skripsiTable.classList.remove('hidden');
 
                 data.forEach((item, index) => {
                     const row = document.createElement('tr');
                     
                     row.innerHTML = `
-                        <td class="text-center">${index + 1}</td>
+                        <td class="text-center">${index + 1}.</td>
                         <td class="text-truncate" title="${item.nama}">${item.nama}</td>
                         <td class="text-truncate" title="${item.npm}">${item.npm}</td>
                         <td class="text-truncate" title="${item.judul}">${item.judul}</td>
