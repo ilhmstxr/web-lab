@@ -5,6 +5,26 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
+        /* Custom styles to match the theme */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7fafc;
+            color: #1a202c;
+        }
+
+        .font-headline {
+            font-weight: 800;
+            letter-spacing: -0.025em;
+        }
+
+        .text-primary {
+            color: #4f46e5;
+        }
+
+        .text-foreground-80 {
+            color: #4a5568;
+        }
+
         .loader {
             border: 8px solid #f3f3f3;
             border-top: 8px solid #3498db;
@@ -87,7 +107,7 @@
         #searchInput {
             min-width: 350px;
             flex: 1;
-            max-width: 500px;
+            max-width: 600px;
         }
 
         .filter-group select {
@@ -105,7 +125,7 @@
         }
 
         #topikFilter {
-            min-width: 270px;
+            min-width: 400px;
             max-width: 220px;
             width: 220px;
             max-height: 200px;
@@ -135,7 +155,7 @@
         }
 
         #bidangFilter {
-            min-width: 150px;
+            min-width: 200px;
             max-width: 150px;
             width: 150px;
         }
@@ -302,54 +322,69 @@
         }
     </style>
 
-    <div class="container mx-auto px-4 py-8">
-        <h1 class="text-3xl font-bold mb-2">Data Judul Skripsi</h1>
-        <p class="text-gray-600 mb-4">Daftar judul skripsi yang telah diinput oleh mahasiswa melalui Google Form.</p>
-        
-        <a href="https://forms.gle/7DRgvFG4Gutpp3XG7" target="_blank" class="btn-form bg-yellow-600 no-translate">
-            <i class="fas fa-edit"></i> Isi Form Judul Skripsi
-        </a>
+    <main class="flex-1 py-12 md:py-24 lg:py-32">
+        <div class="container mx-auto px-4 md:px-6">
+            <!-- Title Section - Same as lab-booking -->
+            <div class="text-center mb-12">
+                <h1 class="text-4xl font-bold tracking-tighter sm:text-5xl text-primary font-headline">
+                    Data Judul Skripsi
+                </h1>
+                <p class="max-w-[800px] mx-auto text-foreground-80 md:text-xl mt-4">
+                    Daftar judul skripsi yang telah dikirimkan oleh mahasiswa melalui Google Form.
+                </p>
+            </div>
 
-        <div class="filter-group">
-            <input type="text" id="searchInput" placeholder="Cari berdasarkan nama, npm, atau judul skripsi..." class="no-translate">
-            <select id="bidangFilter" class="no-translate">
-                <option value="">Semua Bidang</option>
-            </select>
-            <select id="topikFilter" class="no-translate">
-                <option value="">Semua Topik</option>
-            </select>
-        </div>
+            <!-- Form Button -->
+            <div class="text-center mb-8">
+                <a href="https://forms.gle/7DRgvFG4Gutpp3XG7" target="_blank" class="btn-form bg-yellow-600 no-translate">
+                    <i class="fas fa-edit"></i> Isi Form Judul Skripsi
+                </a>
+            </div>
 
-        <div id="table-container" class="table-container">
-            <div id="loader" class="loader"></div>
-            <table id="skripsiTable" class="hidden no-translate">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Nama Mahasiswa</th>
-                        <th>NPM</th>
-                        <th>Judul Skripsi</th>
-                        <th>Bidang</th>
-                        <th>Topik</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody id="skripsiTableBody" class="no-translate">
-                </tbody>
-            </table>
-            <p id="noData" class="text-center text-gray-500 py-8 hidden">Tidak ada data yang ditemukan.</p>
-        </div>
+            <!-- Filter dan Search -->
+            <div class="filter-group">
+                <input type="text" id="searchInput" placeholder="Cari berdasarkan nama, npm, atau judul skripsi..." class="no-translate">
+                <select id="bidangFilter" class="no-translate">
+                    <option value="">Semua Bidang</option>
+                </select>
+                <select id="topikFilter" class="no-translate">
+                    <option value="">Semua Topik</option>
+                </select>
+            </div>
 
-        <div id="detailModal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2 class="text-2xl font-bold mb-6 text-center" style="color: #2c3e50;">
-                    <i class="fas fa-clipboard-list"></i> Detail Skripsi
-                </h2>
-                <div id="modalContent"></div>
+            <!-- Kontainer untuk Tabel -->
+            <div id="table-container" class="table-container">
+                <div id="loader" class="loader"></div>
+                <table id="skripsiTable" class="hidden no-translate">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Mahasiswa</th>
+                            <th>NPM</th>
+                            <th>Judul Skripsi</th>
+                            <th>Bidang</th>
+                            <th>Topik</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="skripsiTableBody" class="no-translate">
+                    </tbody>
+                </table>
+                <p id="noData" class="text-center text-gray-500 py-8 hidden">Tidak ada data yang ditemukan.</p>
+            </div>
+
+            <!-- Modal untuk detail -->
+            <div id="detailModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2 class="text-2xl font-bold mb-6 text-center" style="color: #2c3e50;">
+                        <i class="fas fa-clipboard-list"></i> Detail Skripsi
+                    </h2>
+                    <div id="modalContent"></div>
+                </div>
             </div>
         </div>
-    </div>
+    </main>
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
