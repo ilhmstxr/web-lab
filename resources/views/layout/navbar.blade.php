@@ -65,7 +65,13 @@
                             <a href="{{ route('Absensi.index') }}"
                                 class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">Daftar Presensi</a>
                             <a href="{{ route('Absensi.index') }}"
-                                class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">Jasa Hosting Siap Pakai</a>
+                                class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100">Jasa Hosting Siap
+                                Pakai</a>
+                            {{-- Contoh di dalam dropdown menu Layanan --}}
+                            <a href="{{ route('data-skripsi') }}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                Data Judul Skripsi
+                            </a>
                         </div>
                     </div>
                 </div>

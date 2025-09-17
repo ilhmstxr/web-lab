@@ -41,7 +41,7 @@ Route::get('/panduan', [PageController::class, 'panduan'])->name('page.panduan')
 // Route::get('/sop', [PageController::lass, 'sop'])->name('sop.index');
 Route::resource('/Sop', SopController::class);
 
-route::get('/profile-test', function(){
+route::get('/profile-test', function () {
     return view('public.lab-profile');
 });
 Route::get('/filter-research', [ResearchController::class, 'filter'])->name('research.filter');
@@ -53,5 +53,6 @@ Route::resource('JasaHosting', JasaHostingController::class);
 //     return view('public.lab-booking');
 // })->name('home');
 
-
-
+Route::get('/layanan/data-skripsi', function () {
+    return view('public.data-skripsi');
+})->name('data-skripsi');
