@@ -1,6 +1,6 @@
 <header class="sticky top-0 z-50 w-full transition-all duration-300 bg-white/80 backdrop-blur-sm shadow-md">
     <div class="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
-        <a href="#home" class="flex items-center gap-2 font-bold text-lg text-blue-600">
+        <a href="/" class="flex items-center gap-2 font-bold text-lg text-blue-600">
 
             <img class="logo" src='/img/logo-sisfo.jpg' alt="Logo Sisfo" style="width: 7%; height: 7%;" />
             <span class="nav-text-1">Lab Sistem Informasi</span>
