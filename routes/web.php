@@ -53,6 +53,6 @@ Route::resource('JasaHosting', JasaHostingController::class);
 //     return view('public.lab-booking');
 // })->name('home');
 
-Route::get('/DataSkripsi2025', function () {
+Route::get('/DataProposal', function () {
     return view('public.data-skripsi');
 })->name('data-skripsi');

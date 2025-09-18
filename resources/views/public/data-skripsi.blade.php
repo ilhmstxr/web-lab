@@ -333,17 +333,17 @@
             <!-- Title Section - Same as lab-booking -->
             <div class="text-center mb-12">
                 <h1 class="text-4xl font-bold tracking-tighter sm:text-5xl text-primary font-headline">
-                    Data Judul Skripsi
+                    Data Judul Proposal Skripsi
                 </h1>
                 <p class="max-w-[800px] mx-auto text-foreground-80 md:text-xl mt-4">
-                    Daftar judul skripsi yang telah dikirimkan oleh mahasiswa melalui Google Form.
+                    Daftar judul proposal skripsi yang telah dikirimkan oleh mahasiswa melalui Google Form.
                 </p>
             </div>
 
             <!-- Form Button -->
             <div class="text-center mb-8">
                 <a href="https://forms.gle/7DRgvFG4Gutpp3XG7" target="_blank" class="btn-form bg-yellow-600 no-translate">
-                    <i class="fas fa-edit"></i> Isi Form Judul Skripsi
+                    <i class="fas fa-edit"></i> Isi Form Judul Proposal Skripsi
                 </a>
             </div>
 
@@ -367,7 +367,7 @@
                             <th>No</th>
                             <th>Nama Mahasiswa</th>
                             <th>NPM</th>
-                            <th>Judul Skripsi</th>
+                            <th>Judul Proposal Skripsi</th>
                             <th>Bidang</th>
                             <th>Topik</th>
                             <th>Aksi</th>
@@ -384,7 +384,7 @@
                 <div class="modal-content">
                     <span class="close">&times;</span>
                     <h2 class="text-2xl font-bold mb-6 text-center" style="color: #2c3e50;">
-                        <i class="fas fa-clipboard-list"></i> Detail Skripsi
+                        <i class="fas fa-clipboard-list"></i> Detail
                     </h2>
                     <div id="modalContent"></div>
                 </div>
@@ -622,7 +622,7 @@
                 
                 modalContent.innerHTML = `
                     <div class="modal-header">
-                        <h3 class="modal-title">Detail Informasi Skripsi</h3>
+                        <h3 class="modal-title">Detail Informasi Proposal Skripsi</h3>
                     </div>
                     
                     <div class="detail-row">

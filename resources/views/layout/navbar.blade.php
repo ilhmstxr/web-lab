@@ -70,7 +70,7 @@
                             {{-- Contoh di dalam dropdown menu Layanan --}}
                             <a href="{{ route('data-skripsi') }}"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                                Data Judul Skripsi
+                                Data Judul Proposal
                             </a>
                         </div>
                     </div>
