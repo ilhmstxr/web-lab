@@ -51,16 +51,14 @@
             width: 100%;
             border-collapse: collapse;
             table-layout: fixed;
-            min-width: 1100px;
+            min-width: 900px;
         }
 
-        th:nth-child(1), td:nth-child(1) { width: 5%; }
-        th:nth-child(2), td:nth-child(2) { width: 16%; }
-        th:nth-child(3), td:nth-child(3) { width: 11%; }
-        th:nth-child(4), td:nth-child(4) { width: 35%; }
-        th:nth-child(5), td:nth-child(5) { width: 10%; }
-        th:nth-child(6), td:nth-child(6) { width: 15%; }
-        th:nth-child(7), td:nth-child(7) { width: 5%; }
+        th:nth-child(1), td:nth-child(1) { width: 8%; }
+        th:nth-child(2), td:nth-child(2) { width: 25%; }
+        th:nth-child(3), td:nth-child(3) { width: 15%; }
+        th:nth-child(4), td:nth-child(4) { width: 40%; }
+        th:nth-child(5), td:nth-child(5) { width: 12%; }
 
         th, td {
             border: 1px solid #ddd;
@@ -81,9 +79,11 @@
             z-index: 10;
         }
 
-        /* Khusus untuk kolom No - center alignment */
         th:nth-child(1), td:nth-child(1) {
-            width: 5%;
+            text-align: center;
+        }
+
+        th:nth-child(5), td:nth-child(5) {
             text-align: center;
         }
 
@@ -187,101 +187,6 @@
             max-width: 100%;
         }
 
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.4);
-        }
-
-        .modal-content {
-            background-color: white;
-            margin: 8% auto;
-            padding: 30px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            width: 90%;
-            max-width: 500px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .close {
-            color: #999;
-            float: right;
-            font-size: 24px;
-            font-weight: bold;
-            cursor: pointer;
-            line-height: 1;
-        }
-
-        .close:hover {
-            color: #333;
-        }
-
-        .modal-header {
-            border-bottom: 2px solid #f0f0f0;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-        }
-
-        .modal-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: #333;
-            margin: 0;
-        }
-
-        .detail-row {
-            display: flex;
-            margin-bottom: 12px;
-            padding: 8px 0;
-            border-bottom: 1px solid #f5f5f5;
-        }
-
-        .detail-row:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-        }
-
-        .detail-label {
-            font-weight: 600;
-            color: #555;
-            width: 120px;
-            flex-shrink: 0;
-            font-size: 14px;
-        }
-
-        .detail-value {
-            color: #333;
-            flex: 1;
-            font-size: 14px;
-            line-height: 1.4;
-        }
-
-        .btn-detail {
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 12px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-        }
-
-        .btn-detail i {
-            font-size: 14px;
-        }
-
         .btn-form {
             display: inline-block;
             color: white;
@@ -313,13 +218,7 @@
             }
 
             table {
-                min-width: 800px;
-            }
-
-            .modal-content {
-                margin: 10px;
-                width: calc(100% - 20px);
-                max-height: 90vh;
+                min-width: 700px;
             }
         }
 
@@ -330,7 +229,6 @@
 
     <main class="flex-1 py-12 md:py-24 lg:py-32">
         <div class="container mx-auto px-4 md:px-6">
-            <!-- Title Section - Same as lab-booking -->
             <div class="text-center mb-12">
                 <h1 class="text-4xl font-bold tracking-tighter sm:text-5xl text-primary font-headline">
                     Data Judul Proposal Skripsi
@@ -340,14 +238,12 @@
                 </p>
             </div>
 
-            <!-- Form Button -->
             <div class="text-center mb-8">
                 <a href="https://forms.gle/7DRgvFG4Gutpp3XG7" target="_blank" class="btn-form bg-yellow-600 no-translate">
                     <i class="fas fa-edit"></i> Isi Form Judul Proposal Skripsi
                 </a>
             </div>
 
-            <!-- Filter dan Search -->
             <div class="filter-group">
                 <input type="text" id="searchInput" placeholder="Cari berdasarkan nama, npm, atau judul skripsi..." class="no-translate">
                 <select id="bidangFilter" class="no-translate">
@@ -358,7 +254,6 @@
                 </select>
             </div>
 
-            <!-- Kontainer untuk Tabel -->
             <div id="table-container" class="table-container">
                 <div id="loader" class="loader"></div>
                 <table id="skripsiTable" class="hidden no-translate">
@@ -368,26 +263,13 @@
                             <th>Nama Mahasiswa</th>
                             <th>NPM</th>
                             <th>Judul Proposal Skripsi</th>
-                            <th>Bidang</th>
-                            <th>Topik</th>
-                            <th>Aksi</th>
+                            <th>Tanggal Input</th>
                         </tr>
                     </thead>
                     <tbody id="skripsiTableBody" class="no-translate">
                     </tbody>
                 </table>
                 <p id="noData" class="text-center text-gray-500 py-8 hidden">Tidak ada data yang ditemukan.</p>
-            </div>
-
-            <!-- Modal untuk detail -->
-            <div id="detailModal" class="modal">
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <h2 class="text-2xl font-bold mb-6 text-center" style="color: #2c3e50;">
-                        <i class="fas fa-clipboard-list"></i> Detail
-                    </h2>
-                    <div id="modalContent"></div>
-                </div>
             </div>
         </div>
     </main>
@@ -403,9 +285,6 @@
             const searchInput = document.getElementById('searchInput');
             const bidangFilter = document.getElementById('bidangFilter');
             const topikFilter = document.getElementById('topikFilter');
-            const modal = document.getElementById('detailModal');
-            const modalContent = document.getElementById('modalContent');
-            const closeBtn = document.getElementsByClassName('close')[0];
 
             let allData = [];
             let currentFilteredData = [];
@@ -477,6 +356,44 @@
                 }
             }
 
+            function formatTanggal(tanggalString) {
+                if (!tanggalString) return '-';
+                
+                try {
+                    // Handle format DD/MM/YYYY HH:MM:SS
+                    if (tanggalString.includes('/')) {
+                        // Split tanggal dan waktu
+                        const [tanggalPart] = tanggalString.split(' ');
+                        const [day, month, year] = tanggalPart.split('/');
+                        
+                        // Buat date object dari format DD/MM/YYYY
+                        const date = new Date(year, month - 1, day);
+                        
+                        if (isNaN(date.getTime())) return tanggalString;
+                        
+                        const options = { 
+                            year: 'numeric', 
+                            month: 'short', 
+                            day: 'numeric'
+                        };
+                        return date.toLocaleDateString('id-ID', options);
+                    }
+                    
+                    // Fallback untuk format lain
+                    const date = new Date(tanggalString);
+                    if (isNaN(date.getTime())) return tanggalString;
+                    
+                    const options = { 
+                        year: 'numeric', 
+                        month: 'short', 
+                        day: 'numeric'
+                    };
+                    return date.toLocaleDateString('id-ID', options);
+                } catch (error) {
+                    return tanggalString;
+                }
+            }
+
             async function fetchData() {
                 try {
                     console.log('Fetching data from:', sheetUrl);
@@ -510,6 +427,7 @@
                         }
 
                         return {
+                            tanggal: (columns[0] || '').trim(),
                             nama: (columns[2] || '').trim(),
                             npm: (columns[3] || '').trim(),
                             judul: (columns[4] || '').trim(),
@@ -563,6 +481,13 @@
                 if (data.length === 0) {
                     noData.classList.remove('hidden');
                     const emptyRow = document.createElement('tr');
+                    
+                    const hasSearchOrFilter = searchInput.value.trim() !== '' || 
+                                            bidangFilter.value !== '' || 
+                                            topikFilter.value !== '';
+                                    
+                    emptyRow.innerHTML = ``;
+                    tableBody.appendChild(emptyRow);
                     return;
                 }
 
@@ -576,13 +501,7 @@
                         <td class="text-truncate" title="${item.nama}">${item.nama}</td>
                         <td class="text-truncate" title="${item.npm}">${item.npm}</td>
                         <td class="text-truncate" title="${item.judul}">${item.judul}</td>
-                        <td class="text-truncate" title="${item.bidang}">${item.bidang}</td>
-                        <td class="text-truncate" title="${item.topik}">${item.topik}</td>
-                        <td class="text-center">
-                            <button class="btn-detail bg-yellow-600" onclick="showDetail(${index})" title="Lihat Detail">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                        </td>
+                        <td class="text-center" title="${item.tanggal}">${formatTanggal(item.tanggal)}</td>
                     `;
                     tableBody.appendChild(row);
                 });
@@ -616,59 +535,6 @@
 
                 renderTable(filteredData);
             }
-
-            window.showDetail = function(index) {
-                const item = currentFilteredData[index];
-                
-                modalContent.innerHTML = `
-                    <div class="modal-header">
-                        <h3 class="modal-title">Detail Informasi Proposal Skripsi</h3>
-                    </div>
-                    
-                    <div class="detail-row">
-                        <div class="detail-label">Nama:</div>
-                        <div class="detail-value">${item.nama}</div>
-                    </div>
-                    
-                    <div class="detail-row">
-                        <div class="detail-label">NPM:</div>
-                        <div class="detail-value">${item.npm}</div>
-                    </div>
-                    
-                    <div class="detail-row">
-                        <div class="detail-label">Judul:</div>
-                        <div class="detail-value">${item.judul}</div>
-                    </div>
-                    
-                    <div class="detail-row">
-                        <div class="detail-label">Bidang:</div>
-                        <div class="detail-value">${item.bidang}</div>
-                    </div>
-                    
-                    <div class="detail-row">
-                        <div class="detail-label">Topik:</div>
-                        <div class="detail-value">${item.topik}</div>
-                    </div>
-                `;
-                
-                modal.style.display = 'block';
-            }
-
-            closeBtn.onclick = function() {
-                modal.style.display = 'none';
-            }
-
-            window.onclick = function(event) {
-                if (event.target == modal) {
-                    modal.style.display = 'none';
-                }
-            }
-
-            document.addEventListener('keydown', function(event) {
-                if (event.key === 'Escape' && modal.style.display === 'block') {
-                    modal.style.display = 'none';
-                }
-            });
 
             bidangFilter.addEventListener('change', function() {
                 const selectedBidang = this.value;
