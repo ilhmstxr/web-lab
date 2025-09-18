@@ -3,7 +3,7 @@
 
 @section('content')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
+
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -35,8 +35,13 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         .table-container {
@@ -54,13 +59,33 @@
             min-width: 900px;
         }
 
-        th:nth-child(1), td:nth-child(1) { width: 8%; }
-        th:nth-child(2), td:nth-child(2) { width: 25%; }
-        th:nth-child(3), td:nth-child(3) { width: 15%; }
-        th:nth-child(4), td:nth-child(4) { width: 40%; }
-        th:nth-child(5), td:nth-child(5) { width: 12%; }
+        th:nth-child(1),
+        td:nth-child(1) {
+            width: 8%;
+        }
 
-        th, td {
+        th:nth-child(2),
+        td:nth-child(2) {
+            width: 25%;
+        }
+
+        th:nth-child(3),
+        td:nth-child(3) {
+            width: 15%;
+        }
+
+        th:nth-child(4),
+        td:nth-child(4) {
+            width: 40%;
+        }
+
+        th:nth-child(5),
+        td:nth-child(5) {
+            width: 12%;
+        }
+
+        th,
+        td {
             border: 1px solid #ddd;
             padding: 12px;
             text-align: left;
@@ -79,11 +104,13 @@
             z-index: 10;
         }
 
-        th:nth-child(1), td:nth-child(1) {
+        th:nth-child(1),
+        td:nth-child(1) {
             text-align: center;
         }
 
-        th:nth-child(5), td:nth-child(5) {
+        th:nth-child(5),
+        td:nth-child(5) {
             text-align: center;
         }
 
@@ -103,7 +130,8 @@
             align-items: center;
         }
 
-        .filter-group input, .filter-group select {
+        .filter-group input,
+        .filter-group select {
             padding: 0.75rem;
             border: 1px solid #ccc;
             border-radius: 6px;
@@ -172,7 +200,7 @@
                 max-width: 100%;
                 width: 100%;
             }
-            
+
             #bidangFilter {
                 min-width: 100%;
                 max-width: 100%;
@@ -196,13 +224,13 @@
             font-weight: 600;
             font-size: 14px;
             transition: all 0.3s ease;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
             margin-bottom: 1.5rem;
         }
 
         .btn-form:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
             text-decoration: none;
             color: white;
         }
@@ -213,7 +241,8 @@
                 align-items: stretch;
             }
 
-            #searchInput, .filter-group select {
+            #searchInput,
+            .filter-group select {
                 min-width: 100%;
             }
 
@@ -224,6 +253,28 @@
 
         .no-translate {
             translate: no;
+        }
+
+        #skripsiTable {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+            /* kolom punya lebar fix dan teks bisa wrap */
+        }
+
+        #skripsiTable th,
+        #skripsiTable td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            word-wrap: break-word;
+            /* teks panjang otomatis turun */
+            white-space: normal;
+            /* teks boleh pecah baris */
+            text-align: left;
+        }
+
+        #skripsiTable th {
+            background-color: #f5f5f5;
         }
     </style>
 
@@ -245,7 +296,8 @@
             </div>
 
             <div class="filter-group">
-                <input type="text" id="searchInput" placeholder="Cari berdasarkan nama, npm, atau judul skripsi..." class="no-translate">
+                <input type="text" id="searchInput" placeholder="Cari berdasarkan nama, npm, atau judul skripsi..."
+                    class="no-translate">
                 <select id="bidangFilter" class="no-translate">
                     <option value="">Semua Bidang</option>
                 </select>
@@ -273,10 +325,11 @@
             </div>
         </div>
     </main>
-    
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT93Fijpr5lPs74U9hFDKwCLUjJMq68bqyhL9_240WcdtNA0mOc-5ZUZlFPGjnd2iDnmg4QmS6Xham2/pub?output=csv';
+            const sheetUrl =
+                'https://docs.google.com/spreadsheets/d/e/2PACX-1vT93Fijpr5lPs74U9hFDKwCLUjJMq68bqyhL9_240WcdtNA0mOc-5ZUZlFPGjnd2iDnmg4QmS6Xham2/pub?output=csv';
 
             const loader = document.getElementById('loader');
             const skripsiTable = document.getElementById('skripsiTable');
@@ -288,6 +341,7 @@
 
             let allData = [];
             let currentFilteredData = [];
+
 
             const topikData = {
                 'Solusi': [
@@ -318,7 +372,7 @@
 
             function populateFilters() {
                 bidangFilter.innerHTML = '<option value="">Semua Bidang</option>';
-                
+
                 const bidangOptions = ['Solusi', 'MSI'];
                 bidangOptions.forEach(bidang => {
                     const option = document.createElement('option');
@@ -333,7 +387,7 @@
 
             function populateTopikFilter(selectedBidang) {
                 topikFilter.innerHTML = '<option value="">Semua Topik</option>';
-                
+
                 if (selectedBidang && topikData[selectedBidang]) {
                     topikData[selectedBidang].forEach(topik => {
                         const option = document.createElement('option');
@@ -345,7 +399,7 @@
                 } else {
                     const allTopiks = [...topikData.Solusi, ...topikData.MSI];
                     const uniqueTopiks = [...new Set(allTopiks)].sort();
-                    
+
                     uniqueTopiks.forEach(topik => {
                         const option = document.createElement('option');
                         option.value = topik;
@@ -358,34 +412,34 @@
 
             function formatTanggal(tanggalString) {
                 if (!tanggalString) return '-';
-                
+
                 try {
                     // Handle format DD/MM/YYYY HH:MM:SS
                     if (tanggalString.includes('/')) {
                         // Split tanggal dan waktu
                         const [tanggalPart] = tanggalString.split(' ');
                         const [day, month, year] = tanggalPart.split('/');
-                        
+
                         // Buat date object dari format DD/MM/YYYY
                         const date = new Date(year, month - 1, day);
-                        
+
                         if (isNaN(date.getTime())) return tanggalString;
-                        
-                        const options = { 
-                            year: 'numeric', 
-                            month: 'short', 
+
+                        const options = {
+                            year: 'numeric',
+                            month: 'short',
                             day: 'numeric'
                         };
                         return date.toLocaleDateString('id-ID', options);
                     }
-                    
+
                     // Fallback untuk format lain
                     const date = new Date(tanggalString);
                     if (isNaN(date.getTime())) return tanggalString;
-                    
-                    const options = { 
-                        year: 'numeric', 
-                        month: 'short', 
+
+                    const options = {
+                        year: 'numeric',
+                        month: 'short',
                         day: 'numeric'
                     };
                     return date.toLocaleDateString('id-ID', options);
@@ -398,11 +452,11 @@
                 try {
                     console.log('Fetching data from:', sheetUrl);
                     const response = await fetch(`${sheetUrl}&_=${new Date().getTime()}`);
-                    
+
                     if (!response.ok) {
                         throw new Error(`HTTP error! status: ${response.status}`);
                     }
-                    
+
                     const csvText = await response.text();
                     console.log('CSV data received:', csvText.substring(0, 200) + '...');
 
@@ -410,14 +464,14 @@
                     console.log('Total rows:', rows.length);
 
                     const dataRows = rows.slice(1);
-                    
+
                     allData = dataRows.map((row, index) => {
                         const columns = parseCSVRow(row);
                         console.log(`Row ${index}:`, columns);
 
                         const bidang = (columns[5] || '').trim();
                         let topik = '';
-                        
+
                         if (bidang.toLowerCase().includes('solusi')) {
                             topik = (columns[6] || '').trim();
                         } else if (bidang.toLowerCase().includes('msi')) {
@@ -439,11 +493,13 @@
                     console.log('Processed data:', allData);
 
                     populateFilters();
+
                     renderTable(allData);
 
                 } catch (error) {
                     console.error('Error fetching data:', error);
-                    loader.innerHTML = `<p style="color: red; text-align: center;">❌ Error: ${error.message}</p>`;
+                    loader.innerHTML =
+                        `<p style="color: red; text-align: center;">❌ Error: ${error.message}</p>`;
                 } finally {
                     loader.style.display = 'none';
                     skripsiTable.classList.remove('hidden');
@@ -454,10 +510,10 @@
                 const result = [];
                 let current = '';
                 let inQuotes = false;
-                
+
                 for (let i = 0; i < row.length; i++) {
                     const char = row[i];
-                    
+
                     if (char === '"') {
                         inQuotes = !inQuotes;
                     } else if (char === ',' && !inQuotes) {
@@ -467,7 +523,7 @@
                         current += char;
                     }
                 }
-                
+
                 result.push(current.trim());
                 return result;
             }
@@ -475,17 +531,17 @@
             function renderTable(data) {
                 currentFilteredData = data;
                 tableBody.innerHTML = '';
-                
+
                 skripsiTable.classList.remove('hidden');
-                
+
                 if (data.length === 0) {
                     noData.classList.remove('hidden');
                     const emptyRow = document.createElement('tr');
-                    
-                    const hasSearchOrFilter = searchInput.value.trim() !== '' || 
-                                            bidangFilter.value !== '' || 
-                                            topikFilter.value !== '';
-                                    
+
+                    const hasSearchOrFilter = searchInput.value.trim() !== '' ||
+                        bidangFilter.value !== '' ||
+                        topikFilter.value !== '';
+
                     emptyRow.innerHTML = ``;
                     tableBody.appendChild(emptyRow);
                     return;
@@ -495,7 +551,7 @@
 
                 data.forEach((item, index) => {
                     const row = document.createElement('tr');
-                    
+
                     row.innerHTML = `
                         <td class="text-center">${index + 1}.</td>
                         <td class="text-truncate" title="${item.nama}">${item.nama}</td>
@@ -518,7 +574,7 @@
                         (item.npm && item.npm.toLowerCase().includes(searchTerm)) ||
                         (item.judul && item.judul.toLowerCase().includes(searchTerm))
                     );
-                    
+
                     let matchesBidang = true;
                     if (selectedBidang) {
                         if (selectedBidang === 'Solusi') {
@@ -527,7 +583,7 @@
                             matchesBidang = item.bidang.toLowerCase().includes('msi');
                         }
                     }
-                    
+
                     const matchesTopik = !selectedTopik || item.topik === selectedTopik;
 
                     return matchesSearch && matchesBidang && matchesTopik;
