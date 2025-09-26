@@ -61,7 +61,7 @@
 
         th:nth-child(1),
         td:nth-child(1) {
-            width: 8%;
+            width: 6%;
         }
 
         th:nth-child(2),
@@ -71,12 +71,12 @@
 
         th:nth-child(3),
         td:nth-child(3) {
-            width: 15%;
+            width: 12%;
         }
 
         th:nth-child(4),
         td:nth-child(4) {
-            width: 40%;
+            width: 45%;
         }
 
         th:nth-child(5),
@@ -126,8 +126,9 @@
             display: flex;
             gap: 1rem;
             margin-bottom: 1.5rem;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             align-items: center;
+            width: 100%;
         }
 
         .filter-group input,
@@ -139,13 +140,11 @@
         }
 
         #searchInput {
-            min-width: 350px;
-            flex: 1;
-            max-width: 600px;
+            flex: 5;
+            min-width: 0;
         }
 
         .filter-group select {
-            min-width: 180px;
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
@@ -158,15 +157,18 @@
             display: none;
         }
 
+        #bidangFilter {
+            flex: 1.5;
+            min-width: 0;
+        }
+
         #topikFilter {
-            min-width: 400px;
-            max-width: 220px;
-            width: 220px;
+            flex: 3.5;
+            min-width: 0;
             max-height: 200px;
             overflow-y: auto;
             scrollbar-width: none;
             -ms-overflow-style: none;
-            white-space: nowrap;
         }
 
         #topikFilter::-webkit-scrollbar {
@@ -188,23 +190,22 @@
             background: #f0f0f0;
         }
 
-        #bidangFilter {
-            min-width: 200px;
-            max-width: 150px;
-            width: 150px;
-        }
-
         @media (max-width: 768px) {
-            #topikFilter {
-                min-width: 100%;
-                max-width: 100%;
-                width: 100%;
+            .filter-group {
+                flex-direction: column;
+                align-items: stretch;
             }
 
-            #bidangFilter {
-                min-width: 100%;
-                max-width: 100%;
+            #searchInput,
+            #bidangFilter,
+            #topikFilter {
+                flex: none;
                 width: 100%;
+                min-width: 100%;
+            }
+
+            table {
+                min-width: 700px;
             }
         }
 
@@ -315,7 +316,7 @@
                             <th>Nama Mahasiswa</th>
                             <th>NPM</th>
                             <th>Judul Proposal Skripsi</th>
-                            <th>Tanggal Input</th>
+                            <th class="text-center">Tanggal Input</th>
                         </tr>
                     </thead>
                     <tbody id="skripsiTableBody" class="no-translate">
@@ -329,7 +330,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const sheetUrl =
-                'https://docs.google.com/spreadsheets/d/e/2PACX-1vT93Fijpr5lPs74U9hFDKwCLUjJMq68bqyhL9_240WcdtNA0mOc-5ZUZlFPGjnd2iDnmg4QmS6Xham2/pub?output=csv';
+                'https://docs.google.com/spreadsheets/d/e/2PACX-1vT93Fijpr5lPs74U9hFDKwCLUjJMq68bqyhL9_240WcdtNA0mOc-5ZUZlFPGjnd2iDnmg4QmS6Xham2/pub?gid=0&single=true&output=csv';
 
             const loader = document.getElementById('loader');
             const skripsiTable = document.getElementById('skripsiTable');
