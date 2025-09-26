@@ -342,7 +342,8 @@
 
             let allData = [];
             let currentFilteredData = [];
-
+            let currentPage = 1;
+            const itemsPerPage = 50;
 
             const topikData = {
                 'Solusi': [
@@ -415,17 +416,55 @@
                 if (!tanggalString) return '-';
 
                 try {
-                    // Handle format DD/MM/YYYY HH:MM:SS
+                    console.log('Processing date:', tanggalString); // Debug log
+                    
+                    // Handle format M/D/YYYY H:MM:SS or MM/DD/YYYY HH:MM:SS
                     if (tanggalString.includes('/')) {
                         // Split tanggal dan waktu
-                        const [tanggalPart] = tanggalString.split(' ');
-                        const [day, month, year] = tanggalPart.split('/');
+                        const [tanggalPart, waktuPart] = tanggalString.split(' ');
+                        
+                        if (tanggalPart) {
+                            const dateParts = tanggalPart.split('/');
 
-                        // Buat date object dari format DD/MM/YYYY
-                        const date = new Date(year, month - 1, day);
+                            // Handle both M/D/YYYY and MM/DD/YYYY formats
+                            if (dateParts.length === 3) {
+                                const month = parseInt(dateParts[0], 10);
+                                const day = parseInt(dateParts[1], 10);
+                                const year = parseInt(dateParts[2], 10);
+                                
+                                console.log('Parsed:', { month, day, year }); // Debug log
+                                
+                                // Validate date components
+                                if (year >= 1900 && year <= 2100 && 
+                                    month >= 1 && month <= 12 && 
+                                    day >= 1 && day <= 31) {
+                                    
+                                    // Create date object (month is 0-indexed in JS)
+                                    const date = new Date(year, month - 1, day);
+                                    
+                                    // Verify the date is valid
+                                    if (date.getFullYear() === year && 
+                                        date.getMonth() === month - 1 && 
+                                        date.getDate() === day) {
+                                        
+                                        const options = {
+                                            year: 'numeric',
+                                            month: 'short',
+                                            day: 'numeric'
+                                        };
+                                        
+                                        const formatted = date.toLocaleDateString('id-ID', options);
+                                        console.log('Formatted result:', formatted); // Debug log
+                                        return formatted;
+                                    }
+                                }
+                            }
+                        }
+                    }
 
-                        if (isNaN(date.getTime())) return tanggalString;
-
+                    // Fallback: try parsing as standard date
+                    const date = new Date(tanggalString);
+                    if (!isNaN(date.getTime())) {
                         const options = {
                             year: 'numeric',
                             month: 'short',
@@ -434,18 +473,69 @@
                         return date.toLocaleDateString('id-ID', options);
                     }
 
-                    // Fallback untuk format lain
-                    const date = new Date(tanggalString);
-                    if (isNaN(date.getTime())) return tanggalString;
-
-                    const options = {
-                        year: 'numeric',
-                        month: 'short',
-                        day: 'numeric'
-                    };
-                    return date.toLocaleDateString('id-ID', options);
-                } catch (error) {
+                    // If all parsing fails, return original string
+                    console.log('Date parsing failed, returning original:', tanggalString);
                     return tanggalString;
+                    
+                } catch (error) {
+                    console.error('Error formatting date:', error);
+                    return tanggalString;
+                }
+            }
+
+            function parseDateForSort(tanggalString) {
+                if (!tanggalString) return new Date(0); // Return epoch time for empty dates
+
+                try {
+                    // Handle format M/D/YYYY H:MM:SS or MM/DD/YYYY HH:MM:SS
+                    if (tanggalString.includes('/')) {
+                        const [tanggalPart, waktuPart] = tanggalString.split(' ');
+                        
+                        if (tanggalPart) {
+                            const dateParts = tanggalPart.split('/');
+                            
+                            if (dateParts.length === 3) {
+                                const month = parseInt(dateParts[0], 10);
+                                const day = parseInt(dateParts[1], 10);
+                                const year = parseInt(dateParts[2], 10);
+                                
+                                // Validate date components
+                                if (year >= 1900 && year <= 2100 && 
+                                    month >= 1 && month <= 12 && 
+                                    day >= 1 && day <= 31) {
+                                    
+                                    // Create date object (month is 0-indexed in JS)
+                                    const date = new Date(year, month - 1, day);
+                                    
+                                    // If there's time part, add it
+                                    if (waktuPart) {
+                                        const [jam, menit, detik] = waktuPart.split(':').map(num => parseInt(num, 10));
+                                        if (!isNaN(jam)) date.setHours(jam);
+                                        if (!isNaN(menit)) date.setMinutes(menit);
+                                        if (!isNaN(detik)) date.setSeconds(detik);
+                                    }
+                                    
+                                    // Verify the date is valid
+                                    if (!isNaN(date.getTime())) {
+                                        return date;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // Fallback: try parsing as standard date
+                    const date = new Date(tanggalString);
+                    if (!isNaN(date.getTime())) {
+                        return date;
+                    }
+
+                    // If all parsing fails, return epoch time
+                    return new Date(0);
+                    
+                } catch (error) {
+                    console.error('Error parsing date for sort:', error);
+                    return new Date(0);
                 }
             }
 
@@ -464,7 +554,7 @@
                     const rows = csvText.split('\n').filter(row => row.trim());
                     console.log('Total rows:', rows.length);
 
-                    const dataRows = rows.slice(1);
+                    const dataRows = rows.slice(1); // Skip header row
 
                     allData = dataRows.map((row, index) => {
                         const columns = parseCSVRow(row);
@@ -481,20 +571,42 @@
                             topik = (columns[6] || columns[7] || '').trim();
                         }
 
+                        const tanggalString = (columns[0] || '').trim();
+
                         return {
-                            tanggal: (columns[0] || '').trim(),
+                            tanggal: tanggalString,
                             nama: (columns[2] || '').trim(),
                             npm: (columns[3] || '').trim(),
                             judul: (columns[4] || '').trim(),
                             bidang: bidang,
-                            topik: topik
+                            topik: topik,
+                            sortDate: parseDateForSort(tanggalString),
+                            hasDate: tanggalString !== ''
                         };
                     }).filter(item => item.nama && item.npm);
 
-                    console.log('Processed data:', allData);
+                    // Sort by date: newest first, then entries without dates at the bottom
+                    allData.sort((a, b) => {
+                        // If both have dates, sort by date (newest first)
+                        if (a.hasDate && b.hasDate) {
+                            return b.sortDate - a.sortDate;
+                        }
+                        // If only a has date, a comes first
+                        if (a.hasDate && !b.hasDate) {
+                            return -1;
+                        }
+                        // If only b has date, b comes first
+                        if (!a.hasDate && b.hasDate) {
+                            return 1;
+                        }
+                        // If neither has date, maintain original order
+                        return 0;
+                    });
+
+                    console.log('Processed and sorted data:', allData);
+                    console.log('First 3 items after sorting:', allData.slice(0, 3));
 
                     populateFilters();
-
                     renderTable(allData);
 
                 } catch (error) {
@@ -532,29 +644,35 @@
             function renderTable(data) {
                 currentFilteredData = data;
                 tableBody.innerHTML = '';
+                
+                // Remove existing pagination
+                const existingPagination = document.getElementById('pagination');
+                if (existingPagination) {
+                    existingPagination.remove();
+                }
 
                 skripsiTable.classList.remove('hidden');
 
                 if (data.length === 0) {
                     noData.classList.remove('hidden');
-                    const emptyRow = document.createElement('tr');
-
-                    const hasSearchOrFilter = searchInput.value.trim() !== '' ||
-                        bidangFilter.value !== '' ||
-                        topikFilter.value !== '';
-
-                    emptyRow.innerHTML = ``;
-                    tableBody.appendChild(emptyRow);
                     return;
                 }
 
                 noData.classList.add('hidden');
 
-                data.forEach((item, index) => {
+                // Calculate pagination
+                const totalPages = Math.ceil(data.length / itemsPerPage);
+                const startIndex = (currentPage - 1) * itemsPerPage;
+                const endIndex = Math.min(startIndex + itemsPerPage, data.length);
+                const paginatedData = data.slice(startIndex, endIndex);
+
+                // Render table rows
+                paginatedData.forEach((item, index) => {
                     const row = document.createElement('tr');
+                    const globalIndex = startIndex + index + 1;
 
                     row.innerHTML = `
-                        <td class="text-center">${index + 1}.</td>
+                        <td class="text-center">${globalIndex}.</td>
                         <td class="text-truncate" title="${item.nama}">${item.nama}</td>
                         <td class="text-truncate" title="${item.npm}">${item.npm}</td>
                         <td class="text-truncate" title="${item.judul}">${item.judul}</td>
@@ -562,9 +680,186 @@
                     `;
                     tableBody.appendChild(row);
                 });
+
+                // Render pagination
+                renderPagination(totalPages, data.length);
+            }
+
+            function renderPagination(totalPages, totalItems) {
+                if (totalPages <= 1) return;
+
+                const paginationContainer = document.createElement('div');
+                paginationContainer.id = 'pagination';
+                paginationContainer.className = 'pagination-container mt-4';
+                
+                // Add pagination styles
+                const style = document.createElement('style');
+                style.textContent = `
+                    .pagination-container {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        gap: 0.5rem;
+                        margin-top: 1.5rem;
+                        flex-wrap: wrap;
+                        padding: 1rem 0;
+                    }
+                    .pagination-btn {
+                        padding: 10px 15px;
+                        border: 1px solid #ddd;
+                        background: white;
+                        color: #333;
+                        text-decoration: none;
+                        border-radius: 6px;
+                        cursor: pointer;
+                        font-size: 14px;
+                        font-weight: 500;
+                        transition: all 0.3s ease;
+                        min-width: 44px;
+                        text-align: center;
+                    }
+                    .pagination-btn:hover {
+                        background: #f0f0f0;
+                        color: #333;
+                        text-decoration: none;
+                        border-color: #bbb;
+                    }
+                    .pagination-btn.active {
+                        background: #4f46e5;
+                        color: white;
+                        border-color: #4f46e5;
+                    }
+                    .pagination-btn.disabled {
+                        opacity: 0.5;
+                        cursor: not-allowed;
+                        pointer-events: none;
+                    }
+                    .pagination-info {
+                        margin: 0 1rem;
+                        color: #666;
+                        font-size: 14px;
+                        font-weight: 500;
+                    }
+                    .pagination-dots {
+                        padding: 10px 5px;
+                        color: #666;
+                    }
+                `;
+                
+                if (!document.getElementById('pagination-styles')) {
+                    style.id = 'pagination-styles';
+                    document.head.appendChild(style);
+                }
+
+                // Previous button
+                const prevBtn = document.createElement('button');
+                prevBtn.className = `pagination-btn ${currentPage === 1 ? 'disabled' : ''}`;
+                prevBtn.innerHTML = '← Sebelumnya';
+                prevBtn.onclick = () => {
+                    if (currentPage > 1) {
+                        currentPage--;
+                        renderTable(currentFilteredData);
+                    }
+                };
+
+                // Page numbers container
+                const pageContainer = document.createElement('div');
+                pageContainer.style.display = 'flex';
+                pageContainer.style.gap = '0.25rem';
+
+                // Show page numbers with smart pagination
+                const startPage = Math.max(1, currentPage - 2);
+                const endPage = Math.min(totalPages, currentPage + 2);
+
+                // First page
+                if (startPage > 1) {
+                    const firstBtn = document.createElement('button');
+                    firstBtn.className = 'pagination-btn';
+                    firstBtn.textContent = '1';
+                    firstBtn.onclick = () => {
+                        currentPage = 1;
+                        renderTable(currentFilteredData);
+                    };
+                    pageContainer.appendChild(firstBtn);
+
+                    if (startPage > 2) {
+                        const dots = document.createElement('span');
+                        dots.className = 'pagination-dots';
+                        dots.textContent = '...';
+                        pageContainer.appendChild(dots);
+                    }
+                }
+
+                // Page numbers around current page
+                for (let i = startPage; i <= endPage; i++) {
+                    const pageBtn = document.createElement('button');
+                    pageBtn.className = `pagination-btn ${i === currentPage ? 'active' : ''}`;
+                    pageBtn.textContent = i;
+                    pageBtn.onclick = () => {
+                        currentPage = i;
+                        renderTable(currentFilteredData);
+                    };
+                    pageContainer.appendChild(pageBtn);
+                }
+
+                // Last page
+                if (endPage < totalPages) {
+                    if (endPage < totalPages - 1) {
+                        const dots = document.createElement('span');
+                        dots.className = 'pagination-dots';
+                        dots.textContent = '...';
+                        pageContainer.appendChild(dots);
+                    }
+
+                    const lastBtn = document.createElement('button');
+                    lastBtn.className = 'pagination-btn';
+                    lastBtn.textContent = totalPages;
+                    lastBtn.onclick = () => {
+                        currentPage = totalPages;
+                        renderTable(currentFilteredData);
+                    };
+                    pageContainer.appendChild(lastBtn);
+                }
+
+                // Next button
+                const nextBtn = document.createElement('button');
+                nextBtn.className = `pagination-btn ${currentPage === totalPages ? 'disabled' : ''}`;
+                nextBtn.innerHTML = 'Selanjutnya →';
+                nextBtn.onclick = () => {
+                    if (currentPage < totalPages) {
+                        currentPage++;
+                        renderTable(currentFilteredData);
+                    }
+                };
+
+                // Info text
+                const startItem = (currentPage - 1) * itemsPerPage + 1;
+                const endItem = Math.min(currentPage * itemsPerPage, totalItems);
+                const info = document.createElement('div');
+                info.className = 'pagination-info';
+                info.innerHTML = `Menampilkan <strong>${startItem}-${endItem}</strong> dari <strong>${totalItems}</strong> data`;
+
+                // Append all elements
+                paginationContainer.appendChild(prevBtn);
+                paginationContainer.appendChild(pageContainer);
+                paginationContainer.appendChild(nextBtn);
+                
+                // Add info on new line
+                const infoContainer = document.createElement('div');
+                infoContainer.style.width = '100%';
+                infoContainer.style.textAlign = 'center';
+                infoContainer.style.marginTop = '1rem';
+                infoContainer.appendChild(info);
+                
+                paginationContainer.appendChild(infoContainer);
+
+                // Insert after table container
+                const tableContainer = document.getElementById('table-container');
+                tableContainer.parentNode.insertBefore(paginationContainer, tableContainer.nextSibling);
             }
 
             function applyFilters() {
+                currentPage = 1; // Reset to first page when filtering
                 const searchTerm = searchInput.value.toLowerCase();
                 const selectedBidang = bidangFilter.value;
                 const selectedTopik = topikFilter.value;
