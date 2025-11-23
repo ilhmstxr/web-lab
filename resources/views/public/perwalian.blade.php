@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panduan Perwalian</title>
+    <meta name="google-site-verification" content="3hrCIV-4M-sGGDBara3fNtbqnRi0ySq0Qgd8FPq9CG4" />
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-white text-gray-800">

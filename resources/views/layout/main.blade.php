@@ -7,6 +7,8 @@
     <link href="/img/icon-sisfo.jpg" rel="icon">
     <title>Lab Sistem Informasi - UPNVJT</title>
 
+    <meta name="google-site-verification" content="3hrCIV-4M-sGGDBara3fNtbqnRi0ySq0Qgd8FPq9CG4" />
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
