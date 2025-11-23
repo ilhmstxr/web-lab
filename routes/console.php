@@ -2,6 +2,11 @@
 
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Schedule;
+
+Schedule::command('sitemap:generate')
+    ->daily()
+    ->timezone('Asia/Jakarta');
 
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
