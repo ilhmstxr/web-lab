@@ -152,18 +152,33 @@
                     </div>
 
                     <!-- Right Column: Google Calendar Embed -->
-                    <div class="rounded-lg border bg-white shadow-sm h-[600px] lg:h-auto flex flex-col">
+                    <div class="rounded-lg border bg-white shadow-sm flex flex-col">
                         <div class="p-4 border-b">
                             <h3 class="text-xl font-bold">Kalender Jadwal Lab</h3>
                         </div>
                         <div class="flex-1 bg-gray-50 p-2">
+                            <div class="bg-blue-50 border-l-4 border-blue-400 p-4 mb-4">
+                                <div class="flex">
+                                    <div class="flex-shrink-0">
+                                        <svg class="h-5 w-5 text-blue-400" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                    <div class="ml-3">
+                                        <p class="text-sm text-blue-700">
+                                            Catatan: Jika ingin mengakses detail penggunaan Laboratorium, silakan login menggunakan akun UPN. 
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
                             <!-- GOOGLE CALENDAR EMBED START -->
                             <!-- Ganti src di bawah ini dengan URL Embed Calendar Anda -->
                             <iframe 
                                 src="https://calendar.google.com/calendar/embed?height=600&wkst=2&ctz=Asia%2FJakarta&showPrint=0&hl=id&showCalendars=0&src=Y19mOTAyOWU1NGFkZjg1YjJlMDhmMzY1YTNmYjdiYmZjMGY5Y2M5NDQyNzlkNzk1NDU4NDJiYTkwZjMwMTc2NWVmQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&src=aWQuaW5kb25lc2lhbiNob2xpZGF5QGdyb3VwLnYuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&src=ZW4uaW5kb25lc2lhbiNob2xpZGF5QGdyb3VwLnYuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&color=%237986cb&color=%230b8043&color=%230b8043" 
                                 style="border: 0" 
                                 width="100%" 
-                                height="100%" 
+                                height="600" 
                                 frameborder="0" 
                                 scrolling="no">
                             </iframe>
