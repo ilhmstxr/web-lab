@@ -198,7 +198,7 @@
             const formMessage = document.getElementById('formMessage');
 
             // GANTI URL INI DENGAN URL WEB APP GOOGLE APPS SCRIPT ANDA
-            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzP65E0tKrBLSzHiz-0cpUmF_c6DigfHFSGXDPLdYnqLb5_IeFpsY8w7i_i3dJO0PM/exec'; 
+            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw-W43MFPutYMYnJGUCnr0YXsWkpqaKjaWOo_oDzUycBkoQBg4jT_6ufu0sw_qheVw/exec'; 
 
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
