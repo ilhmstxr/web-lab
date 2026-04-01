@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
             ResearchSeeder::class,
             TagsSeeder::class,
             PortofolioSeeder::class,
-            kegiatanSeeder::class,
+            KegiatanSeeder::class,
         ]);
     }
 }
